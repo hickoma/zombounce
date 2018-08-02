@@ -1,0 +1,23 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:af5d5b63de5f31cdc733303be56c1d56:c8774b3040e4e96da542fda44cf269c1:2eb9a06833ef5947427b4528d023df1d$
+#
+:format=40300
+:texture=Sheet.png
+:size=256x512
+:pivotpoints=enabled
+:borders=disabled
+
+BackGround;8;509;1;1; 0.5;0.5; 0;0;0;0
+Bad;2;509;1;1; 0.5;0.5; 0;0;0;0
+BadTriangle;143;446;64;64; 0.5;0.5; 0;0;0;0
+DeadSmile;68;380;64;64; 0.5;0.5; 0;0;0;0
+Energy;77;446;64;64; 0.5;0.5; 0;0;0;0
+Good;5;509;1;1; 0.5;0.5; 0;0;0;0
+GoodTriangle;11;446;64;64; 0.5;0.5; 0;0;0;0
+Restart;2;184;194;194; 0.5;0.5; 0;0;0;0
+Smile;2;380;64;64; 0.5;0.5; 0;0;0;0
