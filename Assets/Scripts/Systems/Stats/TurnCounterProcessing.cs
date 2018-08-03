@@ -43,8 +43,9 @@ namespace Systems
                 {
                     var turnCounter = _turnCounterFilter.Components1[i];
                     var newCount = turnCounter.TurnCount - 1;
+                    if (newCount < 0) return;
                     SetCountAndText(turnCounter, newCount);
-                    if (newCount <= 0)
+                    if (newCount == 0)
                     {
                         _world.CreateEntityWith<PlayerDeathEvent>();
                     }

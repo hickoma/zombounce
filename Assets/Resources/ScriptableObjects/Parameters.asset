@@ -18,7 +18,12 @@ MonoBehaviour:
   DeadSprite: {fileID: 21300004, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}
   CameraSmooth: 0.2
   Fields:
-  - {fileID: 1521543488452548, guid: 428bb12dea42a334a98cb5a948ed281a, type: 2}
+  - {fileID: 1811661004275824, guid: 7f7feee40c75d90488adebc824b8ca1b, type: 2}
   - {fileID: 1339535048155592, guid: 721d3545f64ab0d4ab868071bcb96a4d, type: 2}
+  - {fileID: 1894150493792926, guid: 0ae32ad02e5e659459ab0dd5836f33f2, type: 2}
+  - {fileID: 1866498840840078, guid: 29083311b1ed82a489301ed2e96214c4, type: 2}
+  - {fileID: 1979609105617530, guid: 5f59fa611ddc09241b8c5d9d7640cb33, type: 2}
+  - {fileID: 1483449623912338, guid: 1dd1e2cad4916184ca1ebc73f6a13912, type: 2}
+  - {fileID: 1037957187319304, guid: fd0136760901157449b934806d775e51, type: 2}
   SpawnCount: 5
   InitialPoolSize: 128
