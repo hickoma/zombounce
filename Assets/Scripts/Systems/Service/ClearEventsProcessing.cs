@@ -8,8 +8,8 @@ namespace Systems.Service
     {
         private EcsWorld _world = null;
         private EcsFilter<PointerUpDownEvent> _pointerUpDownEventFilter = null;
-        private EcsFilter<PlayerDeathEvent> _playerDeadEventFilter = null;
-        private EcsFilter<TurnDecrementEvent> _turnDecrementEvent = null;
+        private EcsFilter<PlayerDeathEvent> _playerDeathEventFilter = null;
+        private EcsFilter<TurnChangedEvent> _turnChangedEvent = null;
         private EcsFilter<OnRestartClickEvent> _onRestartClickEvent = null;
 
         public void Run()
@@ -19,14 +19,14 @@ namespace Systems.Service
                 _world.RemoveEntity(_pointerUpDownEventFilter.Entities[i]);
             }
             
-            for (int i = 0; i < _playerDeadEventFilter.EntitiesCount; i++)
+            for (int i = 0; i < _playerDeathEventFilter.EntitiesCount; i++)
             {
-                _world.RemoveEntity(_playerDeadEventFilter.Entities[i]);
+                _world.RemoveEntity(_playerDeathEventFilter.Entities[i]);
             }
             
-            for (int i = 0; i < _turnDecrementEvent.EntitiesCount; i++)
+            for (int i = 0; i < _turnChangedEvent.EntitiesCount; i++)
             {
-                _world.RemoveEntity(_turnDecrementEvent.Entities[i]);
+                _world.RemoveEntity(_turnChangedEvent.Entities[i]);
             }
             
             for (int i = 0; i < _onRestartClickEvent.EntitiesCount; i++)

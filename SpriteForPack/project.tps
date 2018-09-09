@@ -4,9 +4,7 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>4.6.3</string>
-        <key>fileName</key>
-        <string>F:/Projects/BounceProto2/Bounce Proto2/SpriteForPack/project.tps</string>
+        <string>4.8.3</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -104,9 +102,9 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
-            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
+            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Fast</enum>
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>

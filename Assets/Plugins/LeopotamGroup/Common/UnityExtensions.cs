@@ -4,6 +4,7 @@
 // Copyright (c) 2012-2017 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LeopotamGroup.Common {
@@ -78,6 +79,29 @@ namespace LeopotamGroup.Common {
                 }
             }
             return retVal;
+        }
+        
+        /// <summary>
+        /// Find GameObjects with tag in recursive hierarchy.
+        /// </summary>
+        /// <returns>Transforms of found GameObjects.</returns>
+        /// <param name="target">Root of search.</param>
+        /// <param name="tag">Tag to search.</param>
+        public static List<Transform> FindAllRecursiveByTag (this Transform target, string tag) {
+            var result = new List<Transform>();
+            
+            if ((object) target == null || target.CompareTag (tag)) {
+                result.Add(target);
+                return result;
+            }
+            
+            for (var i = target.childCount - 1; i >= 0; i--) {
+                var retVal = target.GetChild (i).FindRecursiveByTag (tag);
+                if ((object) retVal != null) {
+                    result.Add(retVal);
+                }
+            }
+            return result;
         }
     }
 }

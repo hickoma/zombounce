@@ -18,5 +18,8 @@ namespace Data
         [Header("Field Prefabs")] public GameObject[] Fields;
         public int SpawnCount;
         public int InitialPoolSize;
+
+        public GameObject Energy;
+        public int EnergySpawnCount;
     }
 }

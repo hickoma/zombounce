@@ -16,11 +16,14 @@ namespace Systems.Game
     public class FieldsSpawnProcessing : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world;
-        private EcsFilter<InFieldEvent> _inFieldEventFilter;
-        private EcsFilter<UnityPrefabComponent> _unityPrefabFilter;
+        private EcsFilter<InFieldEvent> _inFieldEventFilter = null;
+        private EcsFilter<UnityPrefabComponent> _unityPrefabFilter = null;
+        private EcsFilter<DespawnEnergyEvent> _despawnEnergyEventFilter = null;
 
         private PoolContainer[] _poolContainers;
+        private PoolContainer _energyPool;
         private List<Field> _path;
+        private List<int> _already;
 
         //z size of field
         private float _groundSize;
@@ -30,23 +33,32 @@ namespace Systems.Game
         public int SpawnCount;
         public int InitialPoolSize;
 
+        public int EnergySpawnCount;
+        public GameObject EnergyPrefab;
+
         public void Initialize()
         {
             _path = new List<Field>(InitialPoolSize);
+            _already = new List<int>();
             AddRandomPath();
             InitPoolAndSpawnFirst();
         }
-        
+
         public void Destroy()
         {
             _poolContainers = null;
+            _energyPool = null;
             _path.Clear();
             _path = null;
+            _already.Clear();
+            _already = null;
             Prefabs = null;
         }
 
         public void Run()
         {
+            CheckEnergyEvents();
+
             for (int i = 0; i < _inFieldEventFilter.EntitiesCount; i++)
             {
                 var enterEvent = _inFieldEventFilter.Components1[i];
@@ -61,6 +73,7 @@ namespace Systems.Game
                 {
                     SpawnForward(id);
                 }
+
                 _world.RemoveEntity(_inFieldEventFilter.Entities[i]);
             }
         }
@@ -68,12 +81,16 @@ namespace Systems.Game
         private void InitPoolAndSpawnFirst()
         {
             var parent = GameObject.FindGameObjectWithTag(Tag.FieldPool).transform;
+            //create energy pool
+            _energyPool = PoolContainer.CreatePool(EnergyPrefab, parent);
+
+            //create fields pool
             _poolContainers = new PoolContainer[Prefabs.Length];
             for (int i = 0; i < Prefabs.Length; i++)
             {
                 _poolContainers[i] = PoolContainer.CreatePool(Prefabs[i], parent);
             }
-            
+
             var firstObject = PopOrSpawnById(0);
 
             //init ground size
@@ -140,6 +157,9 @@ namespace Systems.Game
                 obj.PoolTransform.gameObject.SetActive(true);
                 field.PoolObject = obj;
                 field.IsOnScene = true;
+
+                SpawnEnergy(id, obj);
+
                 return obj;
             }
 
@@ -164,6 +184,40 @@ namespace Systems.Game
             field.PoolObject = null;
             field.IsOnScene = false;
             return true;
+        }
+
+        private void DespawnEnergy(IPoolObject obj)
+        {
+            if (obj.PoolTransform.gameObject.activeInHierarchy)
+            {
+                _energyPool.Recycle(obj);
+            }
+        }
+
+        private void SpawnEnergy(int id, IPoolObject obj)
+        {
+            if (_already.Contains(id)) return;
+
+            _already.Add(id);
+            var spawnPoints = obj.PoolTransform.FindAllRecursiveByTag(Tag.EnergySpawn);
+            for (int i = 0; i < EnergySpawnCount; i++)
+            {
+                var randomPoint = spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
+                var poolingObj = _energyPool.Get();
+                poolingObj.PoolTransform.position = randomPoint.transform.position;
+                poolingObj.PoolTransform.gameObject.SetActive(true);
+            }
+        }
+        
+        private void CheckEnergyEvents()
+        {
+            for (int i = 0; i < _despawnEnergyEventFilter.EntitiesCount; i++)
+            {
+                var entity = _despawnEnergyEventFilter.Entities[i];
+                var poolObject = _despawnEnergyEventFilter.Components1[i].PoolObject;
+                DespawnEnergy(poolObject);
+                _world.RemoveEntity(entity);
+            }
         }
     }
 }

@@ -25,5 +25,21 @@ MonoBehaviour:
   - {fileID: 1979609105617530, guid: 5f59fa611ddc09241b8c5d9d7640cb33, type: 2}
   - {fileID: 1483449623912338, guid: 1dd1e2cad4916184ca1ebc73f6a13912, type: 2}
   - {fileID: 1037957187319304, guid: fd0136760901157449b934806d775e51, type: 2}
+  - {fileID: 1581934900722608, guid: d6a6cad042cad5d499cfc9114a6ca165, type: 2}
+  - {fileID: 1431860008871216, guid: 0d11fbf239c3b094382f5b26e64ca847, type: 2}
+  - {fileID: 1829464976863766, guid: 1a5ac1da4283f2846b20e48728bb2b21, type: 2}
+  - {fileID: 1031575717473920, guid: 3dc150ff047fb714388062ea460176ff, type: 2}
+  - {fileID: 1985287102874538, guid: aae021cce4c4d994c97afce8558f1333, type: 2}
+  - {fileID: 1766387637105890, guid: 208320daf9cca6840ac4dc3f9dc0b078, type: 2}
+  - {fileID: 1109065305450792, guid: d162c47e87d52c5468ddd557af30e400, type: 2}
+  - {fileID: 1205717134635332, guid: d70292c070dcbfb4e91d1f36da1f5b72, type: 2}
+  - {fileID: 1914858946883774, guid: 896d79d626d965d4d815f8144ee96c0a, type: 2}
+  - {fileID: 1693888624103180, guid: 729d9e755aaf1f9438c6bdfeed552d59, type: 2}
+  - {fileID: 1666783650230830, guid: 6a21b7dd925952c43b70bf8fe42009e7, type: 2}
+  - {fileID: 1113063193748892, guid: 65806bbc63d93fa4da761929f9de1414, type: 2}
+  - {fileID: 1980936386859488, guid: 686ce287f8b7a254980cbe3f4ca7c223, type: 2}
+  - {fileID: 1409609689949946, guid: 85c6545c33df06f49aa999b953259e56, type: 2}
   SpawnCount: 5
   InitialPoolSize: 128
+  Energy: {fileID: 1271114649502384, guid: 2c94648861b355541a240874ba371585, type: 2}
+  EnergySpawnCount: 2

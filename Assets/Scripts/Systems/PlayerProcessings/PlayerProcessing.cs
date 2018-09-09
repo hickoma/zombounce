@@ -14,11 +14,13 @@ namespace Systems.PlayerProcessings
 
         private EcsFilter<Player> _playerFilter = null;
         private EcsFilter<PointerUpDownEvent> _pointerUpDownEventFilter = null;
+        private EcsFilter<PlayerDeathEvent> _deathEvent = null;
 
         private Player _player;
         private float _startPosition;
 
         public float Multiplier;
+        public Sprite DeathSprite;
 
         public void Initialize()
         {
@@ -44,8 +46,17 @@ namespace Systems.PlayerProcessings
 
         public void Run()
         {
+            CheckDeathEvent();
             CheckInput();
             CheckDistance();
+        }
+
+        private void CheckDeathEvent()
+        {
+            if (_deathEvent.EntitiesCount > 0)
+            {
+                SetPlayerDeadSprite();
+            }
         }
 
         private void CheckInput()
@@ -61,10 +72,9 @@ namespace Systems.PlayerProcessings
 
                 for (var j = 0; j < _playerFilter.EntitiesCount; j++)
                 {
-                    var player = _playerFilter.Components1[j];
-
                     CalcAndSetForceVector(upDown);
-                    _world.CreateEntityWith<TurnDecrementEvent>();
+                    var component = _world.CreateEntityWith<TurnChangedEvent>();
+                    component.Changed = -1;
                 }
             }
         }
@@ -88,6 +98,15 @@ namespace Systems.PlayerProcessings
         {
             var distance = _world.CreateEntityWith<DistanceEvent>();
             distance.CurrentDistance = _player.Transform.position.z - _startPosition;
+        }
+        
+        private void SetPlayerDeadSprite()
+        {
+            for (int i = 0; i < _playerFilter.EntitiesCount; i++)
+            {
+                var playerComponent = _playerFilter.Components1[i];
+                playerComponent.SpriteRenderer.sprite = DeathSprite;
+            }
         }
     }
 }

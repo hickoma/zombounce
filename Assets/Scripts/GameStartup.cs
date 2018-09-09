@@ -56,7 +56,8 @@ public class GameStartup : MonoBehaviour
             .Add(new UiProcessing())
             .Add(new PlayerProcessing
             {
-                Multiplier = _parameters.ForceMultiplier
+                Multiplier = _parameters.ForceMultiplier,
+                DeathSprite = _parameters.DeadSprite
             })
             .Add(new BonusProcessing())
             .Add(new TurnCounterProcessing
@@ -66,14 +67,15 @@ public class GameStartup : MonoBehaviour
             .Add(new DistanceBonusProcessing())
             .Add(new GameOverProcessing
             {
-                DeathSprite = _parameters.DeadSprite,
                 Menu = _menu
             })
             .Add(new FieldsSpawnProcessing
             {
                 Prefabs = _parameters.Fields,
                 SpawnCount = _parameters.SpawnCount,
-                InitialPoolSize = _parameters.InitialPoolSize
+                InitialPoolSize = _parameters.InitialPoolSize,
+                EnergyPrefab = _parameters.Energy,
+                EnergySpawnCount = _parameters.EnergySpawnCount
             })
 #if DEBUG
             .Add(new DebugProcessingUpdate()) //debug

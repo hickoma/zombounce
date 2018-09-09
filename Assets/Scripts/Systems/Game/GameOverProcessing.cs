@@ -14,7 +14,6 @@ namespace Systems.Game
         private EcsFilter<Player> _player = null;
         
         public GameObject Menu;
-        public Sprite DeathSprite;
         
         public void Run()
         {
@@ -22,7 +21,6 @@ namespace Systems.Game
             {
                 Pause();
                 SetMenuEnabled();
-                SetPlayerDeadSprite();
             }
         }
 
@@ -36,13 +34,6 @@ namespace Systems.Game
             Menu.SetActive(true);
         }
 
-        private void SetPlayerDeadSprite()
-        {
-            for (int i = 0; i < _player.EntitiesCount; i++)
-            {
-                var playerComponent = _player.Components1[i];
-                playerComponent.SpriteRenderer.sprite = DeathSprite;
-            }
-        }
+       
     }
 }
