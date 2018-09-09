@@ -11,6 +11,8 @@
         public const string EnergySpawn = "EnergySpawn";
         public const string VectorPointer = "VectorPointer";
         public const string VectorPointerMask = "VectorPointerMask";
-        
+        public const string Fingerprint = "Fingerprint";
+        public const string FingerprintPointer = "FingerprintPointer";
+        public const string FingerprintPointerMask = "FingerprintPointerMask";
     }
 }

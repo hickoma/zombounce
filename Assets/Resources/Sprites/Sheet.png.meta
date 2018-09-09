@@ -11,6 +11,7 @@ TextureImporter:
     21300012: Smile
     21300014: BadTriangle
     21300016: GoodTriangle
+    21300018: Fingerprint
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -96,7 +97,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09cac8e3281a4f64e82e88187a610e0e
+      spriteID: 3037f09551ab4a94ebc19a47ae01c528
       vertices: []
       indices: 
       edges: []
@@ -116,13 +117,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 335794aad052ec9428461ff2646a43ca
+      spriteID: e870726011ab2bc429fd5c272538a1c9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: BadTriangle
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 446
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 758e99a3dc3c38a4585939980e13524d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeadSmile
       rect:
         serializedVersion: 2
         x: 143
@@ -136,27 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01b75bd5f9a248c42a9ee79d1ca2aae3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DeadSmile
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 380
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a5aac20808b61334fbf10e8afc312a3f
+      spriteID: 4fe735f352e13ca4b8c914f296d40b7f
       vertices: []
       indices: 
       edges: []
@@ -165,7 +166,7 @@ TextureImporter:
       name: Energy
       rect:
         serializedVersion: 2
-        x: 77
+        x: 275
         y: 446
         width: 64
         height: 64
@@ -176,7 +177,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8253caa9306e5614cb6a9173daf8e9ee
+      spriteID: 6e6b196741e0479428d3b598ae2661f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fingerprint
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 244
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a401fa92efeaf8f4ab3df4624655f8c7
       vertices: []
       indices: 
       edges: []
@@ -196,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e49f23bd7a3727c43a216d912cf16c77
+      spriteID: e1cbf2912a1afbc49b88a9f343b3ec32
       vertices: []
       indices: 
       edges: []
@@ -216,7 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d9158839ce233844aa59a446952154c
+      spriteID: 6f236816008a1b34a81593805e3b48db
       vertices: []
       indices: 
       edges: []
@@ -226,7 +247,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 184
+        y: 250
         width: 194
         height: 194
       alignment: 0
@@ -236,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc9943515c0676e46810ce0a230ea225
+      spriteID: d5546aadcd2d911439b553a0b97dfd6d
       vertices: []
       indices: 
       edges: []
@@ -245,8 +266,8 @@ TextureImporter:
       name: Smile
       rect:
         serializedVersion: 2
-        x: 2
-        y: 380
+        x: 77
+        y: 446
         width: 64
         height: 64
       alignment: 0
@@ -256,7 +277,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 95afaa940653e204686a5d79dd093718
+      spriteID: 99b2ced73a1baa84f9b932a7185790f1
       vertices: []
       indices: 
       edges: []

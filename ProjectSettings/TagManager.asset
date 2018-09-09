@@ -11,6 +11,9 @@ TagManager:
   - EnergySpawn
   - VectorPointer
   - VectorPointerMask
+  - Fingerprint
+  - FingerprintPointer
+  - FingerprintPointerMask
   layers:
   - Default
   - TransparentFX

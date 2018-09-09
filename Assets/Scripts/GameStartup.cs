@@ -3,7 +3,7 @@ using Systems.Game;
 using Systems.Physic;
 using Systems.PlayerProcessings;
 using Systems.Service;
-using Systems.Stats;
+using Systems.Ui;
 using Systems._DEBUG;
 using Data;
 using LeopotamGroup.Ecs;

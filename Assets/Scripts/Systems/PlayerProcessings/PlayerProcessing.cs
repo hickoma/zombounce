@@ -90,9 +90,8 @@ namespace Systems.PlayerProcessings
         {
             var originalPosition = Camera.main.ScreenToWorldPoint(upDown.DownPointerPosition);
             var draggedPosition = Camera.main.ScreenToWorldPoint(upDown.UpPointerPosition);
-            
-            CreateDrawEntity((originalPosition - draggedPosition) * Multiplier);
 
+            CreateDrawEntity(originalPosition, (originalPosition - draggedPosition) * Multiplier, false);
         }
 
         private void CalcAndSetForceVector(PointerUpDownEvent upDown)
@@ -109,7 +108,7 @@ namespace Systems.PlayerProcessings
             }
 
             CreateFroceEntity(forceVector);
-            CreateDrawEntity(Vector3.zero);
+            CreateDrawEntity(originalPosition, Vector3.zero, true);
         }
 
         private void CheckDistance()
@@ -132,11 +131,13 @@ namespace Systems.PlayerProcessings
             var forceEvent = _world.CreateEntityWith<AddForeEvent>();
             forceEvent.ForceVector = forceVector;
         }
-        
-        private void CreateDrawEntity(Vector3 forceVector)
+
+        private void CreateDrawEntity(Vector3 downVector, Vector3 forceVector, bool release)
         {
-            var drawVectorPointerComponent = _world.CreateEntityWith<DrawVectorPointer>();
+            var drawVectorPointerComponent = _world.CreateEntityWith<DrawVectorPointerEvent>();
+            drawVectorPointerComponent.DownVector = downVector;
             drawVectorPointerComponent.ForceVector = forceVector;
+            drawVectorPointerComponent.Release = release;
         }
     }
 }

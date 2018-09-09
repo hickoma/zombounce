@@ -4,20 +4,21 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # https://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:17acccc5b204fe61d955e8209aab277a:07f4bf538bd5b5a49ab1425e11f556d8:2eb9a06833ef5947427b4528d023df1d$
+# $TexturePacker:SmartUpdate:6ffbd6185ceda9931db3c7a7cad4817b:e4bae0502d68b3d2555f6705af4cce43:2eb9a06833ef5947427b4528d023df1d$
 #
 :format=40300
 :texture=Sheet.png
-:size=256x512
+:size=512x512
 :pivotpoints=enabled
 :borders=disabled
 
 BackGround;8;509;1;1; 0.5;0.5; 0;0;0;0
 Bad;2;509;1;1; 0.5;0.5; 0;0;0;0
-BadTriangle;143;446;64;64; 0.5;0.5; 0;0;0;0
-DeadSmile;68;380;64;64; 0.5;0.5; 0;0;0;0
-Energy;77;446;64;64; 0.5;0.5; 0;0;0;0
+BadTriangle;209;446;64;64; 0.5;0.5; 0;0;0;0
+DeadSmile;143;446;64;64; 0.5;0.5; 0;0;0;0
+Energy;275;446;64;64; 0.5;0.5; 0;0;0;0
+Fingerprint;198;244;200;200; 0.5;0.5; 0;0;0;0
 Good;5;509;1;1; 0.5;0.5; 0;0;0;0
 GoodTriangle;11;446;64;64; 0.5;0.5; 0;0;0;0
-Restart;2;184;194;194; 0.5;0.5; 0;0;0;0
-Smile;2;380;64;64; 0.5;0.5; 0;0;0;0
+Restart;2;250;194;194; 0.5;0.5; 0;0;0;0
+Smile;77;446;64;64; 0.5;0.5; 0;0;0;0
