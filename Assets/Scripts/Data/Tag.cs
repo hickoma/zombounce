@@ -9,6 +9,8 @@
         public const string Ground = "Ground";
         public const string FieldPool = "FieldPool";
         public const string EnergySpawn = "EnergySpawn";
+        public const string VectorPointer = "VectorPointer";
+        public const string VectorPointerMask = "VectorPointerMask";
         
     }
 }

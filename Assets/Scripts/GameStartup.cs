@@ -3,6 +3,7 @@ using Systems.Game;
 using Systems.Physic;
 using Systems.PlayerProcessings;
 using Systems.Service;
+using Systems.Stats;
 using Systems._DEBUG;
 using Data;
 using LeopotamGroup.Ecs;
@@ -57,9 +58,14 @@ public class GameStartup : MonoBehaviour
             .Add(new PlayerProcessing
             {
                 Multiplier = _parameters.ForceMultiplier,
+                MaxForce = _parameters.MaxForce,
                 DeathSprite = _parameters.DeadSprite
             })
             .Add(new BonusProcessing())
+            .Add(new DrawVectorPointerProcessing
+            {
+                MaxForce = _parameters.MaxForce
+            })
             .Add(new TurnCounterProcessing
             {
                 InitTurnCounter = _parameters.TurnCount

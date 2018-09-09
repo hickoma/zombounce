@@ -9,6 +9,8 @@ TagManager:
   - FieldPool
   - Points
   - EnergySpawn
+  - VectorPointer
+  - VectorPointerMask
   layers:
   - Default
   - TransparentFX

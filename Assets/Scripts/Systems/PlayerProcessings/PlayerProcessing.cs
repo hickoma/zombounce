@@ -1,8 +1,8 @@
-﻿using System.Runtime.InteropServices;
-using Components;
+﻿using Components;
 using Components.Events;
 using Data;
 using LeopotamGroup.Ecs;
+using LeopotamGroup.Math;
 using UnityEngine;
 
 namespace Systems.PlayerProcessings
@@ -18,8 +18,15 @@ namespace Systems.PlayerProcessings
 
         private Player _player;
         private float _startPosition;
+        private float _maxForceSqrt;
 
         public float Multiplier;
+
+        public float MaxForce
+        {
+            set { _maxForceSqrt = value * value; }
+        }
+
         public Sprite DeathSprite;
 
         public void Initialize()
@@ -81,7 +88,11 @@ namespace Systems.PlayerProcessings
 
         private void DrawVector(PointerUpDownEvent upDown)
         {
-            //draw vector line
+            var originalPosition = Camera.main.ScreenToWorldPoint(upDown.DownPointerPosition);
+            var draggedPosition = Camera.main.ScreenToWorldPoint(upDown.UpPointerPosition);
+            
+            CreateDrawEntity((originalPosition - draggedPosition) * Multiplier);
+
         }
 
         private void CalcAndSetForceVector(PointerUpDownEvent upDown)
@@ -90,8 +101,15 @@ namespace Systems.PlayerProcessings
             var draggedPosition = Camera.main.ScreenToWorldPoint(upDown.UpPointerPosition);
 
             var forceVector = (originalPosition - draggedPosition) * Multiplier;
-            var forceEvent = _world.CreateEntityWith<AddForeEvent>();
-            forceEvent.ForceVector = forceVector;
+
+            var sqrMagnitude = forceVector.sqrMagnitude;
+            if (sqrMagnitude > _maxForceSqrt)
+            {
+                forceVector *= Mathf.Sqrt(_maxForceSqrt / sqrMagnitude);
+            }
+
+            CreateFroceEntity(forceVector);
+            CreateDrawEntity(Vector3.zero);
         }
 
         private void CheckDistance()
@@ -99,7 +117,7 @@ namespace Systems.PlayerProcessings
             var distance = _world.CreateEntityWith<DistanceEvent>();
             distance.CurrentDistance = _player.Transform.position.z - _startPosition;
         }
-        
+
         private void SetPlayerDeadSprite()
         {
             for (int i = 0; i < _playerFilter.EntitiesCount; i++)
@@ -107,6 +125,18 @@ namespace Systems.PlayerProcessings
                 var playerComponent = _playerFilter.Components1[i];
                 playerComponent.SpriteRenderer.sprite = DeathSprite;
             }
+        }
+
+        private void CreateFroceEntity(Vector3 forceVector)
+        {
+            var forceEvent = _world.CreateEntityWith<AddForeEvent>();
+            forceEvent.ForceVector = forceVector;
+        }
+        
+        private void CreateDrawEntity(Vector3 forceVector)
+        {
+            var drawVectorPointerComponent = _world.CreateEntityWith<DrawVectorPointer>();
+            drawVectorPointerComponent.ForceVector = forceVector;
         }
     }
 }
