@@ -73,6 +73,10 @@ namespace Systems.PlayerProcessings
                 var upDown = _pointerUpDownEventFilter.Components1[i];
                 if (upDown.isDown)
                 {
+                    for (int j = 0; j < _playerFilter.EntitiesCount; j++)
+                    {
+                        _playerFilter.Components1[i].Rigidbody.velocity = Vector3.zero;
+                    }
                     DrawVector(upDown);
                     continue;
                 }
