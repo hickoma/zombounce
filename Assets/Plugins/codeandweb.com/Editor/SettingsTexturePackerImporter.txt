@@ -1,9 +1,12 @@
 version: 2
 importPivots: 1
 tpsheetFileNames:
+- Assets/Resources/Sprites/bricks.tpsheet
 - Assets/Resources/Sprites/Sheet.tpsheet
 textureFileNames:
+- Assets/Resources/Sprites/bricks.png
 - Assets/Resources/Sprites/Sheet.png
 normalmapFileNames:
+- 
 - 
 enableDebugOutput: 0
