@@ -19,27 +19,16 @@ MonoBehaviour:
   DeadSprite: {fileID: 21300004, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}
   CameraSmooth: 0.2
   Fields:
-  - {fileID: 1811661004275824, guid: 7f7feee40c75d90488adebc824b8ca1b, type: 2}
-  - {fileID: 1339535048155592, guid: 721d3545f64ab0d4ab868071bcb96a4d, type: 2}
-  - {fileID: 1894150493792926, guid: 0ae32ad02e5e659459ab0dd5836f33f2, type: 2}
-  - {fileID: 1866498840840078, guid: 29083311b1ed82a489301ed2e96214c4, type: 2}
-  - {fileID: 1979609105617530, guid: 5f59fa611ddc09241b8c5d9d7640cb33, type: 2}
-  - {fileID: 1483449623912338, guid: 1dd1e2cad4916184ca1ebc73f6a13912, type: 2}
-  - {fileID: 1037957187319304, guid: fd0136760901157449b934806d775e51, type: 2}
-  - {fileID: 1581934900722608, guid: d6a6cad042cad5d499cfc9114a6ca165, type: 2}
-  - {fileID: 1431860008871216, guid: 0d11fbf239c3b094382f5b26e64ca847, type: 2}
-  - {fileID: 1829464976863766, guid: 1a5ac1da4283f2846b20e48728bb2b21, type: 2}
-  - {fileID: 1031575717473920, guid: 3dc150ff047fb714388062ea460176ff, type: 2}
-  - {fileID: 1985287102874538, guid: aae021cce4c4d994c97afce8558f1333, type: 2}
-  - {fileID: 1766387637105890, guid: 208320daf9cca6840ac4dc3f9dc0b078, type: 2}
-  - {fileID: 1109065305450792, guid: d162c47e87d52c5468ddd557af30e400, type: 2}
-  - {fileID: 1205717134635332, guid: d70292c070dcbfb4e91d1f36da1f5b72, type: 2}
-  - {fileID: 1914858946883774, guid: 896d79d626d965d4d815f8144ee96c0a, type: 2}
-  - {fileID: 1693888624103180, guid: 729d9e755aaf1f9438c6bdfeed552d59, type: 2}
-  - {fileID: 1666783650230830, guid: 6a21b7dd925952c43b70bf8fe42009e7, type: 2}
-  - {fileID: 1113063193748892, guid: 65806bbc63d93fa4da761929f9de1414, type: 2}
-  - {fileID: 1980936386859488, guid: 686ce287f8b7a254980cbe3f4ca7c223, type: 2}
-  - {fileID: 1409609689949946, guid: 85c6545c33df06f49aa999b953259e56, type: 2}
+  - {fileID: 1433327638196864, guid: a24b3f14420a9984bbd05c1b1db07efd, type: 2}
+  - {fileID: 1951228843604518, guid: 49c862c762a9a574f9d324a916995090, type: 2}
+  - {fileID: 1866504804606670, guid: f87762a88d387984fb4a3d5cd7bdb2c9, type: 2}
+  - {fileID: 1234826324224556, guid: 776568664b6509c41be4b91390116490, type: 2}
+  - {fileID: 1043584858779048, guid: 141292b96b05543479635b4a6f4c09e6, type: 2}
+  - {fileID: 1349407292343068, guid: b42585eccf7512e4ea0cff8eb4485958, type: 2}
+  - {fileID: 1510476096686162, guid: 5d80125ce3e71e542893013557c3195a, type: 2}
+  - {fileID: 1419725358482618, guid: 4d16c48a178d5e44285310eb721c52e9, type: 2}
+  - {fileID: 1395218878741272, guid: 4ffe4c3a65766464db1f5a188ea3003d, type: 2}
+  - {fileID: 1797353241835282, guid: d42d3cd104e75f64db7d371fafea284e, type: 2}
   SpawnCount: 5
   InitialPoolSize: 128
   Energy: {fileID: 1271114649502384, guid: 2c94648861b355541a240874ba371585, type: 2}
