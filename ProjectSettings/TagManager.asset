@@ -14,6 +14,10 @@ TagManager:
   - Fingerprint
   - FingerprintPointer
   - FingerprintPointerMask
+  - CoinCounter
+  - BestScore
+  - PauseButton
+  - SettingsButton
   layers:
   - Default
   - TransparentFX

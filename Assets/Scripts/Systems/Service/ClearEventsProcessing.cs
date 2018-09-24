@@ -10,7 +10,7 @@ namespace Systems.Service
         private EcsFilter<PointerUpDownEvent> _pointerUpDownEventFilter = null;
         private EcsFilter<PlayerDeathEvent> _playerDeathEventFilter = null;
         private EcsFilter<TurnChangedEvent> _turnChangedEvent = null;
-        private EcsFilter<OnRestartClickEvent> _onRestartClickEvent = null;
+        private EcsFilter<GameStateEvent> _gameStateEvent = null;
 
         public void Run()
         {
@@ -29,9 +29,9 @@ namespace Systems.Service
                 _world.RemoveEntity(_turnChangedEvent.Entities[i]);
             }
             
-            for (int i = 0; i < _onRestartClickEvent.EntitiesCount; i++)
+            for (int i = 0; i < _gameStateEvent.EntitiesCount; i++)
             {
-                _world.RemoveEntity(_onRestartClickEvent.Entities[i]);
+                _world.RemoveEntity(_gameStateEvent.Entities[i]);
             }
         }
     }

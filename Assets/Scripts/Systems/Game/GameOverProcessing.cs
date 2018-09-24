@@ -6,14 +6,14 @@ using UnityEngine;
 namespace Systems.Game
 {
     [EcsInject]
-    public class GameOverProcessing : IEcsRunSystem
+    public class GameOverProcessing : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _ecsWorld;
         
         private EcsFilter<PlayerDeathEvent> _deathEvent = null;
         private EcsFilter<Player> _player = null;
         
-        public GameObject Menu;
+        public GameObject GameOverPanel;
         
         public void Run()
         {
@@ -24,16 +24,25 @@ namespace Systems.Game
             }
         }
 
+        public void Initialize()
+        {
+            //do nothing
+        }
+
+        public void Destroy()
+        {
+            GameOverPanel = null;
+        }
+
         private void Pause()
         {
-            Time.timeScale = 0f;
+            var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
+            stateEvent.State = GameState.PAUSE;
         }
 
         private void SetMenuEnabled()
         {
-            Menu.SetActive(true);
+            GameOverPanel.SetActive(true);
         }
-
-       
     }
 }

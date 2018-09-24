@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 namespace Systems
 {
     [EcsInject]
-    public class UiProcessing: IEcsRunSystem
+    public class RestartProcessing: IEcsRunSystem
     {
         private EcsWorld _world = null;
-        private EcsFilter<OnRestartClickEvent> _turnDecrementEventFilter = null;
+        private EcsFilter<RestartEvent> _restartEvent = null;
 
         public void Run()
         {
-            if (_turnDecrementEventFilter.EntitiesCount > 0)
+            if (_restartEvent.EntitiesCount > 0)
             {
                 Restart();
             }

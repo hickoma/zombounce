@@ -16,9 +16,6 @@ namespace Systems.Ui
         private EcsFilter<VectorPointer> _vectorPointerFilter = null;
         private EcsFilter<Fingerprint> _fingerprintrFilter = null;
         private EcsFilter<DrawVectorPointerEvent> _drawVectorPointerFilter = null;
-        private EcsFilter<PlayerDeathEvent> _deathEvent = null;
-
-        private bool _isGameOver = false;
 
         private float _maxScale;
 
@@ -53,31 +50,21 @@ namespace Systems.Ui
 
         public void Run()
         {
-            CheckDeathEvents();
-
             for (int i = 0; i < _drawVectorPointerFilter.EntitiesCount; i++)
             {
                 var entity = _drawVectorPointerFilter.Entities[i];
 
-                if (!_isGameOver)
-                {
-                    var drawVectorPointerComponent = _drawVectorPointerFilter.Components1[i];
-                    var forceVector = drawVectorPointerComponent.ForceVector;
-                    var downPointerVector = drawVectorPointerComponent.DownVector;
-                    downPointerVector.y = 0f;
+                var drawVectorPointerComponent = _drawVectorPointerFilter.Components1[i];
+                var forceVector = drawVectorPointerComponent.ForceVector;
+                var downPointerVector = drawVectorPointerComponent.DownVector;
+                downPointerVector.y = 0f;
 
-                    var normalizedLenght = MathFast.Clamp01(Mathf.Sqrt(forceVector.sqrMagnitude / _maxForceSqrt));
-                    var lookPosition = forceVector.normalized;
+                var normalizedLenght = MathFast.Clamp01(Mathf.Sqrt(forceVector.sqrMagnitude / _maxForceSqrt));
+                var lookPosition = forceVector.normalized;
 
-                    DrawVector(normalizedLenght, lookPosition);
-                    DrawFingerprint(downPointerVector, normalizedLenght, lookPosition,
-                        drawVectorPointerComponent.Release);
-                }
-                else
-                {
-                    DrawVector(0f, Vector3.zero);
-                    DrawFingerprint(Vector3.zero, 0f, Vector3.zero, true);
-                }
+                DrawVector(normalizedLenght, lookPosition);
+                DrawFingerprint(downPointerVector, normalizedLenght, lookPosition,
+                    drawVectorPointerComponent.Release);
 
                 _world.RemoveEntity(entity);
             }
@@ -126,14 +113,6 @@ namespace Systems.Ui
                     var angle = 180f - Vector3.SignedAngle(Vector3.forward, lookPosition, Vector3.up);
                     fingerprintEvent.MainTransformForRotation.localRotation = Quaternion.Euler(0f, 0f, angle);
                 }
-            }
-        }
-
-        private void CheckDeathEvents()
-        {
-            if (_deathEvent.EntitiesCount > 0)
-            {
-                _isGameOver = true;
             }
         }
 

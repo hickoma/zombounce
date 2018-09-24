@@ -5,6 +5,8 @@
         public const string Player = "Player";
         public const string Camera = "MainCamera";
         public const string TurnCounter = "TurnCounter";
+        public const string CoinCounter = "CoinCounter";
+        public const string BestScore = "BestScore";
         public const string Points = "Points";
         public const string Ground = "Ground";
         public const string FieldPool = "FieldPool";
@@ -14,5 +16,7 @@
         public const string Fingerprint = "Fingerprint";
         public const string FingerprintPointer = "FingerprintPointer";
         public const string FingerprintPointerMask = "FingerprintPointerMask";
+        public const string PauseButton = "PauseButton";
+        public const string SettingsButton = "SettingsButton";
     }
 }

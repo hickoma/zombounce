@@ -12,7 +12,8 @@ using UnityEngine;
 public class GameStartup : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
-    [SerializeField] private GameObject _menu;
+    [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _startGamePanel;
 
 #if UNITY_EDITOR
     private GameObject _worldObserver;
@@ -53,8 +54,14 @@ public class GameStartup : MonoBehaviour
             .Add(new LevelInitializeProcessor());
 
         _update
+            .Add(new CatchClickEventProcessing())
+            .Add(new StartGameProcessing
+            {
+                StartGamePanel = _startGamePanel
+            })
             .Add(new UserInputProcessing())
-            .Add(new UiProcessing())
+            .Add(new TimeScaleProcessing())
+            .Add(new RestartProcessing())
             .Add(new PlayerProcessing
             {
                 Multiplier = _parameters.ForceMultiplier,
@@ -73,7 +80,7 @@ public class GameStartup : MonoBehaviour
             .Add(new DistanceBonusProcessing())
             .Add(new GameOverProcessing
             {
-                Menu = _menu
+                GameOverPanel = _gameOverPanel
             })
             .Add(new FieldsSpawnProcessing
             {
