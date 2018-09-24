@@ -60,7 +60,6 @@ public class GameStartup : MonoBehaviour
                 StartGamePanel = _startGamePanel
             })
             .Add(new UserInputProcessing())
-            .Add(new TimeScaleProcessing())
             .Add(new RestartProcessing())
             .Add(new PlayerProcessing
             {
@@ -93,6 +92,7 @@ public class GameStartup : MonoBehaviour
 #if DEBUG
             .Add(new DebugProcessingUpdate()) //debug
 #endif
+            .Add(new TimeScaleProcessing())
             .Add(new ClearEventsProcessing());
 
         _fixedUpdate
