@@ -61,6 +61,10 @@ public class GameStartup : MonoBehaviour
             })
             .Add(new UserInputProcessing())
             .Add(new RestartProcessing())
+            .Add(new TurnCounterProcessing
+            {
+                InitTurnCounter = _parameters.TurnCount
+            })
             .Add(new PlayerProcessing
             {
                 Multiplier = _parameters.ForceMultiplier,
@@ -72,10 +76,7 @@ public class GameStartup : MonoBehaviour
             {
                 MaxForce = _parameters.MaxForce
             })
-            .Add(new TurnCounterProcessing
-            {
-                InitTurnCounter = _parameters.TurnCount
-            })
+            
             .Add(new DistanceBonusProcessing())
             .Add(new GameOverProcessing
             {

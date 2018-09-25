@@ -61,17 +61,21 @@ namespace Systems
             {
                 var changed = _turnChangedEventFilter.Components1[i].Changed;
 
+
                 for (int j = 0; j < _turnCounterFilter.EntitiesCount; j++)
                 {
                     var turnCounter = _turnCounterFilter.Components1[j];
                     var newCount = turnCounter.TurnCount + changed;
-                    if (newCount < 0 || newCount > InitTurnCounter) return;
+                    if (newCount < 0 || newCount > InitTurnCounter) continue;
+                    
                     SetCountAndText(turnCounter, newCount);
                     if (newCount == 0)
                     {
                         _world.CreateEntityWith<PlayerDeathEvent>();
                     }
                 }
+
+                _world.RemoveEntity(_turnChangedEventFilter.Entities[i]);
             }
         }
 
