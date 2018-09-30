@@ -7,6 +7,8 @@ namespace Data
     {
         [Header("Player"), Range(100f, 1000f)] public float ForceMultiplier;
         public float Drag;
+        public float MinLength;
+        public float MinVelocityTolerance;
         
         [Range(1000f, 4000f)] public float MaxForce;
 

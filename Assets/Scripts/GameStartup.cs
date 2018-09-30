@@ -54,7 +54,12 @@ public class GameStartup : MonoBehaviour
             .Add(new LevelInitializeProcessor());
 
         _update
+          
             .Add(new CatchClickEventProcessing())
+            .Add(new GameOverProcessing
+            {
+                GameOverPanel = _gameOverPanel
+            })
             .Add(new StartGameProcessing
             {
                 StartGamePanel = _startGamePanel
@@ -63,25 +68,23 @@ public class GameStartup : MonoBehaviour
             .Add(new RestartProcessing())
             .Add(new TurnCounterProcessing
             {
-                InitTurnCounter = _parameters.TurnCount
+                InitTurnCounter = _parameters.TurnCount,
+                MinVelocityTolerace = _parameters.MinVelocityTolerance
             })
             .Add(new PlayerProcessing
             {
                 Multiplier = _parameters.ForceMultiplier,
                 MaxForce = _parameters.MaxForce,
-                DeathSprite = _parameters.DeadSprite
+                DeathSprite = _parameters.DeadSprite,
+                MinLength = _parameters.MinLength
             })
             .Add(new BonusProcessing())
             .Add(new DrawVectorPointerProcessing
             {
                 MaxForce = _parameters.MaxForce
             })
-            
             .Add(new DistanceBonusProcessing())
-            .Add(new GameOverProcessing
-            {
-                GameOverPanel = _gameOverPanel
-            })
+            
             .Add(new FieldsSpawnProcessing
             {
                 Prefabs = _parameters.Fields,
@@ -94,6 +97,7 @@ public class GameStartup : MonoBehaviour
             .Add(new DebugProcessingUpdate()) //debug
 #endif
             .Add(new TimeScaleProcessing())
+           
             .Add(new ClearEventsProcessing());
 
         _fixedUpdate

@@ -9,18 +9,20 @@ namespace Systems.Game
     public class GameOverProcessing : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _ecsWorld;
-        
+
         private EcsFilter<PlayerDeathEvent> _deathEvent = null;
         private EcsFilter<Player> _player = null;
-        
+
         public GameObject GameOverPanel;
-        
+
         public void Run()
         {
-            if (_deathEvent.EntitiesCount > 0)
+            for (int i = 0; i < _deathEvent.EntitiesCount; i++)
             {
                 Pause();
                 SetMenuEnabled();
+                SetPlayerDeathSprite();
+                _ecsWorld.RemoveEntity(_deathEvent.Entities[i]);
             }
         }
 
@@ -43,6 +45,11 @@ namespace Systems.Game
         private void SetMenuEnabled()
         {
             GameOverPanel.SetActive(true);
+        }
+
+        private void SetPlayerDeathSprite()
+        {
+            _ecsWorld.CreateEntityWith<SetDeathSprite>();
         }
     }
 }

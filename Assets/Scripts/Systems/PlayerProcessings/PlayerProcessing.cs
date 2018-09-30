@@ -13,12 +13,18 @@ namespace Systems.PlayerProcessings
         private EcsWorld _world = null;
 
         private EcsFilter<Player> _playerFilter = null;
+        private EcsFilter<SetDeathSprite> _setDeathSpriteEventFilter = null;
         private EcsFilter<PointerUpDownEvent> _pointerUpDownEventFilter = null;
-        private EcsFilter<PlayerDeathEvent> _deathEvent = null;
 
         private Player _player;
         private float _startPosition;
         private float _maxForceSqrt;
+        private float _sqrtMinLength;
+
+        public float MinLength
+        {
+            set { _sqrtMinLength = value * value; }
+        }
 
         public float Multiplier;
 
@@ -60,9 +66,10 @@ namespace Systems.PlayerProcessings
 
         private void CheckDeathEvent()
         {
-            if (_deathEvent.EntitiesCount > 0)
+            for (int i = 0; i < _setDeathSpriteEventFilter.EntitiesCount; i++)
             {
                 SetPlayerDeadSprite();
+                _world.RemoveEntity(_setDeathSpriteEventFilter.Entities[i]);
             }
         }
 
@@ -77,6 +84,7 @@ namespace Systems.PlayerProcessings
                     {
                         _playerFilter.Components1[i].Rigidbody.velocity = Vector3.zero;
                     }
+
                     DrawVector(upDown);
                     continue;
                 }
@@ -84,8 +92,6 @@ namespace Systems.PlayerProcessings
                 for (var j = 0; j < _playerFilter.EntitiesCount; j++)
                 {
                     CalcAndSetForceVector(upDown);
-                    var component = _world.CreateEntityWith<TurnChangedEvent>();
-                    component.Changed = -1;
                 }
             }
         }
@@ -111,7 +117,12 @@ namespace Systems.PlayerProcessings
                 forceVector *= Mathf.Sqrt(_maxForceSqrt / sqrMagnitude);
             }
 
-            CreateFroceEntity(forceVector);
+            if (forceVector.sqrMagnitude > _sqrtMinLength)
+            {
+                CreateFroceEntity(forceVector);
+                CreateCounterChangeEvent();
+            }
+
             CreateDrawEntity(originalPosition, Vector3.zero, true);
         }
 
@@ -134,6 +145,12 @@ namespace Systems.PlayerProcessings
         {
             var forceEvent = _world.CreateEntityWith<AddForeEvent>();
             forceEvent.ForceVector = forceVector;
+        }
+
+        private void CreateCounterChangeEvent()
+        {
+            var component = _world.CreateEntityWith<TurnChangedEvent>();
+            component.Changed = -1;
         }
 
         private void CreateDrawEntity(Vector3 downVector, Vector3 forceVector, bool release)

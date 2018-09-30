@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: Parameters
   m_EditorClassIdentifier: 
   ForceMultiplier: 200
-  Drag: 2
+  Drag: 1.5
+  MinLength: 300
+  MinVelocityTolerance: 0.05
   MaxForce: 3000
   TurnCount: 10
   AliveSprite: {fileID: 21300012, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}

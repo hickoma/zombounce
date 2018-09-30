@@ -10,7 +10,7 @@ namespace Systems.PlayerProcessings
         private EcsWorld _world = null;
 
         private EcsFilter<GameStateEvent> _gameStateEventFilter = null;
-        
+
         private bool _pressed;
         private Vector3 _downPointerPosition;
 
@@ -55,6 +55,7 @@ namespace Systems.PlayerProcessings
                         break;
                 }
             }
+
             return _isInteractive;
         }
 

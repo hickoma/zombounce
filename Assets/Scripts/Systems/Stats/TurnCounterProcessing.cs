@@ -1,4 +1,5 @@
-﻿using Components;
+﻿using System;
+using Components;
 using Components.Events;
 using Data;
 using LeopotamGroup.Ecs;
@@ -13,11 +14,12 @@ namespace Systems
         private EcsWorld _world = null;
         private EcsFilter<TurnChangedEvent> _turnChangedEventFilter = null;
         private EcsFilter<TurnCounter> _turnCounterFilter = null;
-        private EcsFilter<PlayerDeathEvent> _deathEvent = null;
+        private EcsFilter<Player> _playerFilter = null;
 
         private bool _isGameOver = false;
 
         public int InitTurnCounter;
+        public float MinVelocityTolerace;
 
         public void Initialize()
         {
@@ -49,9 +51,20 @@ namespace Systems
 
         private void CheckDeathEvents()
         {
-            if (_deathEvent.EntitiesCount > 0)
+            for (int i = 0; i < _turnCounterFilter.EntitiesCount; i++)
             {
-                _isGameOver = true;
+                var currentCount = _turnCounterFilter.Components1[i].TurnCount;
+                if (currentCount == 0)
+                {
+                    for (int k = 0; k < _playerFilter.EntitiesCount; k++)
+                    {
+                        if (Math.Abs(_playerFilter.Components1[i].Rigidbody.velocity.sqrMagnitude) <
+                            MinVelocityTolerace)
+                        {
+                            _world.CreateEntityWith<PlayerDeathEvent>();
+                        }
+                    }
+                }
             }
         }
 
@@ -67,12 +80,8 @@ namespace Systems
                     var turnCounter = _turnCounterFilter.Components1[j];
                     var newCount = turnCounter.TurnCount + changed;
                     if (newCount < 0 || newCount > InitTurnCounter) continue;
-                    
+
                     SetCountAndText(turnCounter, newCount);
-                    if (newCount == 0)
-                    {
-                        _world.CreateEntityWith<PlayerDeathEvent>();
-                    }
                 }
 
                 _world.RemoveEntity(_turnChangedEventFilter.Entities[i]);
