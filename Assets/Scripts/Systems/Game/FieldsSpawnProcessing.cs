@@ -148,7 +148,7 @@ namespace Systems.Game
                 PopOrSpawnById(id);
             }
 
-            var field = _path[id];
+            var field = GetField(id);
 
             if (!field.IsOnScene)
             {
@@ -173,7 +173,7 @@ namespace Systems.Game
                 return false;
             }
 
-            var field = _path[id];
+            var field = GetField(id);
             if (!field.IsOnScene)
             {
                 return false;
@@ -218,6 +218,16 @@ namespace Systems.Game
                 DespawnEnergy(poolObject);
                 _world.RemoveEntity(entity);
             }
+        }
+
+        private Field GetField(int id)
+        {
+            if (id > _path.Count - 1)
+            {
+                AddRandomPath();
+            }
+
+            return _path[id];
         }
     }
 }
