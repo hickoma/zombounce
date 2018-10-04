@@ -54,27 +54,41 @@ public class GameStartup : MonoBehaviour
             .Add(new LevelInitializeProcessor());
 
         _update
-          
             .Add(new CatchClickEventProcessing())
-            .Add(new GameOverProcessing
-            {
-                GameOverPanel = _gameOverPanel
-            })
-            .Add(new StartGameProcessing
-            {
-                StartGamePanel = _startGamePanel
-            })
-            .Add(new UserInputProcessing())
-            .Add(new RestartProcessing())
             .Add(new TurnCounterProcessing
             {
                 InitTurnCounter = _parameters.TurnCount,
                 MinVelocityTolerace = _parameters.MinVelocityTolerance
             })
+            .Add(new GameOverProcessing
+            {
+                GameOverPanel = _gameOverPanel,
+                TimerCount = _parameters.TimerCount
+            })
+            .Add(new PlayMoreProcessing
+            {
+                GameOverPanel = _gameOverPanel
+            })
+            .Add(new HideTimerProcessing
+            {
+                GameOverPanel = _gameOverPanel,
+                RescaleSpeed = _parameters.RescaleSpeed
+            })
+            .Add(new StartGameProcessing
+            {
+                StartGamePanel = _startGamePanel
+            })
+            .Add(new TimerProcessing
+            {
+                GameOverPanel = _gameOverPanel
+            })
+            .Add(new RestartProcessing())
+            .Add(new UserInputProcessing())
             .Add(new PlayerProcessing
             {
                 Multiplier = _parameters.ForceMultiplier,
                 MaxForce = _parameters.MaxForce,
+                AliveSprite = _parameters.AliveSprite,
                 DeathSprite = _parameters.DeadSprite,
                 MinLength = _parameters.MinLength
             })
@@ -84,7 +98,6 @@ public class GameStartup : MonoBehaviour
                 MaxForce = _parameters.MaxForce
             })
             .Add(new DistanceBonusProcessing())
-            
             .Add(new FieldsSpawnProcessing
             {
                 Prefabs = _parameters.Fields,
@@ -97,7 +110,6 @@ public class GameStartup : MonoBehaviour
             .Add(new DebugProcessingUpdate()) //debug
 #endif
             .Add(new TimeScaleProcessing())
-           
             .Add(new ClearEventsProcessing());
 
         _fixedUpdate

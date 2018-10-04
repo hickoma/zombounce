@@ -13,13 +13,17 @@ namespace Systems.PlayerProcessings
         private EcsWorld _world = null;
 
         private EcsFilter<Player> _playerFilter = null;
-        private EcsFilter<SetDeathSprite> _setDeathSpriteEventFilter = null;
+        private EcsFilter<SetSprite> _setSpriteEventFilter = null;
         private EcsFilter<PointerUpDownEvent> _pointerUpDownEventFilter = null;
+        private EcsFilter<GameStateEvent> _gameStateEventFilter = null;
 
         private Player _player;
         private float _startPosition;
         private float _maxForceSqrt;
         private float _sqrtMinLength;
+
+        private bool _isInteractive = true;
+
 
         public float MinLength
         {
@@ -34,6 +38,7 @@ namespace Systems.PlayerProcessings
         }
 
         public Sprite DeathSprite;
+        public Sprite AliveSprite;
 
         public void Initialize()
         {
@@ -59,39 +64,44 @@ namespace Systems.PlayerProcessings
 
         public void Run()
         {
-            CheckDeathEvent();
+            CheckChangeSpriteEvent();
             CheckInput();
             CheckDistance();
+            CheckState();
         }
 
-        private void CheckDeathEvent()
+
+        private void CheckChangeSpriteEvent()
         {
-            for (int i = 0; i < _setDeathSpriteEventFilter.EntitiesCount; i++)
+            for (int i = 0; i < _setSpriteEventFilter.EntitiesCount; i++)
             {
-                SetPlayerDeadSprite();
-                _world.RemoveEntity(_setDeathSpriteEventFilter.Entities[i]);
+                SetPlayerSprite(_setSpriteEventFilter.Components1[i].isLive);
+                _world.RemoveEntity(_setSpriteEventFilter.Entities[i]);
             }
         }
 
         private void CheckInput()
         {
-            for (var i = 0; i < _pointerUpDownEventFilter.EntitiesCount; i++)
+            if (_isInteractive)
             {
-                var upDown = _pointerUpDownEventFilter.Components1[i];
-                if (upDown.isDown)
+                for (var i = 0; i < _pointerUpDownEventFilter.EntitiesCount; i++)
                 {
-                    for (int j = 0; j < _playerFilter.EntitiesCount; j++)
+                    var upDown = _pointerUpDownEventFilter.Components1[i];
+                    if (upDown.isDown)
                     {
-                        _playerFilter.Components1[i].Rigidbody.velocity = Vector3.zero;
+                        for (int j = 0; j < _playerFilter.EntitiesCount; j++)
+                        {
+                            _playerFilter.Components1[i].Rigidbody.velocity = Vector3.zero;
+                        }
+
+                        DrawVector(upDown);
+                        continue;
                     }
 
-                    DrawVector(upDown);
-                    continue;
-                }
-
-                for (var j = 0; j < _playerFilter.EntitiesCount; j++)
-                {
-                    CalcAndSetForceVector(upDown);
+                    for (var j = 0; j < _playerFilter.EntitiesCount; j++)
+                    {
+                        CalcAndSetForceVector(upDown);
+                    }
                 }
             }
         }
@@ -132,12 +142,19 @@ namespace Systems.PlayerProcessings
             distance.CurrentDistance = _player.Transform.position.z - _startPosition;
         }
 
-        private void SetPlayerDeadSprite()
+        private void SetPlayerSprite(bool isAlive)
         {
             for (int i = 0; i < _playerFilter.EntitiesCount; i++)
             {
                 var playerComponent = _playerFilter.Components1[i];
-                playerComponent.SpriteRenderer.sprite = DeathSprite;
+                if (isAlive)
+                {
+                    playerComponent.SpriteRenderer.sprite = AliveSprite;
+                }
+                else
+                {
+                    playerComponent.SpriteRenderer.sprite = DeathSprite;
+                }
             }
         }
 
@@ -159,6 +176,24 @@ namespace Systems.PlayerProcessings
             drawVectorPointerComponent.DownVector = downVector;
             drawVectorPointerComponent.ForceVector = forceVector;
             drawVectorPointerComponent.Release = release;
+        }
+
+        private void CheckState()
+        {
+            for (int i = 0; i < _gameStateEventFilter.EntitiesCount; i++)
+            {
+                switch (_gameStateEventFilter.Components1[i].State)
+                {
+                    case GameState.PAUSE:
+                    case GameState.NOT_INTERACTIVE:
+                        _isInteractive = false;
+                        CreateDrawEntity(Vector3.zero, Vector3.zero, true);
+                        break;
+                    case GameState.PLAY:
+                        _isInteractive = true;
+                        break;
+                }
+            }
         }
     }
 }

@@ -18,6 +18,8 @@ TagManager:
   - BestScore
   - PauseButton
   - SettingsButton
+  - Timer
+  - TakeCoins
   layers:
   - Default
   - TransparentFX

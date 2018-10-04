@@ -1,5 +1,7 @@
 ﻿using Components;
 using Components.Events;
+using Data;
+using LeopotamGroup.Common;
 using LeopotamGroup.Ecs;
 using UnityEngine;
 
@@ -12,8 +14,11 @@ namespace Systems.Game
 
         private EcsFilter<PlayerDeathEvent> _deathEvent = null;
         private EcsFilter<Player> _player = null;
+        
+        private Transform _takeCoins;
 
         public GameObject GameOverPanel;
+        public int TimerCount;
 
         public void Run()
         {
@@ -28,7 +33,7 @@ namespace Systems.Game
 
         public void Initialize()
         {
-            //do nothing
+            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeCoins);
         }
 
         public void Destroy()
@@ -45,11 +50,15 @@ namespace Systems.Game
         private void SetMenuEnabled()
         {
             GameOverPanel.SetActive(true);
+            _takeCoins.gameObject.SetActive(true);
+            var timer = _ecsWorld.CreateEntityWith<StartStopTimerEvent>();
+            timer.IsStart = true;
+            timer.Count = TimerCount;
         }
 
         private void SetPlayerDeathSprite()
         {
-            _ecsWorld.CreateEntityWith<SetDeathSprite>();
+            _ecsWorld.CreateEntityWith<SetSprite>().isLive = false;
         }
     }
 }

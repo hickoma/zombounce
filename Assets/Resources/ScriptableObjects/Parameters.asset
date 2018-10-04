@@ -14,10 +14,12 @@ MonoBehaviour:
   ForceMultiplier: 200
   Drag: 1.5
   MinLength: 300
-  MinVelocityTolerance: 0.05
+  MinVelocityTolerance: 0.5
   MaxForce: 3000
   TurnCount: 10
-  AliveSprite: {fileID: 21300012, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}
+  TimerCount: 5
+  RescaleSpeed: 5
+  AliveSprite: {fileID: 21300274, guid: 8690aaaeef6aae74e908eb25c7cc3005, type: 3}
   DeadSprite: {fileID: 21300004, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}
   CameraSmooth: 0.2
   Fields:

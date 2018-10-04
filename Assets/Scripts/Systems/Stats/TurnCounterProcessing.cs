@@ -15,6 +15,7 @@ namespace Systems
         private EcsFilter<TurnChangedEvent> _turnChangedEventFilter = null;
         private EcsFilter<TurnCounter> _turnCounterFilter = null;
         private EcsFilter<Player> _playerFilter = null;
+        private EcsFilter<CountNowEvent> _countNowEventFilter;
 
         private bool _isGameOver = false;
 
@@ -42,10 +43,24 @@ namespace Systems
 
         public void Run()
         {
-            CheckDeathEvents();
+            CheckTurnEvents();
+
             if (!_isGameOver)
             {
-                CheckTurnEvents();
+                CheckDeathEvents();
+            }
+            else
+            {
+                CheckPlayMoreEvent();
+            }
+        }
+
+        private void CheckPlayMoreEvent()
+        {
+            for (int i = 0; i < _countNowEventFilter.EntitiesCount; i++)
+            {
+                _isGameOver = false;
+                _world.RemoveEntity(_countNowEventFilter.Entities[i]);
             }
         }
 
@@ -62,6 +77,7 @@ namespace Systems
                             MinVelocityTolerace)
                         {
                             _world.CreateEntityWith<PlayerDeathEvent>();
+                            _isGameOver = true;
                         }
                     }
                 }
@@ -88,7 +104,7 @@ namespace Systems
             }
         }
 
-        public void SetCountAndText(TurnCounter turnCounter, int count)
+        private void SetCountAndText(TurnCounter turnCounter, int count)
         {
             turnCounter.TurnCount = count;
             turnCounter.TurnCountText.text = count + "/" + InitTurnCounter;

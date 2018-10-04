@@ -36,6 +36,10 @@ namespace Systems.PlayerProcessings
                     CreateDownEvent();
                 }
             }
+            else
+            {
+                _pressed = false;
+            }
         }
 
         private bool CheckInteractive()

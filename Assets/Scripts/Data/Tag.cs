@@ -18,5 +18,7 @@
         public const string FingerprintPointerMask = "FingerprintPointerMask";
         public const string PauseButton = "PauseButton";
         public const string SettingsButton = "SettingsButton";
+        public const string Timer = "Timer";
+        public const string TakeCoins = "TakeCoins";
     }
 }

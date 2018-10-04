@@ -13,6 +13,8 @@ namespace Data
         [Range(1000f, 4000f)] public float MaxForce;
 
         public int TurnCount;
+        public int TimerCount;
+        public float RescaleSpeed;
 
         public Sprite AliveSprite;
         public Sprite DeadSprite;
