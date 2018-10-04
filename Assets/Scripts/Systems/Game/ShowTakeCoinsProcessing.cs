@@ -8,56 +8,55 @@ using UnityEngine.UI;
 namespace Systems.Game
 {
     [EcsInject]
-    public class HideTimerProcessing : IEcsInitSystem, IEcsRunSystem
+    public class ShowTakeCoinsProcessing : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _ecsWorld;
 
-        private EcsFilter<HideTimerEvent> _hideTimerEventFilter;
-
-        private Transform _takeEnergy;
+        private EcsFilter<ShowTakeCoinsEvent> _showTimerEventFilter;
+        
+        private Transform _takeCoins;
         private Button _button;
+        
         private Vector3 _rescaleVector;
-
         private bool _isPlaying;
-
+        
         public GameObject GameOverPanel;
         public float RescaleSpeed;
-
+        
         public void Initialize()
         {
-            _takeEnergy = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeEnergy);
-            _button = _takeEnergy.FindRecursiveByTag(Tag.Button).GetComponent<Button>();
+            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeCoins);
+            _button = _takeCoins.GetComponent<Button>();
             _rescaleVector = new Vector3(RescaleSpeed, RescaleSpeed, RescaleSpeed);
         }
 
         public void Destroy()
         {
-            _takeEnergy = null;
+            _takeCoins = null;
         }
 
         public void Run()
         {
             if (_isPlaying)
             {
-                if (_takeEnergy.localScale.x <= 0f)
+                if (_takeCoins.localScale.x >= 1f)
                 {
-                    _takeEnergy.gameObject.SetActive(false);
-                    _ecsWorld.CreateEntityWith<ShowTakeCoinsEvent>();
                     _isPlaying = false;
-                    _takeEnergy.localScale = Vector3.one;
+                    _takeCoins.localScale = Vector3.one;
                     _button.enabled = true;
                 }
                 else
                 {
-                    _takeEnergy.localScale -= _rescaleVector * Time.unscaledDeltaTime;
+                    _takeCoins.localScale += _rescaleVector * Time.unscaledDeltaTime;
                 }
             }
             else
             {
-                for (int i = 0; i < _hideTimerEventFilter.EntitiesCount; i++)
+                for (int i = 0; i < _showTimerEventFilter.EntitiesCount; i++)
                 {
+                    _takeCoins.gameObject.SetActive(true);
                     _isPlaying = true;
-                    _ecsWorld.RemoveEntity(_hideTimerEventFilter.Entities[i]);
+                    _ecsWorld.RemoveEntity(_showTimerEventFilter.Entities[i]);
                     _button.enabled = false;
                 }
             }

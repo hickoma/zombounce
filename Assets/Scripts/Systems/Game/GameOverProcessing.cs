@@ -33,7 +33,7 @@ namespace Systems.Game
 
         public void Initialize()
         {
-            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeCoins);
+            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeEnergy);
         }
 
         public void Destroy()

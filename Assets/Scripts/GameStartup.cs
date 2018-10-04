@@ -5,6 +5,7 @@ using Systems.PlayerProcessings;
 using Systems.Service;
 using Systems.Ui;
 using Systems._DEBUG;
+using Components.Events;
 using Data;
 using LeopotamGroup.Ecs;
 using UnityEngine;
@@ -70,6 +71,11 @@ public class GameStartup : MonoBehaviour
                 GameOverPanel = _gameOverPanel
             })
             .Add(new HideTimerProcessing
+            {
+                GameOverPanel = _gameOverPanel,
+                RescaleSpeed = _parameters.RescaleSpeed
+            })
+            .Add(new ShowTakeCoinsProcessing
             {
                 GameOverPanel = _gameOverPanel,
                 RescaleSpeed = _parameters.RescaleSpeed

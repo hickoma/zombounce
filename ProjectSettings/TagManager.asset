@@ -20,6 +20,8 @@ TagManager:
   - SettingsButton
   - Timer
   - TakeCoins
+  - TakeEnergy
+  - Button
   layers:
   - Default
   - TransparentFX

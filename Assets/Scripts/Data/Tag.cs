@@ -19,6 +19,8 @@
         public const string PauseButton = "PauseButton";
         public const string SettingsButton = "SettingsButton";
         public const string Timer = "Timer";
+        public const string TakeEnergy = "TakeEnergy";
         public const string TakeCoins = "TakeCoins";
+        public const string Button = "Button";
     }
 }

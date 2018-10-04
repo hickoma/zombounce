@@ -3,7 +3,7 @@
 namespace Components.Events
 {
     [EcsIgnoreInFilter]
-    public class ShowSimpleButtonEvent
+    public class ShowTakeCoinsEvent
     {
         
     }
