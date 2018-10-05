@@ -10,7 +10,7 @@ namespace Components.Events
     public enum GameState
     {
         PAUSE,
-        PLAY,
-        NOT_INTERACTIVE
+        GAME_OVER,
+        PLAY
     }
 }

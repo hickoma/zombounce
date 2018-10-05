@@ -1,6 +1,8 @@
 ﻿using Components.Events;
+using Data;
 using LeopotamGroup.Ecs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Systems.PlayerProcessings
 {
@@ -14,12 +16,17 @@ namespace Systems.PlayerProcessings
         private bool _pressed;
         private Vector3 _downPointerPosition;
 
-        private bool _isInteractive = true;
+        private bool _isInteractive;
 
         public void Run()
         {
             if (CheckInteractive())
             {
+                if (CheckInterrupt())
+                {
+                    return;
+                }
+
                 if (Input.GetMouseButtonDown(0))
                 {
                     _pressed = true;
@@ -36,10 +43,12 @@ namespace Systems.PlayerProcessings
                     CreateDownEvent();
                 }
             }
-            else
-            {
-                _pressed = false;
-            }
+        }
+
+        private bool CheckInterrupt()
+        {
+            var currentSelection = EventSystem.current.currentSelectedGameObject;
+            return currentSelection != null && currentSelection.CompareTag(Tag.PauseButton);
         }
 
         private bool CheckInteractive()
@@ -48,14 +57,15 @@ namespace Systems.PlayerProcessings
             {
                 switch (_gameStateEventFilter.Components1[i].State)
                 {
+                    case GameState.GAME_OVER:
+                        _isInteractive = false;
+                        _pressed = false;
+                        break;
                     case GameState.PAUSE:
                         _isInteractive = false;
                         break;
                     case GameState.PLAY:
                         _isInteractive = true;
-                        break;
-                    case GameState.NOT_INTERACTIVE:
-                        _isInteractive = false;
                         break;
                 }
             }

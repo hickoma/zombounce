@@ -44,7 +44,7 @@ namespace Systems.Game
         private void Pause()
         {
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
-            stateEvent.State = GameState.PAUSE;
+            stateEvent.State = GameState.GAME_OVER;
         }
 
         private void SetMenuEnabled()

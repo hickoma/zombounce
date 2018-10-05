@@ -14,6 +14,8 @@ public class GameStartup : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private GameObject _settingsPanel;
     [SerializeField] private GameObject _startGamePanel;
 
 #if UNITY_EDITOR
@@ -61,14 +63,24 @@ public class GameStartup : MonoBehaviour
                 InitTurnCounter = _parameters.TurnCount,
                 MinVelocityTolerace = _parameters.MinVelocityTolerance
             })
+            .Add(new PlayMoreProcessing
+            {
+                GameOverPanel = _gameOverPanel
+            })
+            .Add(new SettingsProcessing
+            {
+                PausePanel = _pausePanel,
+                SettingsPanel = _settingsPanel,
+                Parameters = _parameters // debug
+            })
             .Add(new GameOverProcessing
             {
                 GameOverPanel = _gameOverPanel,
                 TimerCount = _parameters.TimerCount
             })
-            .Add(new PlayMoreProcessing
+            .Add(new PauseMenuProcessing
             {
-                GameOverPanel = _gameOverPanel
+                PausePanel = _pausePanel
             })
             .Add(new HideTimerProcessing
             {
@@ -99,6 +111,7 @@ public class GameStartup : MonoBehaviour
                 MinLength = _parameters.MinLength
             })
             .Add(new BonusProcessing())
+            .Add(new PauseButtonStateProcessing())
             .Add(new DrawVectorPointerProcessing
             {
                 MaxForce = _parameters.MaxForce

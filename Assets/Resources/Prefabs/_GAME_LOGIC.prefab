@@ -52,4 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 860bd953228999f4896adbc9b647c560, type: 2}
-  _menu: {fileID: 0}
+  _gameOverPanel: {fileID: 0}
+  _pausePanel: {fileID: 0}
+  _settingsPanel: {fileID: 0}
+  _startGamePanel: {fileID: 0}

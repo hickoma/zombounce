@@ -33,12 +33,9 @@ namespace Systems.Game
                     Time.timeScale = 1f;
                     break;
 
+                case GameState.GAME_OVER:
                 case GameState.PAUSE:
                     Time.timeScale = 0f;
-                    break;
-                
-                case GameState.NOT_INTERACTIVE:
-                    Time.timeScale = 1f;
                     break;
             }
         }

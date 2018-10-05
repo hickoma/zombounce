@@ -185,7 +185,7 @@ namespace Systems.PlayerProcessings
                 switch (_gameStateEventFilter.Components1[i].State)
                 {
                     case GameState.PAUSE:
-                    case GameState.NOT_INTERACTIVE:
+                    case GameState.GAME_OVER:
                         _isInteractive = false;
                         CreateDrawEntity(Vector3.zero, Vector3.zero, true);
                         break;
