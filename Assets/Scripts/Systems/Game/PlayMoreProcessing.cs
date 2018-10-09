@@ -46,6 +46,7 @@ namespace Systems.Game
         {
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
             stateEvent.State = GameState.PLAY;
+            _ecsWorld.CreateEntityWith<UpdateScoreEvent>();
         }
 
         private void SetMenuDisabled()

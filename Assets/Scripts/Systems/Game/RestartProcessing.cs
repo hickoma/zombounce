@@ -21,6 +21,7 @@ namespace Systems
 
         private void Restart()
         {
+            _world.CreateEntityWith<UpdateScoreEvent>();
             SceneManager.LoadScene(0);
             Time.timeScale = 1f;
         }

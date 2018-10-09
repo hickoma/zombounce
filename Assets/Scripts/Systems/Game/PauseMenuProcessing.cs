@@ -30,6 +30,7 @@ namespace Systems.Game
                     PausePanel.SetActive(false);
                     break;
                 case GameState.PAUSE:
+                    _ecsWorld.CreateEntityWith<SaveScoreEvent>();
                     PausePanel.SetActive(true);
                     break;
             }

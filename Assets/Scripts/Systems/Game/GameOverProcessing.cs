@@ -27,6 +27,7 @@ namespace Systems.Game
                 Pause();
                 SetMenuEnabled();
                 SetPlayerDeathSprite();
+                SaveBestScore();
                 _ecsWorld.RemoveEntity(_deathEvent.Entities[i]);
             }
         }
@@ -59,6 +60,11 @@ namespace Systems.Game
         private void SetPlayerDeathSprite()
         {
             _ecsWorld.CreateEntityWith<SetSprite>().isLive = false;
+        }
+        
+        private void SaveBestScore()
+        {
+            _ecsWorld.CreateEntityWith<SaveScoreEvent>();
         }
     }
 }

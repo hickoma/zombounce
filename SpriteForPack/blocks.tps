@@ -259,6 +259,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../Bricks/Stones/Home.png</key>
+            <key type="filename">../Bricks/Stones/SettingsButton.png</key>
+            <key type="filename">../Bricks/Stones/Vibro.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,35,69,70</rect>
+                <key>scale9Paddings</key>
+                <rect>35,35,69,70</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../Bricks/Stones/PauseButton.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -272,16 +287,16 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../Bricks/Stones/Pig.png</key>
+            <key type="filename">../Bricks/Stones/Play.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>36,35,71,71</rect>
+                <rect>46,46,93,92</rect>
                 <key>scale9Paddings</key>
-                <rect>36,35,71,71</rect>
+                <rect>46,46,93,92</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -295,19 +310,6 @@
                 <rect>141,52,282,105</rect>
                 <key>scale9Paddings</key>
                 <rect>141,52,282,105</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../Bricks/Stones/SettingsButton.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>35,35,69,70</rect>
-                <key>scale9Paddings</key>
-                <rect>35,35,69,70</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -426,19 +428,6 @@
                 <rect>21,22,41,45</rect>
                 <key>scale9Paddings</key>
                 <rect>21,22,41,45</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../Bricks/Stones/p1.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>25,24,49,49</rect>
-                <key>scale9Paddings</key>
-                <rect>25,24,49,49</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
