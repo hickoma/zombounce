@@ -63,6 +63,7 @@ public class GameStartup : MonoBehaviour
                 InitTurnCounter = _parameters.TurnCount,
                 MinVelocityTolerace = _parameters.MinVelocityTolerance
             })
+            .Add(new CoinsCounterProcessing())
             .Add(new PlayMoreProcessing
             {
                 GameOverPanel = _gameOverPanel
@@ -123,7 +124,9 @@ public class GameStartup : MonoBehaviour
                 SpawnCount = _parameters.SpawnCount,
                 InitialPoolSize = _parameters.InitialPoolSize,
                 EnergyPrefab = _parameters.Energy,
-                EnergySpawnCount = _parameters.EnergySpawnCount
+                CoinPrefab = _parameters.Coin,
+                EnergySpawnCount = _parameters.EnergySpawnCount,
+                CoinSpawnCount = _parameters.CoinSpawnCount
             })
 #if DEBUG
             .Add(new DebugProcessingUpdate()) //debug

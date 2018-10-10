@@ -26,6 +26,8 @@ namespace Data
         public int InitialPoolSize;
 
         public GameObject Energy;
+        public GameObject Coin;
         public int EnergySpawnCount;
+        public int CoinSpawnCount;
     }
 }

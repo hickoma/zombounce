@@ -14,7 +14,9 @@ namespace Systems.Game
 
         private EcsFilter<PlayerDeathEvent> _deathEvent = null;
         private EcsFilter<Player> _player = null;
-        
+
+        private bool _alreadyDead = false;
+
         private Transform _takeCoins;
 
         public GameObject GameOverPanel;
@@ -29,6 +31,7 @@ namespace Systems.Game
                 SetPlayerDeathSprite();
                 SaveBestScore();
                 _ecsWorld.RemoveEntity(_deathEvent.Entities[i]);
+                _alreadyDead = true;
             }
         }
 
@@ -50,18 +53,27 @@ namespace Systems.Game
 
         private void SetMenuEnabled()
         {
-            GameOverPanel.SetActive(true);
-            _takeCoins.gameObject.SetActive(true);
-            var timer = _ecsWorld.CreateEntityWith<StartStopTimerEvent>();
-            timer.IsStart = true;
-            timer.Count = TimerCount;
+            if (_alreadyDead)
+            {
+                GameOverPanel.SetActive(true);
+                _takeCoins.gameObject.SetActive(false);
+                _ecsWorld.CreateEntityWith<ShowTakeCoinsEvent>();
+            }
+            else
+            {
+                GameOverPanel.SetActive(true);
+                _takeCoins.gameObject.SetActive(true);
+                var timer = _ecsWorld.CreateEntityWith<StartStopTimerEvent>();
+                timer.IsStart = true;
+                timer.Count = TimerCount;
+            }
         }
 
         private void SetPlayerDeathSprite()
         {
             _ecsWorld.CreateEntityWith<SetSprite>().isLive = false;
         }
-        
+
         private void SaveBestScore()
         {
             _ecsWorld.CreateEntityWith<SaveScoreEvent>();

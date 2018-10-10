@@ -19,9 +19,11 @@ namespace Systems.Game
         private EcsFilter<InFieldEvent> _inFieldEventFilter = null;
         private EcsFilter<UnityPrefabComponent> _unityPrefabFilter = null;
         private EcsFilter<DespawnEnergyEvent> _despawnEnergyEventFilter = null;
+        private EcsFilter<DespawnCoinEvent> _despawnCoinEventFilter = null;
 
         private PoolContainer[] _poolContainers;
         private PoolContainer _energyPool;
+        private PoolContainer _coinsPool;
         private List<Field> _path;
         private List<int> _already;
 
@@ -34,7 +36,9 @@ namespace Systems.Game
         public int InitialPoolSize;
 
         public int EnergySpawnCount;
+        public int CoinSpawnCount;
         public GameObject EnergyPrefab;
+        public GameObject CoinPrefab;
 
         public void Initialize()
         {
@@ -48,6 +52,7 @@ namespace Systems.Game
         {
             _poolContainers = null;
             _energyPool = null;
+            _coinsPool = null;
             _path.Clear();
             _path = null;
             _already.Clear();
@@ -58,6 +63,7 @@ namespace Systems.Game
         public void Run()
         {
             CheckEnergyEvents();
+            CheckCoinEvents();
 
             for (int i = 0; i < _inFieldEventFilter.EntitiesCount; i++)
             {
@@ -83,6 +89,9 @@ namespace Systems.Game
             var parent = GameObject.FindGameObjectWithTag(Tag.FieldPool).transform;
             //create energy pool
             _energyPool = PoolContainer.CreatePool(EnergyPrefab, parent);
+
+            //create coin pool
+            _coinsPool = PoolContainer.CreatePool(CoinPrefab, parent);
 
             //create fields pool
             _poolContainers = new PoolContainer[Prefabs.Length];
@@ -159,6 +168,7 @@ namespace Systems.Game
                 field.IsOnScene = true;
 
                 SpawnEnergy(id, obj);
+                SpawnCoin(id, obj);
 
                 return obj;
             }
@@ -208,6 +218,29 @@ namespace Systems.Game
                 poolingObj.PoolTransform.gameObject.SetActive(true);
             }
         }
+
+        private void DespawnCoin(IPoolObject obj)
+        {
+            if (obj.PoolTransform.gameObject.activeInHierarchy)
+            {
+                _coinsPool.Recycle(obj);
+            }
+        }
+        
+        private void SpawnCoin(int id, IPoolObject obj)
+        {
+            if (_already.Contains(id)) return;
+
+            _already.Add(id);
+            var spawnPoints = obj.PoolTransform.FindAllRecursiveByTag(Tag.CoinSpawn);
+            for (int i = 0; i < CoinSpawnCount; i++)
+            {
+                var randomPoint = spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
+                var poolingObj = _coinsPool.Get();
+                poolingObj.PoolTransform.position = randomPoint.transform.position;
+                poolingObj.PoolTransform.gameObject.SetActive(true);
+            }
+        }
         
         private void CheckEnergyEvents()
         {
@@ -219,7 +252,18 @@ namespace Systems.Game
                 _world.RemoveEntity(entity);
             }
         }
-
+        
+        private void CheckCoinEvents()
+        {
+            for (int i = 0; i < _despawnCoinEventFilter.EntitiesCount; i++)
+            {
+                var entity = _despawnCoinEventFilter.Entities[i];
+                var poolObject = _despawnCoinEventFilter.Components1[i].PoolObject;
+                DespawnCoin(poolObject);
+                _world.RemoveEntity(entity);
+            }
+        }
+        
         private Field GetField(int id)
         {
             if (id > _path.Count - 1)

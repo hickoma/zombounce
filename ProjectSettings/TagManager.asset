@@ -22,6 +22,8 @@ TagManager:
   - TakeCoins
   - TakeEnergy
   - Button
+  - Energy
+  - Coin
   layers:
   - Default
   - TransparentFX
