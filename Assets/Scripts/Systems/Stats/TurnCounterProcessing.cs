@@ -95,7 +95,13 @@ namespace Systems
                 {
                     var turnCounter = _turnCounterFilter.Components1[j];
                     var newCount = turnCounter.TurnCount + changed;
-                    if (newCount < 0 || newCount > InitTurnCounter) continue;
+                    if (newCount > InitTurnCounter) continue;
+                    if (newCount < 0)
+                    {
+                        newCount = 0;
+                        _world.CreateEntityWith<PlayerDeathEvent>();
+                        _isGameOver = true;
+                    }
 
                     SetCountAndText(turnCounter, newCount);
                 }

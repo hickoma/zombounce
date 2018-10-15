@@ -14,7 +14,7 @@ namespace Emitters
                 var world = EcsWorld.Active;
                 if (world != null)
                 {
-                    EcsWorld.Active.CreateEntityWith<PlayerDeathEvent>();
+                    EcsWorld.Active.CreateEntityWith<TurnChangedEvent>().Changed = -11;
                 }
             }
         }
