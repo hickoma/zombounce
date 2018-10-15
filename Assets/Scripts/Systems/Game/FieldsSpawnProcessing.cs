@@ -25,7 +25,8 @@ namespace Systems.Game
         private PoolContainer _energyPool;
         private PoolContainer _coinsPool;
         private List<Field> _path;
-        private List<int> _already;
+        private List<int> _alreadyEnergy;
+        private List<int> _alreadyCoins;
 
         //z size of field
         private float _groundSize;
@@ -43,7 +44,8 @@ namespace Systems.Game
         public void Initialize()
         {
             _path = new List<Field>(InitialPoolSize);
-            _already = new List<int>();
+            _alreadyEnergy = new List<int>();
+            _alreadyCoins = new List<int>();
             AddRandomPath();
             InitPoolAndSpawnFirst();
         }
@@ -55,8 +57,10 @@ namespace Systems.Game
             _coinsPool = null;
             _path.Clear();
             _path = null;
-            _already.Clear();
-            _already = null;
+            _alreadyEnergy.Clear();
+            _alreadyEnergy = null; 
+            _alreadyCoins.Clear();
+            _alreadyCoins = null;
             Prefabs = null;
         }
 
@@ -206,15 +210,16 @@ namespace Systems.Game
 
         private void SpawnEnergy(int id, IPoolObject obj)
         {
-            if (_already.Contains(id)) return;
+            if (_alreadyEnergy.Contains(id)) return;
 
-            _already.Add(id);
+            _alreadyEnergy.Add(id);
             var spawnPoints = obj.PoolTransform.FindAllRecursiveByTag(Tag.EnergySpawn);
-            for (int i = 0; i < EnergySpawnCount; i++)
+            spawnPoints.Shuffle();
+            for (int i = 0; i < spawnPoints.Count && i < EnergySpawnCount; i++)
             {
-                var randomPoint = spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
+                var point = spawnPoints[i];
                 var poolingObj = _energyPool.Get();
-                poolingObj.PoolTransform.position = randomPoint.transform.position;
+                poolingObj.PoolTransform.position = point.transform.position;
                 poolingObj.PoolTransform.gameObject.SetActive(true);
             }
         }
@@ -229,15 +234,17 @@ namespace Systems.Game
         
         private void SpawnCoin(int id, IPoolObject obj)
         {
-            if (_already.Contains(id)) return;
+            if (_alreadyCoins.Contains(id)) return;
 
-            _already.Add(id);
+            _alreadyCoins.Add(id);
             var spawnPoints = obj.PoolTransform.FindAllRecursiveByTag(Tag.CoinSpawn);
-            for (int i = 0; i < CoinSpawnCount; i++)
+            spawnPoints.Shuffle();
+            
+            for (int i = 0; i < spawnPoints.Count && i < CoinSpawnCount; i++)
             {
-                var randomPoint = spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
+                var point = spawnPoints[i];
                 var poolingObj = _coinsPool.Get();
-                poolingObj.PoolTransform.position = randomPoint.transform.position;
+                poolingObj.PoolTransform.position = point.transform.position;
                 poolingObj.PoolTransform.gameObject.SetActive(true);
             }
         }

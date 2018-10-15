@@ -18,7 +18,7 @@ namespace Emitters
                     var entity = world.CreateEntityWith<CoinsChangedEvent>();
                     entity.Changed = 1;
                     
-                    var entity2 = world.CreateEntityWith<DespawnEnergyEvent>();
+                    var entity2 = world.CreateEntityWith<DespawnCoinEvent>();
                     entity2.PoolObject = GetComponent<IPoolObject>();
                 }
             }
