@@ -107,7 +107,8 @@ namespace Systems.Game
             var firstObject = PopOrSpawnById(0);
 
             //init ground size
-            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
+//            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
+            _groundSize = 22f;
         }
 
         private void AddRandomPath()
