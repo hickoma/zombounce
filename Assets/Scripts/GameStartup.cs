@@ -138,7 +138,8 @@ public class GameStartup : MonoBehaviour
             .Add(new AddForceProcessing())
             .Add(new CameraFollowProcessing
             {
-                CameraSmooth = _parameters.CameraSmooth
+                CameraSmooth = _parameters.CameraSmooth,
+                CameraMinPositionZ = _parameters.CameraMinPositionZ
             })
             .Add(new DragSimulation
             {

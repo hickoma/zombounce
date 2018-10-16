@@ -20,6 +20,7 @@ namespace Data
         public Sprite DeadSprite;
 
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;
+        public float CameraMinPositionZ;
 
         [Header("Field Prefabs")] public GameObject[] Fields;
         public int SpawnCount;

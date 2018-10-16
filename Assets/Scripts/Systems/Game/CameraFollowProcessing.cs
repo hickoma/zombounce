@@ -18,6 +18,7 @@ namespace Systems.Game
         private Vector3 _velocity;
 
         public float CameraSmooth;
+        public float CameraMinPositionZ;
 
         public void Initialize()
         {
@@ -46,9 +47,15 @@ namespace Systems.Game
             var camera = _cameraFilter.Components1[0];
             var player = _playerFilter.Components1[0];
             var currentPosition = camera.Transform.position;
-            var smoothZ = Mathf.SmoothDamp(currentPosition.z, player.Transform.position.z, ref _velocity.z,
+            var playerPositionZ = player.Transform.position.z;
+            var smoothZ = Mathf.SmoothDamp(currentPosition.z, playerPositionZ, ref _velocity.z,
                 CameraSmooth);
             var newPosition = new Vector3(currentPosition.x, currentPosition.y, smoothZ);
+            if (newPosition.z < CameraMinPositionZ)
+            {
+                newPosition.z = CameraMinPositionZ;
+            }
+
             camera.Transform.position = newPosition;
         }
     }
