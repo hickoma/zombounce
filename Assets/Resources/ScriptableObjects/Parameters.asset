@@ -22,6 +22,7 @@ MonoBehaviour:
   AliveSprite: {fileID: 21300274, guid: 8690aaaeef6aae74e908eb25c7cc3005, type: 3}
   DeadSprite: {fileID: 21300004, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}
   CameraSmooth: 0.2
+  CameraMinPositionZ: -12
   Fields:
   - {fileID: 1333641878242756, guid: c338fda9c55461b4f885e0f6c0534369, type: 2}
   - {fileID: 1643958998145072, guid: 59ac2e2b926530044b0f11d744deec5a, type: 2}

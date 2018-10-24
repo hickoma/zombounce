@@ -88,9 +88,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>2048</int>
+            <int>4096</int>
             <key>height</key>
-            <int>2048</int>
+            <int>4096</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -191,6 +191,19 @@
                 <rect>23,21,47,43</rect>
                 <key>scale9Paddings</key>
                 <rect>23,21,47,43</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../Bricks/Stones/Button (10).png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,35,70,71</rect>
+                <key>scale9Paddings</key>
+                <rect>35,35,70,71</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -346,8 +359,10 @@
             <key type="filename">../Bricks/Stones/Tile60x60_05.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_06.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_07.png</key>
+            <key type="filename">../Bricks/Stones/Tile60x60_07_edited.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_08.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_09.png</key>
+            <key type="filename">../Bricks/Stones/Tile60x60_09_edited.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_11.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_12.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_13.png</key>
@@ -355,8 +370,10 @@
             <key type="filename">../Bricks/Stones/Tile60x60_15.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_16.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_17.png</key>
+            <key type="filename">../Bricks/Stones/Tile60x60_17_edited.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_18.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_19.png</key>
+            <key type="filename">../Bricks/Stones/Tile60x60_19_edited.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_20.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_21.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_22.png</key>
@@ -393,6 +410,91 @@
             <key type="filename">../Bricks/Stones/Tile60x60_55.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_56.png</key>
             <key type="filename">../Bricks/Stones/Tile60x60_57.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_1.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_2.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_3.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_37.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_39.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_4.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_40.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_51.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_68.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_69.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_70.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_71.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_72.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_left.png</key>
+            <key type="filename">../Bricks/Stones/WaterInnrt_right.png</key>
+            <key type="filename">../Bricks/Stones/Water_03.png</key>
+            <key type="filename">../Bricks/Stones/Water_04.png</key>
+            <key type="filename">../Bricks/Stones/Water_05.png</key>
+            <key type="filename">../Bricks/Stones/Water_06.png</key>
+            <key type="filename">../Bricks/Stones/Water_07.png</key>
+            <key type="filename">../Bricks/Stones/Water_09.png</key>
+            <key type="filename">../Bricks/Stones/Water_100.png</key>
+            <key type="filename">../Bricks/Stones/Water_101.png</key>
+            <key type="filename">../Bricks/Stones/Water_11.png</key>
+            <key type="filename">../Bricks/Stones/Water_13.png</key>
+            <key type="filename">../Bricks/Stones/Water_16.png</key>
+            <key type="filename">../Bricks/Stones/Water_17.png</key>
+            <key type="filename">../Bricks/Stones/Water_18.png</key>
+            <key type="filename">../Bricks/Stones/Water_19.png</key>
+            <key type="filename">../Bricks/Stones/Water_23.png</key>
+            <key type="filename">../Bricks/Stones/Water_25.png</key>
+            <key type="filename">../Bricks/Stones/Water_26.png</key>
+            <key type="filename">../Bricks/Stones/Water_27.png</key>
+            <key type="filename">../Bricks/Stones/Water_28.png</key>
+            <key type="filename">../Bricks/Stones/Water_29.png</key>
+            <key type="filename">../Bricks/Stones/Water_30.png</key>
+            <key type="filename">../Bricks/Stones/Water_31.png</key>
+            <key type="filename">../Bricks/Stones/Water_32.png</key>
+            <key type="filename">../Bricks/Stones/Water_33.png</key>
+            <key type="filename">../Bricks/Stones/Water_34.png</key>
+            <key type="filename">../Bricks/Stones/Water_35.png</key>
+            <key type="filename">../Bricks/Stones/Water_36.png</key>
+            <key type="filename">../Bricks/Stones/Water_37.png</key>
+            <key type="filename">../Bricks/Stones/Water_38.png</key>
+            <key type="filename">../Bricks/Stones/Water_40.png</key>
+            <key type="filename">../Bricks/Stones/Water_42.png</key>
+            <key type="filename">../Bricks/Stones/Water_44.png</key>
+            <key type="filename">../Bricks/Stones/Water_45.png</key>
+            <key type="filename">../Bricks/Stones/Water_48.png</key>
+            <key type="filename">../Bricks/Stones/Water_49.png</key>
+            <key type="filename">../Bricks/Stones/Water_50.png</key>
+            <key type="filename">../Bricks/Stones/Water_52.png</key>
+            <key type="filename">../Bricks/Stones/Water_53.png</key>
+            <key type="filename">../Bricks/Stones/Water_55.png</key>
+            <key type="filename">../Bricks/Stones/Water_56.png</key>
+            <key type="filename">../Bricks/Stones/Water_57.png</key>
+            <key type="filename">../Bricks/Stones/Water_59.png</key>
+            <key type="filename">../Bricks/Stones/Water_61.png</key>
+            <key type="filename">../Bricks/Stones/Water_62.png</key>
+            <key type="filename">../Bricks/Stones/Water_63.png</key>
+            <key type="filename">../Bricks/Stones/Water_64.png</key>
+            <key type="filename">../Bricks/Stones/Water_65.png</key>
+            <key type="filename">../Bricks/Stones/Water_66.png</key>
+            <key type="filename">../Bricks/Stones/Water_67.png</key>
+            <key type="filename">../Bricks/Stones/Water_68.png</key>
+            <key type="filename">../Bricks/Stones/Water_69.png</key>
+            <key type="filename">../Bricks/Stones/Water_70.png</key>
+            <key type="filename">../Bricks/Stones/Water_74.png</key>
+            <key type="filename">../Bricks/Stones/Water_78.png</key>
+            <key type="filename">../Bricks/Stones/Water_79.png</key>
+            <key type="filename">../Bricks/Stones/Water_80.png</key>
+            <key type="filename">../Bricks/Stones/Water_81.png</key>
+            <key type="filename">../Bricks/Stones/Water_82.png</key>
+            <key type="filename">../Bricks/Stones/Water_83.png</key>
+            <key type="filename">../Bricks/Stones/Water_84.png</key>
+            <key type="filename">../Bricks/Stones/Water_89.png</key>
+            <key type="filename">../Bricks/Stones/Water_90.png</key>
+            <key type="filename">../Bricks/Stones/Water_91.png</key>
+            <key type="filename">../Bricks/Stones/Water_92.png</key>
+            <key type="filename">../Bricks/Stones/Water_93.png</key>
+            <key type="filename">../Bricks/Stones/Water_94.png</key>
+            <key type="filename">../Bricks/Stones/Water_95.png</key>
+            <key type="filename">../Bricks/Stones/Water_97.png</key>
+            <key type="filename">../Bricks/Stones/Water_98.png</key>
+            <key type="filename">../Bricks/Stones/Water_99.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -402,6 +504,32 @@
                 <rect>15,15,30,30</rect>
                 <key>scale9Paddings</key>
                 <rect>15,15,30,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../Bricks/Stones/Water_08.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>45,75,90,150</rect>
+                <key>scale9Paddings</key>
+                <rect>45,75,90,150</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../Bricks/Stones/WhitePoint.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>0,0,1,1</rect>
+                <key>scale9Paddings</key>
+                <rect>0,0,1,1</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -441,6 +569,19 @@
                 <rect>21,22,41,45</rect>
                 <key>scale9Paddings</key>
                 <rect>21,22,41,45</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../Bricks/Stones/frame.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>50,50,100,100</rect>
+                <key>scale9Paddings</key>
+                <rect>50,50,100,100</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
