@@ -33,7 +33,8 @@ namespace Systems.Game
 
         //settable fields from starter
         public GameObject[] Prefabs;
-        public int SpawnCount;
+        public int ForwardSpawnCount;
+		public int BackwardSpawnCount;
         public int InitialPoolSize;
 
         public int EnergySpawnCount;
@@ -121,10 +122,10 @@ namespace Systems.Game
 
         private void SpawnForward(int currentId)
         {
-            var startIndex = currentId + 1;
-            var endIndex = startIndex + SpawnCount;
+            int startIndex = currentId + 1;
+            int endIndex = startIndex + ForwardSpawnCount;
 
-            for (var i = startIndex; i < endIndex; i++)
+            for (int i = startIndex; i < endIndex; i++)
             {
                 PopOrSpawnById(i);
             }
@@ -132,11 +133,13 @@ namespace Systems.Game
 
         private void SpawnBackward(int currentId)
         {
-            var startIndex = currentId - 1;
-            if (startIndex < 0) return;
-            var endIndex = startIndex - SpawnCount;
+            int startIndex = currentId - 1;
 
-            for (var i = startIndex; i >= 0 && i > endIndex; i--)
+            if (startIndex < 0) return;
+
+			int endIndex = startIndex - BackwardSpawnCount;
+
+            for (int i = startIndex; i >= 0 && i > endIndex; i--)
             {
                 PopOrSpawnById(i);
             }
@@ -144,13 +147,13 @@ namespace Systems.Game
 
         private bool CheckAndDeleteForward(int currentId)
         {
-            var checkedIndex = currentId + SpawnCount + 1;
+            int checkedIndex = currentId + ForwardSpawnCount + 1;
             return DespawnWithId(checkedIndex);
         }
 
         private bool CheckAndDeleteBackward(int currentId)
         {
-            var checkedIndex = currentId - SpawnCount - 1;
+			int checkedIndex = currentId - BackwardSpawnCount - 1;
             return DespawnWithId(checkedIndex);
         }
 

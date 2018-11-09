@@ -44,7 +44,8 @@ MonoBehaviour:
   - {fileID: 1190337464885664, guid: 7f9956c3319db524db5aefe7011dd32e, type: 2}
   - {fileID: 1305191059677654, guid: 73229e28bc63d1348bd91b3d72b75ab2, type: 2}
   - {fileID: 1002247620194642, guid: 4ef1aefa73f00f84889b842912d9bc36, type: 2}
-  SpawnCount: 5
+  ForwardSpawnCount: 2
+  BackwardSpawnCount: 1
   InitialPoolSize: 128
   Energy: {fileID: 1271114649502384, guid: 2c94648861b355541a240874ba371585, type: 2}
   Coin: {fileID: 1396591365958742, guid: deacb39d16e33e7418d82c91fe340ba9, type: 2}

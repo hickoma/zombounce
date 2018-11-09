@@ -23,7 +23,8 @@ namespace Data
         public float CameraMinPositionZ;
 
         [Header("Field Prefabs")] public GameObject[] Fields;
-        public int SpawnCount;
+        public int ForwardSpawnCount;
+		public int BackwardSpawnCount;
         public int InitialPoolSize;
 
         public GameObject Energy;

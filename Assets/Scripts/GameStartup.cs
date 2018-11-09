@@ -121,7 +121,8 @@ public class GameStartup : MonoBehaviour
             .Add(new FieldsSpawnProcessing
             {
                 Prefabs = _parameters.Fields,
-                SpawnCount = _parameters.SpawnCount,
+                ForwardSpawnCount = _parameters.ForwardSpawnCount,
+				BackwardSpawnCount = _parameters.BackwardSpawnCount,
                 InitialPoolSize = _parameters.InitialPoolSize,
                 EnergyPrefab = _parameters.Energy,
                 CoinPrefab = _parameters.Coin,
