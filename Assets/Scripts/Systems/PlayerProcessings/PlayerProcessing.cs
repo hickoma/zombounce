@@ -129,7 +129,7 @@ namespace Systems.PlayerProcessings
 
             if (forceVector.sqrMagnitude > _sqrtMinLength)
             {
-                CreateFroceEntity(forceVector);
+                CreateForceEntity(forceVector);
                 CreateCounterChangeEvent();
             }
 
@@ -158,7 +158,7 @@ namespace Systems.PlayerProcessings
             }
         }
 
-        private void CreateFroceEntity(Vector3 forceVector)
+        private void CreateForceEntity(Vector3 forceVector)
         {
             var forceEvent = _world.CreateEntityWith<AddForeEvent>();
             forceEvent.ForceVector = forceVector;

@@ -43,20 +43,28 @@ namespace Systems.Game
 
         private void MoveCamera()
         {
-            if (_cameraFilter.EntitiesCount == 0 || _playerFilter.EntitiesCount == 0) return;
-            var camera = _cameraFilter.Components1[0];
-            var player = _playerFilter.Components1[0];
-            var currentPosition = camera.Transform.position;
-            var playerPositionZ = player.Transform.position.z;
-            var smoothZ = Mathf.SmoothDamp(currentPosition.z, playerPositionZ, ref _velocity.z,
+            if (_cameraFilter.EntitiesCount == 0 || _playerFilter.EntitiesCount == 0)
+				return;
+			
+			MainCamera camera = _cameraFilter.Components1[0];
+            Player player = _playerFilter.Components1[0];
+            Vector3 currentPosition = camera.Transform.position;
+            float playerPositionZ = player.Transform.position.z;
+            float smoothZ = Mathf.SmoothDamp(currentPosition.z, playerPositionZ, ref _velocity.z,
                 CameraSmooth);
-            var newPosition = new Vector3(currentPosition.x, currentPosition.y, smoothZ);
-            if (newPosition.z < CameraMinPositionZ)
-            {
-                newPosition.z = CameraMinPositionZ;
-            }
+            Vector3 newPosition = new Vector3(currentPosition.x, currentPosition.y, smoothZ);
 
-            camera.Transform.position = newPosition;
+			// don't move back
+			if (newPosition.z > currentPosition.z)
+			{
+				// don't move behind game's beginning
+				if (newPosition.z < CameraMinPositionZ)
+				{
+					newPosition.z = CameraMinPositionZ;
+				}
+
+				camera.Transform.position = newPosition;
+			}
         }
     }
 }
