@@ -12,7 +12,7 @@ namespace Systems
     {
         private EcsWorld _world = null;
         private EcsFilter<DistanceEvent> _distanceEventFilter = null;
-        private EcsFilter<Player> _playerFilter = null;
+		private Player m_Player = null;
 
         private int _traveledDistance;
 

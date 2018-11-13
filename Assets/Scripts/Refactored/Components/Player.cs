@@ -2,7 +2,7 @@
 
 namespace Components
 {
-    public class Player
+	public class Player : MonoBehaviour
     {
         public Rigidbody Rigidbody;
         public Transform Transform;

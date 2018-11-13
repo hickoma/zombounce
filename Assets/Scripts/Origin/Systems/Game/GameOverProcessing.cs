@@ -13,7 +13,7 @@ namespace Systems.Game
         private EcsWorld _ecsWorld;
 
         private EcsFilter<PlayerDeathEvent> _deathEvent = null;
-        private EcsFilter<Player> _player = null;
+		private Player m_Player = null;
 
         private bool _alreadyDead = false;
 
@@ -47,6 +47,7 @@ namespace Systems.Game
 
         private void Pause()
         {
+			GameEventsController.Instance.ChangeGameState (GameState.GAME_OVER);
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
             stateEvent.State = GameState.GAME_OVER;
         }
@@ -71,6 +72,7 @@ namespace Systems.Game
 
         private void SetPlayerDeathSprite()
         {
+			GameEventsController.Instance.SetPlayerSprite (false);
             _ecsWorld.CreateEntityWith<SetSprite>().isLive = false;
         }
 

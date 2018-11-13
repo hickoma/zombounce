@@ -7,7 +7,7 @@ namespace Systems._DEBUG
     [EcsInject]
     public class DebugProcessingFixedUpdate : IEcsRunSystem
     {
-        private EcsFilter<Player> _player;
+		private Player m_Player;
         
         public void Run()
         {
@@ -21,15 +21,16 @@ namespace Systems._DEBUG
         
         private void DragSimulation()
         {
-                for (int i = 0; i < _player.EntitiesCount; i++)
-                {
-                    var player = _player.Components1[i];
-                    var rb = player.Rigidbody;
-                    
-                    Vector3 newVelocity = rb.velocity + gForceVector * rb.mass * Time.deltaTime;
-                    newVelocity = newVelocity * Mathf.Clamp01(1f - myDrag*Time.deltaTime);
-                    rb.velocity = newVelocity; 
-                }
+			if (m_Player == null)
+			{
+				m_Player = GameEventsController.Instance.m_Player;
+			}
+
+			var rb = m_Player.Rigidbody;
+                
+			Vector3 newVelocity = rb.velocity + gForceVector * rb.mass * Time.deltaTime;
+			newVelocity = newVelocity * Mathf.Clamp01 (1f - myDrag * Time.deltaTime);
+			rb.velocity = newVelocity; 
         }
     }
 }

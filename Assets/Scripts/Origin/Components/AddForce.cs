@@ -2,7 +2,7 @@
 
 namespace Components.Events
 {
-    public class AddForeEvent
+    public class AddForceEvent
     {
         public Vector3 ForceVector;
     }

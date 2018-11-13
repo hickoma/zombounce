@@ -14,7 +14,7 @@ namespace Systems
         private EcsWorld _world = null;
         private EcsFilter<TurnChangedEvent> _turnChangedEventFilter = null;
         private EcsFilter<TurnCounter> _turnCounterFilter = null;
-        private EcsFilter<Player> _playerFilter = null;
+		private Player m_Player = null;
         private EcsFilter<CountNowEvent> _countNowEventFilter;
 
         private bool _isGameOver = false;
@@ -71,14 +71,16 @@ namespace Systems
                 var currentCount = _turnCounterFilter.Components1[i].TurnCount;
                 if (currentCount == 0)
                 {
-                    for (int k = 0; k < _playerFilter.EntitiesCount; k++)
+					if (m_Player == null)
+					{
+						m_Player = GameEventsController.Instance.m_Player;
+					}
+
+                    if (Math.Abs(m_Player.Rigidbody.velocity.sqrMagnitude) <
+                        MinVelocityTolerace)
                     {
-                        if (Math.Abs(_playerFilter.Components1[i].Rigidbody.velocity.sqrMagnitude) <
-                            MinVelocityTolerace)
-                        {
-                            _world.CreateEntityWith<PlayerDeathEvent>();
-                            _isGameOver = true;
-                        }
+                        _world.CreateEntityWith<PlayerDeathEvent>();
+                        _isGameOver = true;
                     }
                 }
             }

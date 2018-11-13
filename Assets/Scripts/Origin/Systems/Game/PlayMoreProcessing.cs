@@ -15,7 +15,7 @@ namespace Systems.Game
 
         public void Initialize()
         {
-            // no op
+            
         }
 
         public void Destroy()
@@ -44,6 +44,7 @@ namespace Systems.Game
 
         private void Play()
         {
+			GameEventsController.Instance.ChangeGameState (GameState.PLAY);
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
             stateEvent.State = GameState.PLAY;
             _ecsWorld.CreateEntityWith<UpdateScoreEvent>();
@@ -56,6 +57,7 @@ namespace Systems.Game
 
         private void SetPlayerAliveSprite()
         {
+			GameEventsController.Instance.SetPlayerSprite (true);
             _ecsWorld.CreateEntityWith<SetSprite>().isLive = true;
         }
     }

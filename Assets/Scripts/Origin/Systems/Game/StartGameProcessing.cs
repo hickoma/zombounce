@@ -17,7 +17,7 @@ namespace Systems.Game
 
         public void Initialize()
         {
-            //no op
+            
         }
 
         public void Destroy()

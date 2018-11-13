@@ -22,12 +22,14 @@ namespace Systems.Ui
             
             for (int i = 0; i < _onStartClickEvent.EntitiesCount; i++)
             {
+				GameEventsController.Instance.ChangeGameState (GameState.PLAY);
                 _world.CreateEntityWith<GameStateEvent>().State = GameState.PLAY;
                 _world.RemoveEntity(_onStartClickEvent.Entities[i]);
             }
             
             for (int i = 0; i < _onPauseClickEvent.EntitiesCount; i++)
             {
+				GameEventsController.Instance.ChangeGameState (GameState.PAUSE);
                 _world.CreateEntityWith<GameStateEvent>().State = GameState.PAUSE;
                 _world.RemoveEntity(_onPauseClickEvent.Entities[i]);
             }

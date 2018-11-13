@@ -8,7 +8,7 @@ namespace Systems.Physic
     public class DragSimulation : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world;
-        private EcsFilter<Player> _playerFilter;
+		private Player m_Player;
 
         private Vector3 _gravity;
 
@@ -25,15 +25,16 @@ namespace Systems.Physic
 
         public void Run()
         {
-            for (int i = 0; i < _playerFilter.EntitiesCount; i++)
-            {
-                var player = _playerFilter.Components1[i];
-                var rb = player.Rigidbody;
+			if (m_Player == null)
+			{
+				m_Player = GameEventsController.Instance.m_Player;
+			}
 
-                Vector3 newVelocity = rb.velocity + _gravity * rb.mass * Time.fixedDeltaTime;
-                newVelocity = newVelocity * Mathf.Clamp01(1f - Drag * Time.deltaTime);
-                rb.velocity = newVelocity;
-            }
+			var rb = m_Player.Rigidbody;
+
+            Vector3 newVelocity = rb.velocity + _gravity * rb.mass * Time.fixedDeltaTime;
+            newVelocity = newVelocity * Mathf.Clamp01(1f - Drag * Time.deltaTime);
+            rb.velocity = newVelocity;
         }
     }
 }

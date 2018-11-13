@@ -6,11 +6,11 @@ using UnityEngine;
 namespace Systems.Physic
 {
     [EcsInject]
-    public class AddForceProcessing : IEcsRunSystem
+	public class AddForceProcessing : IEcsRunSystem
     {
         private EcsWorld _world;
-        private EcsFilter<Player> _playerFilter;
-        private EcsFilter<AddForeEvent> _addForceEventFilter;
+		private Player m_Player = null;
+        private EcsFilter<AddForceEvent> _addForceEventFilter;
 
         public void Run()
         {
@@ -18,10 +18,12 @@ namespace Systems.Physic
             {
                 var forceVector = _addForceEventFilter.Components1[0].ForceVector;
 
-                for (int i = 0; i < _playerFilter.EntitiesCount; i++)
-                {
-                    _playerFilter.Components1[i].Rigidbody.AddForce(forceVector);
-                }
+				if (m_Player == null)
+				{
+					m_Player = GameEventsController.Instance.m_Player;
+				}
+
+                m_Player.Rigidbody.AddForce(forceVector);
 
                 _world.RemoveEntity(_addForceEventFilter.Entities[0]);
             }

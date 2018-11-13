@@ -2,7 +2,7 @@
 
 namespace Components
 {
-    public class MainCamera
+    public class MainCamera : MonoBehaviour
     {
         public Transform Transform;
     }

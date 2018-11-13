@@ -75,17 +75,19 @@ namespace Systems.PlayerProcessings
 
         private void CreateUpEvent()
         {
-            var upEvent = _world.CreateEntityWith<PointerUpDownEvent>();
-            upEvent.isDown = false;
-            upEvent.UpPointerPosition = Input.mousePosition;
+			GameEventsController.Instance.PointerUpDown (false, _downPointerPosition, Input.mousePosition);
+//            var upEvent = _world.CreateEntityWith<PointerUpDownEvent>();
+//            upEvent.isDown = false;
+//            upEvent.UpPointerPosition = Input.mousePosition;
         }
 
         private void CreateDownEvent()
         {
-            var downEvent = _world.CreateEntityWith<PointerUpDownEvent>();
-            downEvent.isDown = true;
-            downEvent.DownPointerPosition = _downPointerPosition;
-            downEvent.UpPointerPosition = Input.mousePosition;
+			GameEventsController.Instance.PointerUpDown (true, _downPointerPosition, Input.mousePosition);
+//            var downEvent = _world.CreateEntityWith<PointerUpDownEvent>();
+//            downEvent.isDown = true;
+//            downEvent.DownPointerPosition = _downPointerPosition;
+//            downEvent.UpPointerPosition = Input.mousePosition;
         }
     }
 }

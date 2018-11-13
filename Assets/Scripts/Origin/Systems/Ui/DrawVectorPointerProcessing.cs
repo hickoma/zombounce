@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Systems.Ui
 {
     [EcsInject]
-    public class DrawVectorPointerProcessing : IEcsRunSystem, IEcsInitSystem
+	public class DrawVectorPointerProcessing : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world = null;
 
@@ -26,8 +26,14 @@ namespace Systems.Ui
             set { _maxForceSqrt = value * value; }
         }
 
+//		public void LateStart()
+//		{
+//			GameEventsController.Instance.OnDrawVectorPointer += OnDrawVectorPointer;
+//		}
+
         public void Initialize()
         {
+			GameEventsController.Instance.OnDrawVectorPointer += OnDrawVectorPointer;
             InitPointerVector();
             InitFingerprint();
         }
@@ -50,25 +56,37 @@ namespace Systems.Ui
 
         public void Run()
         {
-            for (int i = 0; i < _drawVectorPointerFilter.EntitiesCount; i++)
-            {
-                var entity = _drawVectorPointerFilter.Entities[i];
-
-                var drawVectorPointerComponent = _drawVectorPointerFilter.Components1[i];
-                var forceVector = drawVectorPointerComponent.ForceVector;
-                var downPointerVector = drawVectorPointerComponent.DownVector;
-                downPointerVector.y = 0f;
-
-                var normalizedLenght = MathFast.Clamp01(Mathf.Sqrt(forceVector.sqrMagnitude / _maxForceSqrt));
-                var lookPosition = forceVector.normalized;
-
-                DrawVector(normalizedLenght, lookPosition);
-                DrawFingerprint(downPointerVector, normalizedLenght, lookPosition,
-                    drawVectorPointerComponent.Release);
-
-                _world.RemoveEntity(entity);
-            }
+//            for (int i = 0; i < _drawVectorPointerFilter.EntitiesCount; i++)
+//            {
+//                var entity = _drawVectorPointerFilter.Entities[i];
+//
+//                var drawVectorPointerComponent = _drawVectorPointerFilter.Components1[i];
+//                var forceVector = drawVectorPointerComponent.ForceVector;
+//                var downPointerVector = drawVectorPointerComponent.DownVector;
+//                downPointerVector.y = 0f;
+//
+//                var normalizedLenght = MathFast.Clamp01(Mathf.Sqrt(forceVector.sqrMagnitude / _maxForceSqrt));
+//                var lookPosition = forceVector.normalized;
+//
+//                DrawVector(normalizedLenght, lookPosition);
+//                DrawFingerprint(downPointerVector, normalizedLenght, lookPosition,
+//                    drawVectorPointerComponent.Release);
+//
+//                _world.RemoveEntity(entity);
+//            }
         }
+
+		public void OnDrawVectorPointer(Vector3 downVector, Vector3 forceVector, bool release)
+		{
+			downVector.y = 0f;
+
+			float normalizedLenght = MathFast.Clamp01(Mathf.Sqrt(forceVector.sqrMagnitude / _maxForceSqrt));
+			Vector3 lookPosition = forceVector.normalized;
+
+			DrawVector(normalizedLenght, lookPosition);
+			DrawFingerprint(downVector, normalizedLenght, lookPosition,
+				release);
+		}
 
         private void DrawVector(float normalizedLenght, Vector3 lookPosition)
         {

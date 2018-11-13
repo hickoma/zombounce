@@ -7,7 +7,7 @@ namespace Systems._DEBUG
     [EcsInject]
     public class DebugProcessingUpdate : IEcsRunSystem
     {
-        private EcsFilter<Player> _player;
+		private Player m_Player;
         
         public void Run()
         {
@@ -22,18 +22,17 @@ namespace Systems._DEBUG
         {
             if (Time.time > newtTime)
             {
-                for (int i = 0; i < _player.EntitiesCount; i++)
-                {
-                    var player = _player.Components1[i];
-                    
-                    newtTime = Time.time + delay;
-                    var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    var scale = 0.6f;
-                    cube.transform.localScale = new Vector3(scale, scale, scale);
-                    cube.transform.position = player.Transform.position;
-                    cube.GetComponent<BoxCollider>().enabled = false;
-                }
-               
+				if (m_Player == null)
+				{
+					m_Player = GameEventsController.Instance.m_Player;
+				}
+
+				newtTime = Time.time + delay;
+				var cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
+				var scale = 0.6f;
+				cube.transform.localScale = new Vector3 (scale, scale, scale);
+				cube.transform.position = m_Player.Transform.position;
+				cube.GetComponent<BoxCollider> ().enabled = false;
             }
         }
     }

@@ -12,11 +12,31 @@ using UnityEngine;
 
 public class GameStartup : MonoBehaviour
 {
-    [SerializeField] private Parameters _parameters;
-    [SerializeField] private GameObject _gameOverPanel;
-    [SerializeField] private GameObject _pausePanel;
-    [SerializeField] private GameObject _settingsPanel;
-    [SerializeField] private GameObject _startGamePanel;
+    [SerializeField]
+	private Parameters _parameters = null;
+
+    [SerializeField]
+	private GameObject _gameOverPanel = null;
+
+    [SerializeField]
+	private GameObject _pausePanel = null;
+
+    [SerializeField]
+	private GameObject _settingsPanel = null;
+
+    [SerializeField]
+	private GameObject _startGamePanel = null;
+
+	[Header("Game Systems")]
+
+	[SerializeField]
+	private PlayerController m_PlayerController = null;
+
+//	[SerializeField]
+//	private DrawVectorPointerProcessing m_DrawVectorPointerController = null;
+
+	[SerializeField]
+	private CameraFollowController m_CameraFollowProcessing = null;
 
 #if UNITY_EDITOR
     private GameObject _worldObserver;
@@ -49,6 +69,10 @@ public class GameStartup : MonoBehaviour
     private void Start()
     {
         _startInit.Initialize();
+
+		m_PlayerController.LateStart();
+
+//		m_DrawVectorPointerController.LateStart();
     }
 
     private void AddProcessings()
@@ -103,14 +127,14 @@ public class GameStartup : MonoBehaviour
             })
             .Add(new RestartProcessing())
             .Add(new UserInputProcessing())
-            .Add(new PlayerProcessing
-            {
-                Multiplier = _parameters.ForceMultiplier,
-                MaxForce = _parameters.MaxForce,
-                AliveSprite = _parameters.AliveSprite,
-                DeathSprite = _parameters.DeadSprite,
-                MinLength = _parameters.MinLength
-            })
+//            .Add(new PlayerController
+//            {
+//                Multiplier = _parameters.ForceMultiplier,
+//                MaxForce = _parameters.MaxForce,
+//                AliveSprite = _parameters.AliveSprite,
+//                DeathSprite = _parameters.DeadSprite,
+//                MinLength = _parameters.MinLength
+//            })
             .Add(new BonusProcessing())
             .Add(new PauseButtonStateProcessing())
             .Add(new DrawVectorPointerProcessing
@@ -137,11 +161,11 @@ public class GameStartup : MonoBehaviour
 
         _fixedUpdate
             .Add(new AddForceProcessing())
-            .Add(new CameraFollowProcessing
-            {
-                CameraSmooth = _parameters.CameraSmooth,
-                CameraMinPositionZ = _parameters.CameraMinPositionZ
-            })
+//            .Add(new CameraFollowController
+//            {
+//                CameraSmooth = _parameters.CameraSmooth,
+//                CameraMinPositionZ = _parameters.CameraMinPositionZ
+//            })
             .Add(new DragSimulation
             {
                 Drag = _parameters.Drag
@@ -150,6 +174,15 @@ public class GameStartup : MonoBehaviour
             .Add(new DebugProcessingFixedUpdate()) //debug
 #endif
             ;
+
+		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
+		m_PlayerController.MaxForce = _parameters.MaxForce;
+		m_PlayerController.AliveSprite = _parameters.AliveSprite;
+		m_PlayerController.DeathSprite = _parameters.DeadSprite;
+		m_PlayerController.MinLength = _parameters.MinLength;
+
+		m_CameraFollowProcessing.CameraSmooth = _parameters.CameraSmooth;
+		m_CameraFollowProcessing.CameraMinPositionZ = _parameters.CameraMinPositionZ;
     }
 
     private void Update()
