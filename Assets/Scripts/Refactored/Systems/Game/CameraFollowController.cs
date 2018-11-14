@@ -1,6 +1,4 @@
 ﻿using Components;
-using Data;
-using LeopotamGroup.Ecs;
 using UnityEngine;
 
 namespace Systems.Game
@@ -11,7 +9,7 @@ namespace Systems.Game
 		private Player m_Player = null;
 
 		[SerializeField]
-		private MainCamera m_MainCamera;
+		private MainCamera m_MainCamera = null;
 
         private Vector3 _velocity;
 
@@ -25,8 +23,8 @@ namespace Systems.Game
 
         private void MoveCamera()
         {
-			Vector3 currentPosition = m_MainCamera.Transform.position;
-			float playerPositionZ = m_Player.Transform.position.z;
+			Vector3 currentPosition = m_MainCamera.m_Transform.position;
+			float playerPositionZ = m_Player.m_Transform.position.z;
             float smoothZ = Mathf.SmoothDamp(currentPosition.z, playerPositionZ, ref _velocity.z,
                 CameraSmooth);
             Vector3 newPosition = new Vector3(currentPosition.x, currentPosition.y, smoothZ);
@@ -40,7 +38,7 @@ namespace Systems.Game
 					newPosition.z = CameraMinPositionZ;
 				}
 
-				m_MainCamera.Transform.position = newPosition;
+				m_MainCamera.m_Transform.position = newPosition;
 			}
         }
     }

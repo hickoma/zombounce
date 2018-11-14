@@ -174,9 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8138c75db7fc47b7a52f704ada23077c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 54787716056321762}
-  Transform: {fileID: 4442905300584622}
-  SpriteRenderer: {fileID: 212845957452763274}
+  m_Rigidbody: {fileID: 54787716056321762}
+  m_Transform: {fileID: 4442905300584622}
+  m_SpriteRenderer: {fileID: 212845957452763274}
 --- !u!135 &135708209955178578
 SphereCollider:
   m_ObjectHideFlags: 1

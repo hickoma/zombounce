@@ -16,7 +16,7 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	public void Awake()
 	{
 		m_Instance = this;
 	}

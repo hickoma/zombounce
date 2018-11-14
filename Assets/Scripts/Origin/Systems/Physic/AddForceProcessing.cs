@@ -23,7 +23,7 @@ namespace Systems.Physic
 					m_Player = GameEventsController.Instance.m_Player;
 				}
 
-                m_Player.Rigidbody.AddForce(forceVector);
+                m_Player.m_Rigidbody.AddForce(forceVector);
 
                 _world.RemoveEntity(_addForceEventFilter.Entities[0]);
             }

@@ -30,7 +30,7 @@ namespace Systems.Physic
 				m_Player = GameEventsController.Instance.m_Player;
 			}
 
-			var rb = m_Player.Rigidbody;
+			var rb = m_Player.m_Rigidbody;
 
             Vector3 newVelocity = rb.velocity + _gravity * rb.mass * Time.fixedDeltaTime;
             newVelocity = newVelocity * Mathf.Clamp01(1f - Drag * Time.deltaTime);

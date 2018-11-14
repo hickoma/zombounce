@@ -58,7 +58,9 @@ MonoBehaviour:
   _settingsPanel: {fileID: 0}
   _startGamePanel: {fileID: 0}
   m_PlayerController: {fileID: 0}
-  m_CameraFollowProcessing: {fileID: 0}
+  m_DrawVectorPointerController: {fileID: 0}
+  m_CameraFollowController: {fileID: 0}
+  m_BackBlockFollowController: {fileID: 0}
 --- !u!114 &114699422220589938
 MonoBehaviour:
   m_ObjectHideFlags: 1

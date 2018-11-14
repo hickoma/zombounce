@@ -31,7 +31,7 @@ namespace Systems._DEBUG
 				var cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
 				var scale = 0.6f;
 				cube.transform.localScale = new Vector3 (scale, scale, scale);
-				cube.transform.position = m_Player.Transform.position;
+				cube.transform.position = m_Player.m_Transform.position;
 				cube.GetComponent<BoxCollider> ().enabled = false;
             }
         }

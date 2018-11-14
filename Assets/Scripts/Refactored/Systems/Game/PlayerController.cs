@@ -7,14 +7,9 @@ using UnityEngine;
 
 namespace Systems.PlayerProcessings
 {
-    [EcsInject]
-	public class PlayerController : MonoBehaviour//, IEcsRunSystem, IEcsInitSystem
+	public class PlayerController : MonoBehaviour
     {
         private EcsWorld _world = null;
-
-//        private EcsFilter<SetSprite> _setSpriteEventFilter = null;
-//        private EcsFilter<PointerUpDownEvent> _pointerUpDownEventFilter = null;
-//        private EcsFilter<GameStateEvent> _gameStateEventFilter = null;
 
 		[SerializeField]
 		private Player m_Player = null;
@@ -43,24 +38,14 @@ namespace Systems.PlayerProcessings
 
 		public void LateStart()
 		{
-			_startPosition = m_Player.Transform.position.z;
+			_startPosition = m_Player.m_Transform.position.z;
 
 			GameEventsController.Instance.OnSetPlayerSprite += SetPlayerSprite;
 			GameEventsController.Instance.OnPointerUpDown += CheckInput;
 			GameEventsController.Instance.OnGameStateChanged += CheckState;
 		}
 
-        public void Initialize()
-        {
-			
-        }
-
-        public void Destroy()
-        {
-
-        }
-
-		public void Update()// Run()
+		public void Update()
         {
             CheckDistance();
         }
@@ -71,7 +56,7 @@ namespace Systems.PlayerProcessings
             {
                 if (isDown)
                 {
-                    m_Player.Rigidbody.velocity = Vector3.zero;
+                    m_Player.m_Rigidbody.velocity = Vector3.zero;
 
 					DrawVector(downPointerPosition, upPointerPosition);
                 }
@@ -121,18 +106,18 @@ namespace Systems.PlayerProcessings
 			}
 
 			var distance = _world.CreateEntityWith<DistanceEvent>();
-            distance.CurrentDistance = m_Player.Transform.position.z - _startPosition;
+            distance.CurrentDistance = m_Player.m_Transform.position.z - _startPosition;
         }
 
         private void SetPlayerSprite(bool isAlive)
         {
             if (isAlive)
             {
-                m_Player.SpriteRenderer.sprite = AliveSprite;
+                m_Player.m_SpriteRenderer.sprite = AliveSprite;
             }
             else
             {
-				m_Player.SpriteRenderer.sprite = DeathSprite;
+				m_Player.m_SpriteRenderer.sprite = DeathSprite;
             }
         }
 

@@ -76,7 +76,7 @@ namespace Systems
 						m_Player = GameEventsController.Instance.m_Player;
 					}
 
-                    if (Math.Abs(m_Player.Rigidbody.velocity.sqrMagnitude) <
+                    if (Math.Abs(m_Player.m_Rigidbody.velocity.sqrMagnitude) <
                         MinVelocityTolerace)
                     {
                         _world.CreateEntityWith<PlayerDeathEvent>();

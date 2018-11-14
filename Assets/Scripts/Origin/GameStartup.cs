@@ -36,7 +36,16 @@ public class GameStartup : MonoBehaviour
 //	private DrawVectorPointerProcessing m_DrawVectorPointerController = null;
 
 	[SerializeField]
-	private CameraFollowController m_CameraFollowProcessing = null;
+	private CameraFollowController m_CameraFollowController = null;
+
+	[SerializeField]
+	private BackBlockerFollowController m_BackBlockFollowController = null;
+
+	// ugly, ugly, UGLY! need to be removed
+	// needed just to ensure that it's initialized before everything else
+	[Space]
+	[SerializeField]
+	private GameEventsController m_EventsController;
 
 #if UNITY_EDITOR
     private GameObject _worldObserver;
@@ -50,6 +59,7 @@ public class GameStartup : MonoBehaviour
     private void Awake()
     {
         _world = new EcsWorld();
+		m_EventsController.Awake ();
 #if UNITY_EDITOR
         _worldObserver = LeopotamGroup.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
 #endif
@@ -181,8 +191,10 @@ public class GameStartup : MonoBehaviour
 		m_PlayerController.DeathSprite = _parameters.DeadSprite;
 		m_PlayerController.MinLength = _parameters.MinLength;
 
-		m_CameraFollowProcessing.CameraSmooth = _parameters.CameraSmooth;
-		m_CameraFollowProcessing.CameraMinPositionZ = _parameters.CameraMinPositionZ;
+		m_CameraFollowController.CameraSmooth = _parameters.CameraSmooth;
+		m_CameraFollowController.CameraMinPositionZ = _parameters.CameraMinPositionZ;
+
+		m_BackBlockFollowController.DistanceFromCamera = _parameters.DistanceFromCamera;
     }
 
     private void Update()

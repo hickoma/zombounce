@@ -26,7 +26,7 @@ namespace Systems._DEBUG
 				m_Player = GameEventsController.Instance.m_Player;
 			}
 
-			var rb = m_Player.Rigidbody;
+			var rb = m_Player.m_Rigidbody;
                 
 			Vector3 newVelocity = rb.velocity + gForceVector * rb.mass * Time.deltaTime;
 			newVelocity = newVelocity * Mathf.Clamp01 (1f - myDrag * Time.deltaTime);
