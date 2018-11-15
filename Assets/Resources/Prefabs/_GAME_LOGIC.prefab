@@ -70,6 +70,7 @@ MonoBehaviour:
   _settingsPanel: {fileID: 0}
   _startGamePanel: {fileID: 0}
   m_PlayerController: {fileID: 0}
+  m_DrawVectorPointerController: {fileID: 0}
   m_DistanceBonuseController: {fileID: 114372804972422232}
   m_AddForceController: {fileID: 0}
   m_CameraFollowController: {fileID: 0}

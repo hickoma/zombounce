@@ -15,11 +15,6 @@ namespace Systems.Physic
 
 		private void AddForce(Vector3 forceVector)
         {
-			if (m_Player == null)
-			{
-				m_Player = GameEventsController.Instance.m_Player;
-			}
-
             m_Player.m_Rigidbody.AddForce(forceVector);
         }
     }

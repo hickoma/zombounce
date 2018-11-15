@@ -71,6 +71,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4864405346571696}
+  - component: {fileID: 114140279226051622}
+  - component: {fileID: 114319359282667424}
   m_Layer: 0
   m_Name: ForceVector
   m_TagString: VectorPointer
@@ -148,6 +150,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 20
   m_CollisionDetection: 2
+--- !u!114 &114140279226051622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885808204455730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7eeed140854c88843b4becad29f773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainTransformForRotation: {fileID: 4864405346571696}
+  SpriteMaskTransform: {fileID: 4631245849693134}
+--- !u!114 &114319359282667424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885808204455730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95dc49ed5a44c124abacf9872764c23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Player: {fileID: 114923155420843312}
 --- !u!114 &114830886879837860
 MonoBehaviour:
   m_ObjectHideFlags: 1

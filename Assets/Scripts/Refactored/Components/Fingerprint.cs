@@ -2,7 +2,7 @@
 
 namespace Components
 {
-    public class Fingerprint
+	public class Fingerprint : MonoBehaviour
     {
         public GameObject Parent;
         public Transform MainTransformForRotation;

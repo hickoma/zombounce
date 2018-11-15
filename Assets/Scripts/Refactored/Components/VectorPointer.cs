@@ -2,7 +2,7 @@
 
 namespace Components
 {
-    public class VectorPointer
+    public class VectorPointer : MonoBehaviour
     {
         public Transform MainTransformForRotation;
         public Transform SpriteMaskTransform;

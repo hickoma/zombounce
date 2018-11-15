@@ -32,8 +32,8 @@ public class GameStartup : MonoBehaviour
 	[SerializeField]
 	private PlayerController m_PlayerController = null;
 
-//	[SerializeField]
-//	private DrawVectorPointerProcessing m_DrawVectorPointerController = null;
+	[SerializeField]
+	private DrawVectorPointerController m_DrawVectorPointerController = null;
 
 	[SerializeField]
 	private DistanceBonusController m_DistanceBonuseController = null;
@@ -88,7 +88,7 @@ public class GameStartup : MonoBehaviour
 
 		m_PlayerController.LateStart();
 
-//		m_DrawVectorPointerController.LateStart();
+		m_DrawVectorPointerController.LateStart();
 
 		m_DistanceBonuseController.LateStart();
 
@@ -157,10 +157,10 @@ public class GameStartup : MonoBehaviour
 //            })
             .Add(new BonusProcessing())
             .Add(new PauseButtonStateProcessing())
-            .Add(new DrawVectorPointerProcessing
-            {
-                MaxForce = _parameters.MaxForce
-            })
+//            .Add(new DrawVectorPointerProcessing
+//            {
+//                MaxForce = _parameters.MaxForce
+//            })
 //            .Add(new DistanceBonusController())
             .Add(new FieldsSpawnProcessing
             {
@@ -200,6 +200,8 @@ public class GameStartup : MonoBehaviour
 		m_PlayerController.AliveSprite = _parameters.AliveSprite;
 		m_PlayerController.DeathSprite = _parameters.DeadSprite;
 		m_PlayerController.MinLength = _parameters.MinLength;
+
+		m_DrawVectorPointerController.MaxForce = _parameters.MaxForce;
 
 		m_CameraFollowController.CameraSmooth = _parameters.CameraSmooth;
 		m_CameraFollowController.CameraMinPositionZ = _parameters.CameraMinPositionZ;
