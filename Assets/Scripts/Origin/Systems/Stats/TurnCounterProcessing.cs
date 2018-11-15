@@ -22,8 +22,15 @@ namespace Systems
         public int InitTurnCounter;
         public float MinVelocityTolerace;
 
+//		public void LateStart()
+//		{
+//			GameEventsController.Instance.OnTurnsChanged += ChangeTurns;
+//		}
+
         public void Initialize()
         {
+			GameEventsController.Instance.OnTurnsChanged += ChangeTurns;
+
             foreach (var unityObject in GameObject.FindGameObjectsWithTag(Tag.TurnCounter))
             {
                 var text = unityObject.GetComponent<Text>();
@@ -85,6 +92,27 @@ namespace Systems
                 }
             }
         }
+
+		private void ChangeTurns(int delta)
+		{
+			for (int j = 0; j < _turnCounterFilter.EntitiesCount; j++)
+			{
+				TurnCounter turnCounter = _turnCounterFilter.Components1[j];
+				int newCount = turnCounter.TurnCount + delta;
+
+				if (newCount > InitTurnCounter)
+					continue;
+				
+				if (newCount < 0)
+				{
+					newCount = 0;
+					_world.CreateEntityWith<PlayerDeathEvent>();
+					_isGameOver = true;
+				}
+
+				SetCountAndText(turnCounter, newCount);
+			}
+		}
 
         private void CheckTurnEvents()
         {

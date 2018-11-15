@@ -86,6 +86,17 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	// Turn Counter Controller
+	public event Action<int> OnTurnsChanged;
+
+	public void ChangeTurns(int delta)
+	{
+		if (OnTurnsChanged != null)
+		{
+			OnTurnsChanged (delta);
+		}
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;

@@ -1,24 +1,21 @@
 ﻿using Components;
 using Components.Events;
 using Data;
-using LeopotamGroup.Ecs;
 using UnityEngine;
 
 namespace Systems.PlayerProcessings
 {
 	public class PlayerController : MonoBehaviour
     {
-        private EcsWorld _world = null;
-
 		[SerializeField]
 		private Player m_Player = null;
 
+		// parameters
         private float _startPosition;
         private float _maxForceSqrt;
         private float _sqrtMinLength;
 
         private bool _isInteractive = true;
-
 
         public float MinLength
         {
@@ -122,13 +119,7 @@ namespace Systems.PlayerProcessings
 
         private void CreateCounterChangeEvent()
         {
-			if (_world == null)
-			{
-				_world = EcsWorld.Active;
-			}
-
-            var component = _world.CreateEntityWith<TurnChangedEvent>();
-            component.Changed = -1;
+			GameEventsController.Instance.ChangeTurns (-1);
         }
 
         private void CreateDrawEntity(Vector3 downVector, Vector3 forceVector, bool release)
