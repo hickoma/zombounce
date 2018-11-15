@@ -19,13 +19,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4068245812579902}
+  - component: {fileID: 114029757594150664}
+  - component: {fileID: 114498318062237926}
   - component: {fileID: 20452893822292398}
   - component: {fileID: 81616258328171146}
   - component: {fileID: 114635626283884874}
   - component: {fileID: 114888255516020962}
   - component: {fileID: 114386678732588322}
-  - component: {fileID: 114029757594150664}
-  - component: {fileID: 114498318062237926}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03af0ba165a94944b0c858b272d352f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transform: {fileID: 4068245812579902}
+  m_Transform: {fileID: 4068245812579902}
 --- !u!114 &114386678732588322
 MonoBehaviour:
   m_ObjectHideFlags: 1

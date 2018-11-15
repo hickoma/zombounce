@@ -45,6 +45,9 @@ public class GameStartup : MonoBehaviour
 	private CameraFollowController m_CameraFollowController = null;
 
 	[SerializeField]
+	private DragSimulationController m_DragSimulationController = null;
+
+	[SerializeField]
 	private BackBlockerFollowController m_BackBlockFollowController = null;
 
 	// ugly, ugly, UGLY! need to be removed
@@ -93,6 +96,8 @@ public class GameStartup : MonoBehaviour
 		m_DistanceBonuseController.LateStart();
 
 		m_AddForceController.LateStart();
+
+		m_DragSimulationController.LateStart();
     }
 
     private void AddProcessings()
@@ -186,10 +191,10 @@ public class GameStartup : MonoBehaviour
 //                CameraSmooth = _parameters.CameraSmooth,
 //                CameraMinPositionZ = _parameters.CameraMinPositionZ
 //            })
-            .Add(new DragSimulation
-            {
-                Drag = _parameters.Drag
-            })
+//            .Add(new DragSimulationController
+//            {
+//                Drag = _parameters.Drag
+//            })
 #if DEBUG
             .Add(new DebugProcessingFixedUpdate()) //debug
 #endif
@@ -205,6 +210,8 @@ public class GameStartup : MonoBehaviour
 
 		m_CameraFollowController.CameraSmooth = _parameters.CameraSmooth;
 		m_CameraFollowController.CameraMinPositionZ = _parameters.CameraMinPositionZ;
+
+		m_DragSimulationController.Drag = _parameters.Drag;
 
 		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
     }
