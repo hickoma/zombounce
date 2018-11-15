@@ -12,15 +12,20 @@ namespace Systems
     {
         private EcsWorld _world = null;
         private EcsFilter<Points> _pointsFilter = null;
-        private EcsFilter<AddPointsEvent> _addPointsEventFilter = null;
         private EcsFilter<BestScore> _bestScoreFilter = null;
         private EcsFilter<SaveScoreEvent> _saveScoreEventFilter = null;
         private EcsFilter<UpdateScoreEvent> _updateScoreEventFilter = null;
 
         private int _currentPoints;
 
+//		public void LateStart()
+//		{
+//			GameEventsController.Instance.OnPointsAdded += AddPoints;
+//		}
+
         public void Initialize()
         {
+			GameEventsController.Instance.OnPointsAdded += AddPoints;
             InitCurrentPoints();
             InitBestScore();
         }
@@ -35,7 +40,7 @@ namespace Systems
 
         public void Run()
         {
-            CheckUpdatePoints();
+//            CheckUpdatePoints();
             CheckSaveBestScore();
             CheckUpdateBestScore();
         }
@@ -64,14 +69,10 @@ namespace Systems
             }
         }
 
-        private void CheckUpdatePoints()
+		private void AddPoints(int points)
         {
-            var oldPoints = _currentPoints;
-            for (int i = 0; i < _addPointsEventFilter.EntitiesCount; i++)
-            {
-                _currentPoints += _addPointsEventFilter.Components1[i].Points;
-                _world.RemoveEntity(_addPointsEventFilter.Entities[i]);
-            }
+            int oldPoints = _currentPoints;
+			_currentPoints += points;
 
             if (oldPoints != _currentPoints)
             {

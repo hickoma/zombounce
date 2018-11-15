@@ -97,6 +97,17 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	// Bonus Controller
+	public event Action<int> OnPointsAdded;
+
+	public void AddPoints(int points)
+	{
+		if (OnPointsAdded != null)
+		{
+			OnPointsAdded (points);
+		}
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;
