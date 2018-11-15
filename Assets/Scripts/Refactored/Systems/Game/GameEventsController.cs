@@ -75,6 +75,17 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	// Add Force Controller
+	public event Action<Vector3> OnForceAdded;
+
+	public void AddForce(Vector3 forceVector)
+	{
+		if (OnForceAdded != null)
+		{
+			OnForceAdded (forceVector);
+		}
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;

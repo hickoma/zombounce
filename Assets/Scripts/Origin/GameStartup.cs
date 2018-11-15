@@ -39,6 +39,9 @@ public class GameStartup : MonoBehaviour
 	private DistanceBonusController m_DistanceBonuseController = null;
 
 	[SerializeField]
+	private AddForceController m_AddForceController = null;
+
+	[SerializeField]
 	private CameraFollowController m_CameraFollowController = null;
 
 	[SerializeField]
@@ -88,6 +91,8 @@ public class GameStartup : MonoBehaviour
 //		m_DrawVectorPointerController.LateStart();
 
 		m_DistanceBonuseController.LateStart();
+
+		m_AddForceController.LateStart();
     }
 
     private void AddProcessings()
@@ -175,7 +180,7 @@ public class GameStartup : MonoBehaviour
             .Add(new ClearEventsProcessing());
 
         _fixedUpdate
-            .Add(new AddForceProcessing())
+//            .Add(new AddForceController())
 //            .Add(new CameraFollowController
 //            {
 //                CameraSmooth = _parameters.CameraSmooth,

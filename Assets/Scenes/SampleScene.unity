@@ -2836,6 +2836,11 @@ Prefab:
       objectReference: {fileID: 2057679638}
     - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
         type: 2}
+      propertyPath: m_AddForceController
+      value: 
+      objectReference: {fileID: 1236026054}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
       propertyPath: m_CameraFollowController
       value: 
       objectReference: {fileID: 852456203}
@@ -4351,11 +4356,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1236026052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ab12a8f0da4376a1ed4848668ee107, type: 3}
+  m_Script: {fileID: 11500000, guid: 95dc49ed5a44c124abacf9872764c23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxScale: 0
-  _maxForceSqrt: 0
+  m_Player: {fileID: 981726934}
 --- !u!1 &1243282606
 GameObject:
   m_ObjectHideFlags: 0
