@@ -2,7 +2,6 @@
 using Components.Events;
 using Data;
 using LeopotamGroup.Ecs;
-using LeopotamGroup.Math;
 using UnityEngine;
 
 namespace Systems.PlayerProcessings
@@ -100,13 +99,8 @@ namespace Systems.PlayerProcessings
 
         private void CheckDistance()
         {
-			if (_world == null)
-			{
-				_world = EcsWorld.Active;
-			}
-
-			var distance = _world.CreateEntityWith<DistanceEvent>();
-            distance.CurrentDistance = m_Player.m_Transform.position.z - _startPosition;
+			float distance = m_Player.m_Transform.position.z - _startPosition;
+			GameEventsController.Instance.ChangeDistance (distance);
         }
 
         private void SetPlayerSprite(bool isAlive)

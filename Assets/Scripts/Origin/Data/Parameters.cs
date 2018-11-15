@@ -22,7 +22,7 @@ namespace Data
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;
         public float CameraMinPositionZ;
 
-		public float DistanceFromCamera;
+		public float BackBlockerDistanceFromCamera;
 
         [Header("Field Prefabs")] public GameObject[] Fields;
         public int ForwardSpawnCount;

@@ -36,6 +36,9 @@ public class GameStartup : MonoBehaviour
 //	private DrawVectorPointerProcessing m_DrawVectorPointerController = null;
 
 	[SerializeField]
+	private DistanceBonusController m_DistanceBonuseController = null;
+
+	[SerializeField]
 	private CameraFollowController m_CameraFollowController = null;
 
 	[SerializeField]
@@ -83,6 +86,8 @@ public class GameStartup : MonoBehaviour
 		m_PlayerController.LateStart();
 
 //		m_DrawVectorPointerController.LateStart();
+
+		m_DistanceBonuseController.LateStart();
     }
 
     private void AddProcessings()
@@ -151,7 +156,7 @@ public class GameStartup : MonoBehaviour
             {
                 MaxForce = _parameters.MaxForce
             })
-            .Add(new DistanceBonusProcessing())
+//            .Add(new DistanceBonusController())
             .Add(new FieldsSpawnProcessing
             {
                 Prefabs = _parameters.Fields,
@@ -194,7 +199,7 @@ public class GameStartup : MonoBehaviour
 		m_CameraFollowController.CameraSmooth = _parameters.CameraSmooth;
 		m_CameraFollowController.CameraMinPositionZ = _parameters.CameraMinPositionZ;
 
-		m_BackBlockFollowController.DistanceFromCamera = _parameters.DistanceFromCamera;
+		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
     }
 
     private void Update()

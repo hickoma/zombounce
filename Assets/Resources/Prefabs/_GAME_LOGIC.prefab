@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4168292326017120}
   - component: {fileID: 114550885983282144}
+  - component: {fileID: 114372804972422232}
   - component: {fileID: 114699422220589938}
   m_Layer: 0
   m_Name: _GAME_LOGIC
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114372804972422232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924550101837566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1920848dbbe090f49a27d8840dc4aea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114550885983282144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58,9 +70,10 @@ MonoBehaviour:
   _settingsPanel: {fileID: 0}
   _startGamePanel: {fileID: 0}
   m_PlayerController: {fileID: 0}
-  m_DrawVectorPointerController: {fileID: 0}
+  m_DistanceBonuseController: {fileID: 114372804972422232}
   m_CameraFollowController: {fileID: 0}
   m_BackBlockFollowController: {fileID: 0}
+  m_EventsController: {fileID: 114699422220589938}
 --- !u!114 &114699422220589938
 MonoBehaviour:
   m_ObjectHideFlags: 1

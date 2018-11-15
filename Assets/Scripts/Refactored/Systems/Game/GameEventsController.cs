@@ -60,7 +60,18 @@ public class GameEventsController : MonoBehaviour
 	{
 		if (OnDrawVectorPointer != null)
 		{
-			OnDrawVectorPointer(downVector, forceVector, release);
+			OnDrawVectorPointer (downVector, forceVector, release);
+		}
+	}
+
+	// Distance Bonus Processing
+	public event Action<float> OnDistanceChanged;
+
+	public void ChangeDistance(float distance)
+	{
+		if (OnDistanceChanged != null)
+		{
+			OnDistanceChanged (distance);
 		}
 	}
 
