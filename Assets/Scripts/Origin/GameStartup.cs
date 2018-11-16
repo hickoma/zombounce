@@ -30,6 +30,9 @@ public class GameStartup : MonoBehaviour
 	[Header("Game Systems")]
 
 	[SerializeField]
+	private UserInputController m_UserInputController = null;
+
+	[SerializeField]
 	private PlayerController m_PlayerController = null;
 
 	[SerializeField]
@@ -88,6 +91,8 @@ public class GameStartup : MonoBehaviour
     private void Start()
     {
         _startInit.Initialize();
+
+		m_UserInputController.LateStart();
 
 		m_PlayerController.LateStart();
 
@@ -151,7 +156,7 @@ public class GameStartup : MonoBehaviour
                 GameOverPanel = _gameOverPanel
             })
             .Add(new RestartProcessing())
-            .Add(new UserInputProcessing())
+//            .Add(new UserInputProcessing())
 //            .Add(new PlayerController
 //            {
 //                Multiplier = _parameters.ForceMultiplier,
