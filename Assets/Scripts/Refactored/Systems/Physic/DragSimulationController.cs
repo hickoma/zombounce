@@ -17,7 +17,7 @@ namespace Systems.Physic
             _gravity = Physics.gravity;
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
 			Rigidbody rb = m_Player.m_Rigidbody;
 

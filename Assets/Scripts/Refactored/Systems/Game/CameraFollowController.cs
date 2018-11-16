@@ -16,7 +16,7 @@ namespace Systems.Game
         public float CameraSmooth;
         public float CameraMinPositionZ;
 
-        public void Update()
+        public void FixedUpdate()
         {
             MoveCamera();
         }
