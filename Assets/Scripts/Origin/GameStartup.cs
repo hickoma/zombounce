@@ -30,6 +30,9 @@ public class GameStartup : MonoBehaviour
 	[Header("Game Systems")]
 
 	[SerializeField]
+	private Windows.HUD m_Hud = null;
+
+	[SerializeField]
 	private UserInputController m_UserInputController = null;
 
 	[SerializeField]
@@ -92,6 +95,8 @@ public class GameStartup : MonoBehaviour
     {
         _startInit.Initialize();
 
+		m_Hud.LateStart ();
+
 		m_UserInputController.LateStart();
 
 		m_PlayerController.LateStart();
@@ -111,7 +116,7 @@ public class GameStartup : MonoBehaviour
             .Add(new LevelInitializeProcessor());
 
         _update
-            .Add(new CatchClickEventProcessing())
+//            .Add(new CatchClickEventProcessing())
             .Add(new TurnCounterProcessing
             {
                 InitTurnCounter = _parameters.TurnCount,

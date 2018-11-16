@@ -71,9 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224684531014813636}
-  - component: {fileID: 222779965202533324}
-  - component: {fileID: 114808824222402742}
-  - component: {fileID: 114474713717465244}
+  - component: {fileID: 114612266131456792}
   m_Layer: 5
   m_Name: StartGame
   m_TagString: Untagged
@@ -92,7 +90,6 @@ GameObject:
   - component: {fileID: 222579614359404106}
   - component: {fileID: 114975551890415766}
   - component: {fileID: 114662495218627980}
-  - component: {fileID: 114040891286290054}
   m_Layer: 5
   m_Name: TapToPlay
   m_TagString: Untagged
@@ -100,17 +97,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!114 &114040891286290054
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1971974438372484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756f05d06322404a8cb377dcd7244634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114071900092935140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,7 +184,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114474713717465244
+--- !u!114 &114612266131456792
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,25 +192,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886577111500384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fde66ddc1f0fde6438383a94d1156a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300274, guid: 8690aaaeef6aae74e908eb25c7cc3005, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_StartButton: {fileID: 114925313531504554}
+  m_BackgroundButton: {fileID: 114662495218627980}
 --- !u!114 &114662495218627980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,17 +238,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114808824222402742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886577111500384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756f05d06322404a8cb377dcd7244634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114925313531504554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,13 +333,6 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857567477156802}
-  m_CullTransparentMesh: 0
---- !u!222 &222779965202533324
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886577111500384}
   m_CullTransparentMesh: 0
 --- !u!224 &224145082200775976
 RectTransform:

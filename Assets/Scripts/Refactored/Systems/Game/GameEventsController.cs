@@ -108,6 +108,67 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	// Start Game Window
+	public event Action OnGameStartClick;
+
+	public void StartGame()
+	{
+		if (OnGameStartClick != null)
+		{
+			OnGameStartClick ();
+		}
+
+		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
+		GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PLAY);
+		_world.CreateEntityWith<Components.Events.GameStateEvent>().State = Components.Events.GameState.PLAY;
+	}
+
+	// Restart Game Window
+	public event Action OnGameRestartClick;
+
+	public void RestartGame()
+	{
+		if (OnGameStartClick != null)
+		{
+			OnGameStartClick ();
+		}
+
+		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
+		_world.CreateEntityWith<Components.Events.RestartEvent>();
+	}
+
+	// HUD
+	public event Action OnGamePauseClick;
+
+	public void PauseGame()
+	{
+		if (OnGamePauseClick != null)
+		{
+			OnGamePauseClick ();
+		}
+
+		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
+		GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PAUSE);
+		_world.CreateEntityWith<Components.Events.GameStateEvent>().State = Components.Events.GameState.PAUSE;
+	}
+
+	public event Action OnSettingsClick;
+
+	public void OpenSettings()
+	{
+		if (OnSettingsClick != null)
+		{
+			OnSettingsClick ();
+		}
+
+		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
+
+		if (_world != null)
+        {
+			_world.CreateEntityWith<Components.Events.SettingsEvent>().OpenSettings = true;
+        }
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;
