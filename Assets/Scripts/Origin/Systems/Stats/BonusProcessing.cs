@@ -21,6 +21,7 @@ namespace Systems
 //		public void LateStart()
 //		{
 //			GameEventsController.Instance.OnPointsAdded += AddPoints;
+//          GameEventsController.Instance.OnScoreSaved += SaveBestScore;
 //		}
 
         public void Initialize()
