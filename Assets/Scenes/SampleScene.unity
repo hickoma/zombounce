@@ -454,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PauseButton: {fileID: 901059903}
   m_SettingsButton: {fileID: 0}
+  m_PauseWindow: {fileID: 626425858}
 --- !u!1 &163508933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,7 +2434,7 @@ GameObject:
   - component: {fileID: 626425861}
   - component: {fileID: 626425860}
   m_Layer: 5
-  m_Name: Pause
+  m_Name: PauseWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

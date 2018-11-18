@@ -140,10 +140,10 @@ public class GameStartup : MonoBehaviour
                 GameOverPanel = _gameOverPanel,
                 TimerCount = _parameters.TimerCount
             })
-            .Add(new PauseMenuProcessing
-            {
-                PausePanel = _pausePanel
-            })
+//            .Add(new PauseMenuProcessing
+//            {
+//                PausePanel = _pausePanel
+//            })
             .Add(new HideTimerProcessing
             {
                 GameOverPanel = _gameOverPanel,

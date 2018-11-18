@@ -78,7 +78,7 @@ namespace Systems.Game
 
         private void SaveBestScore()
         {
-            _ecsWorld.CreateEntityWith<SaveScoreEvent>();
+            GameEventsController.Instance.SaveScore();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Systems
         private EcsWorld _world = null;
         private EcsFilter<Points> _pointsFilter = null;
         private EcsFilter<BestScore> _bestScoreFilter = null;
-        private EcsFilter<SaveScoreEvent> _saveScoreEventFilter = null;
+//        private EcsFilter<SaveScoreEvent> _saveScoreEventFilter = null;
         private EcsFilter<UpdateScoreEvent> _updateScoreEventFilter = null;
 
         private int _currentPoints;
@@ -26,6 +26,7 @@ namespace Systems
         public void Initialize()
         {
 			GameEventsController.Instance.OnPointsAdded += AddPoints;
+            GameEventsController.Instance.OnScoreSaved += SaveBestScore;
             InitCurrentPoints();
             InitBestScore();
         }
@@ -41,7 +42,7 @@ namespace Systems
         public void Run()
         {
 //            CheckUpdatePoints();
-            CheckSaveBestScore();
+//            CheckSaveBestScore();
             CheckUpdateBestScore();
         }
 
@@ -54,18 +55,14 @@ namespace Systems
             }
         }
 
-        private void CheckSaveBestScore()
+        private void SaveBestScore()
         {
-            for (int i = 0; i < _saveScoreEventFilter.EntitiesCount; i++)
+            int currentBestScore = PlayerPrefs.GetInt(PrefKeys.BestScoreKey);
+
+            if (_currentPoints > currentBestScore)
             {
-                var currentBestScore = PlayerPrefs.GetInt(PrefKeys.BestScoreKey);
-                if (_currentPoints > currentBestScore)
-                {
-                    PlayerPrefs.SetInt(PrefKeys.BestScoreKey, _currentPoints);
-                    PlayerPrefs.Save();
-                }
-                
-                _world.RemoveEntity(_saveScoreEventFilter.Entities[i]);
+                PlayerPrefs.SetInt(PrefKeys.BestScoreKey, _currentPoints);
+                PlayerPrefs.Save();
             }
         }
 

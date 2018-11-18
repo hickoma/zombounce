@@ -108,6 +108,16 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+    public event Action OnScoreSaved;
+
+    public void SaveScore()
+    {
+        if (OnScoreSaved != null)
+        {
+            OnScoreSaved();
+        }
+    }
+
 	// Start Game Window
 	public event Action OnGameStartClick;
 
