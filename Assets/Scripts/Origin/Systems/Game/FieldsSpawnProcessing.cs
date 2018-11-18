@@ -75,14 +75,20 @@ namespace Systems.Game
                 var enterEvent = _inFieldEventFilter.Components1[i];
                 var id = (int) (enterEvent.ZPosition / _groundSize);
 
-                if (!CheckAndDeleteBackward(id))
+                // do not react at -1 and 0 fields,
+                // because they are spawned on scene by default,
+                // all needed forward fields are spawned automatically at InitPool
+                if (id > 0)
                 {
-                    SpawnBackward(id);
-                }
+                    if (!CheckAndDeleteBackward(id))
+                    {
+                        SpawnBackward(id);
+                    }
 
-                if (!CheckAndDeleteForward(id))
-                {
-                    SpawnForward(id);
+                    if (!CheckAndDeleteForward(id))
+                    {
+                        SpawnForward(id);
+                    }
                 }
 
                 _world.RemoveEntity(_inFieldEventFilter.Entities[i]);
@@ -105,11 +111,15 @@ namespace Systems.Game
                 _poolContainers[i] = PoolContainer.CreatePool(Prefabs[i], parent);
             }
 
-            var firstObject = PopOrSpawnById(0);
-
             //init ground size
-//            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
+            //            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
             _groundSize = 22f;
+
+            // -1 and 0 fields are already on scene so spawn some more fields forward
+            for (int i = 0; i < ForwardSpawnCount; i++)
+            {
+                PopOrSpawnById(i + 1);
+            }
         }
 
         private void AddRandomPath()
@@ -135,7 +145,8 @@ namespace Systems.Game
         {
             int startIndex = currentId - 1;
 
-            if (startIndex < 0) return;
+            // do not spawn -1 and 0 fields
+            if (startIndex < 1) return;
 
 			int endIndex = startIndex - BackwardSpawnCount;
 
