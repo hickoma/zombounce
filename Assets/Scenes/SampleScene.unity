@@ -2291,9 +2291,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 557195090}
-  - component: {fileID: 557195093}
   - component: {fileID: 557195092}
   - component: {fileID: 557195091}
+  - component: {fileID: 557195093}
   m_Layer: 2
   m_Name: BackBlocker
   m_TagString: Untagged
@@ -3533,7 +3533,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefc1cac11f24f2f8ae6e73124a8f0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenSettings: 1
 --- !u!114 &941145352 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114140279226051622, guid: cf2eb64f5c3da1f42aeadc25dac7400b,

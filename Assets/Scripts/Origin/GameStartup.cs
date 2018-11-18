@@ -68,8 +68,8 @@ public class GameStartup : MonoBehaviour
 
     EcsWorld _world;
     EcsSystems _update;
-    EcsSystems _fixedUpdate;
-    EcsSystems _startInit;
+//    EcsSystems _fixedUpdate;
+//    EcsSystems _startInit;
 
     private void Awake()
     {
@@ -78,14 +78,14 @@ public class GameStartup : MonoBehaviour
 #if UNITY_EDITOR
         _worldObserver = LeopotamGroup.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
 #endif
-        _startInit = new EcsSystems(_world);
+//        _startInit = new EcsSystems(_world);
         _update = new EcsSystems(_world);
-        _fixedUpdate = new EcsSystems(_world);
+//        _fixedUpdate = new EcsSystems(_world);
 
         AddProcessings();
 
         _update.Initialize();
-        _fixedUpdate.Initialize();
+//        _fixedUpdate.Initialize();
 #if UNITY_EDITOR
         LeopotamGroup.Ecs.UnityIntegration.EcsSystemsObserver.Create(_update);
 #endif
@@ -93,7 +93,9 @@ public class GameStartup : MonoBehaviour
 
     private void Start()
     {
-        _startInit.Initialize();
+//        _startInit.Initialize();
+        // level initialize
+        Time.timeScale = 1f;
 
 		m_Hud.LateStart ();
 
@@ -112,8 +114,8 @@ public class GameStartup : MonoBehaviour
 
     private void AddProcessings()
     {
-        _startInit
-            .Add(new LevelInitializeProcessor());
+//        _startInit
+//            .Add(new LevelInitializeProcessor());
 
         _update
 //            .Add(new CatchClickEventProcessing())
@@ -194,7 +196,7 @@ public class GameStartup : MonoBehaviour
             .Add(new TimeScaleProcessing())
             .Add(new ClearEventsProcessing());
 
-        _fixedUpdate
+//        _fixedUpdate
 //            .Add(new AddForceController())
 //            .Add(new CameraFollowController
 //            {
@@ -206,7 +208,7 @@ public class GameStartup : MonoBehaviour
 //                Drag = _parameters.Drag
 //            })
 #if DEBUG
-            .Add(new DebugProcessingFixedUpdate()) //debug
+//            .Add(new DebugProcessingFixedUpdate()) //debug
 #endif
             ;
 
@@ -231,15 +233,15 @@ public class GameStartup : MonoBehaviour
         _update.Run();
     }
 
-    private void FixedUpdate()
-    {
-        _fixedUpdate.Run();
-    }
+//    private void FixedUpdate()
+//    {
+//        _fixedUpdate.Run();
+//    }
 
     void OnDestroy()
     {
         _update.Destroy();
-        _fixedUpdate.Destroy();
+//        _fixedUpdate.Destroy();
         _world.Dispose();
         _world = null;
 #if UNITY_EDITOR
