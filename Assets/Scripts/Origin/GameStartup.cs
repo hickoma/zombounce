@@ -173,7 +173,7 @@ public class GameStartup : MonoBehaviour
 //                MinLength = _parameters.MinLength
 //            })
             .Add(new BonusProcessing())
-            .Add(new PauseButtonStateProcessing())
+//            .Add(new PauseButtonStateProcessing())
 //            .Add(new DrawVectorPointerProcessing
 //            {
 //                MaxForce = _parameters.MaxForce
