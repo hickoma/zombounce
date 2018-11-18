@@ -22,7 +22,7 @@ namespace Systems.Physic
 			Rigidbody rb = m_Player.m_Rigidbody;
 
             Vector3 newVelocity = rb.velocity + _gravity * rb.mass * Time.fixedDeltaTime;
-            newVelocity = newVelocity * Mathf.Clamp01(1f - Drag * Time.deltaTime);
+            newVelocity = newVelocity * Mathf.Clamp01(1f - Drag * Time.fixedDeltaTime);
             rb.velocity = newVelocity;
         }
     }
