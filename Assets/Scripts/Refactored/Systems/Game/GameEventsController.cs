@@ -179,6 +179,37 @@ public class GameEventsController : MonoBehaviour
         }
 	}
 
+	// Field Spawn Processing
+	public event Action<float> OnFieldEntered;
+
+	public void EnterField(float zPosition)
+	{
+		if (OnFieldEntered != null)
+		{
+			OnFieldEntered (zPosition);
+		}
+	}
+
+	public event Action<LeopotamGroup.Pooling.IPoolObject> OnEnergyGathered;
+
+	public void GatherEnergy(LeopotamGroup.Pooling.IPoolObject energy)
+	{
+		if (OnEnergyGathered != null)
+		{
+			OnEnergyGathered (energy);
+		}
+	}
+
+	public event Action<LeopotamGroup.Pooling.IPoolObject> OnCoinGathered;
+
+	public void GatherCoin(LeopotamGroup.Pooling.IPoolObject coin)
+	{
+		if (OnCoinGathered != null)
+		{
+			OnCoinGathered (coin);
+		}
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;

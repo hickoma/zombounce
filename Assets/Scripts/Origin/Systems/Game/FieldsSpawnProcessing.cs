@@ -16,10 +16,10 @@ namespace Systems.Game
     public class FieldsSpawnProcessing : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world;
-        private EcsFilter<InFieldEvent> _inFieldEventFilter = null;
+//        private EcsFilter<InFieldEvent> _inFieldEventFilter = null;
         private EcsFilter<UnityPrefabComponent> _unityPrefabFilter = null;
-        private EcsFilter<DespawnEnergyEvent> _despawnEnergyEventFilter = null;
-        private EcsFilter<DespawnCoinEvent> _despawnCoinEventFilter = null;
+//        private EcsFilter<DespawnEnergyEvent> _despawnEnergyEventFilter = null;
+//        private EcsFilter<DespawnCoinEvent> _despawnCoinEventFilter = null;
 
         private PoolContainer[] _poolContainers;
         private PoolContainer _energyPool;
@@ -49,6 +49,10 @@ namespace Systems.Game
             _alreadyCoins = new List<int>();
             AddRandomPath();
             InitPoolAndSpawnFirst();
+
+			GameEventsController.Instance.OnFieldEntered += CheckSpawn;
+			GameEventsController.Instance.OnEnergyGathered += CheckEnergyEvents;
+			GameEventsController.Instance.OnCoinGathered += CheckCoinEvents;
         }
 
         public void Destroy()
@@ -67,33 +71,29 @@ namespace Systems.Game
 
         public void Run()
         {
-            CheckEnergyEvents();
-            CheckCoinEvents();
-
-            for (int i = 0; i < _inFieldEventFilter.EntitiesCount; i++)
-            {
-                var enterEvent = _inFieldEventFilter.Components1[i];
-                var id = (int) (enterEvent.ZPosition / _groundSize);
-
-                // do not react at -1 and 0 fields,
-                // because they are spawned on scene by default,
-                // all needed forward fields are spawned automatically at InitPool
-                if (id > 0)
-                {
-                    if (!CheckAndDeleteBackward(id))
-                    {
-                        SpawnBackward(id);
-                    }
-
-                    if (!CheckAndDeleteForward(id))
-                    {
-                        SpawnForward(id);
-                    }
-                }
-
-                _world.RemoveEntity(_inFieldEventFilter.Entities[i]);
-            }
+			
         }
+
+		private void CheckSpawn(float zPosition)
+		{
+			int id = (int) (zPosition / _groundSize);
+
+			// do not react at -1 and 0 fields,
+			// because they are spawned on scene by default,
+			// all needed forward fields are spawned automatically at InitPool
+			if (id > 0)
+			{
+				if (!CheckAndDeleteBackward(id))
+				{
+					SpawnBackward(id);
+				}
+
+				if (!CheckAndDeleteForward(id))
+				{
+					SpawnForward(id);
+				}
+			}
+		}
 
         private void InitPoolAndSpawnFirst()
         {
@@ -264,26 +264,14 @@ namespace Systems.Game
             }
         }
         
-        private void CheckEnergyEvents()
+		private void CheckEnergyEvents(IPoolObject energy)
         {
-            for (int i = 0; i < _despawnEnergyEventFilter.EntitiesCount; i++)
-            {
-                var entity = _despawnEnergyEventFilter.Entities[i];
-                var poolObject = _despawnEnergyEventFilter.Components1[i].PoolObject;
-                DespawnEnergy(poolObject);
-                _world.RemoveEntity(entity);
-            }
+			DespawnEnergy(energy);
         }
         
-        private void CheckCoinEvents()
+		private void CheckCoinEvents(IPoolObject coin)
         {
-            for (int i = 0; i < _despawnCoinEventFilter.EntitiesCount; i++)
-            {
-                var entity = _despawnCoinEventFilter.Entities[i];
-                var poolObject = _despawnCoinEventFilter.Components1[i].PoolObject;
-                DespawnCoin(poolObject);
-                _world.RemoveEntity(entity);
-            }
+			DespawnCoin(coin);
         }
         
         private Field GetField(int id)

@@ -18,8 +18,7 @@ namespace Emitters
                     var entity = world.CreateEntityWith<TurnChangedEvent>();
                     entity.Changed = 1;
                     
-                    var entity2 = world.CreateEntityWith<DespawnEnergyEvent>();
-                    entity2.PoolObject = GetComponent<IPoolObject>();
+					GameEventsController.Instance.GatherEnergy (GetComponent<IPoolObject> ());
                 }
             }
         }
