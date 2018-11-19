@@ -1,6 +1,7 @@
 ﻿using Components;
 using Components.Events;
 using UnityEngine;
+using System;
 
 namespace Systems.PlayerProcessings
 {
@@ -21,6 +22,7 @@ namespace Systems.PlayerProcessings
             set { _sqrtMinLength = value * value; }
         }
 
+		public float MinVelocityTolerance;
         public float Multiplier;
 
         public float MaxForce
@@ -30,6 +32,8 @@ namespace Systems.PlayerProcessings
 
         public Sprite DeathSprite;
         public Sprite AliveSprite;
+
+		private bool m_IsMoving = false;
 
 		public void LateStart()
 		{
@@ -42,6 +46,7 @@ namespace Systems.PlayerProcessings
 
 		public void Update()
         {
+			CheckVelocity();
             CheckDistance();
         }
 
@@ -92,6 +97,22 @@ namespace Systems.PlayerProcessings
 
             CreateDrawEntity(originalPosition, Vector3.zero, true);
         }
+
+		private void CheckVelocity()
+		{
+			if (!m_IsMoving && Math.Abs (m_Player.m_Rigidbody.velocity.sqrMagnitude) >
+			    MinVelocityTolerance)
+			{
+				m_IsMoving = true;
+			}
+
+			if (m_IsMoving && Math.Abs (m_Player.m_Rigidbody.velocity.sqrMagnitude) <
+				MinVelocityTolerance)
+			{
+				GameEventsController.Instance.PlayerStopped (m_Player.m_Transform.position.z);
+				m_IsMoving = false;
+			}
+		}
 
         private void CheckDistance()
         {

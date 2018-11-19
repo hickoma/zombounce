@@ -50,9 +50,12 @@ namespace Systems.Game
             AddRandomPath();
             InitPoolAndSpawnFirst();
 
-			GameEventsController.Instance.OnFieldEntered += CheckSpawn;
+			// do not spawn fields on next field enter
+//			GameEventsController.Instance.OnFieldEntered += CheckSpawn;
 			GameEventsController.Instance.OnEnergyGathered += CheckEnergyEvents;
 			GameEventsController.Instance.OnCoinGathered += CheckCoinEvents;
+
+			GameEventsController.Instance.OnPlayerStopped += CheckSpawn;
         }
 
         public void Destroy()

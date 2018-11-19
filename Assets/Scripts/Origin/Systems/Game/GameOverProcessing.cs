@@ -12,7 +12,7 @@ namespace Systems.Game
     {
         private EcsWorld _ecsWorld;
 
-        private EcsFilter<PlayerDeathEvent> _deathEvent = null;
+//        private EcsFilter<PlayerDeathEvent> _deathEvent = null;
 		private Player m_Player = null;
 
         private bool _alreadyDead = false;
@@ -24,19 +24,12 @@ namespace Systems.Game
 
         public void Run()
         {
-            for (int i = 0; i < _deathEvent.EntitiesCount; i++)
-            {
-                Pause();
-                SetMenuEnabled();
-                SetPlayerDeathSprite();
-                SaveBestScore();
-                _ecsWorld.RemoveEntity(_deathEvent.Entities[i]);
-                _alreadyDead = true;
-            }
+			
         }
 
         public void Initialize()
         {
+			GameEventsController.Instance.OnPlayerDead += GameOver;
             _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeEnergy);
         }
 
@@ -44,6 +37,15 @@ namespace Systems.Game
         {
             GameOverPanel = null;
         }
+
+		private void GameOver()
+		{
+			Pause();
+			SetMenuEnabled();
+			SetPlayerDeathSprite();
+			SaveBestScore();
+			_alreadyDead = true;
+		}
 
         private void Pause()
         {

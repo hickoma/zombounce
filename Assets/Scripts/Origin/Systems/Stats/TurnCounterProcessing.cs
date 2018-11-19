@@ -25,11 +25,13 @@ namespace Systems
 //		public void LateStart()
 //		{
 //			GameEventsController.Instance.OnTurnsChanged += ChangeTurns;
+//			GameEventsController.Instance.OnPlayerStopped += CheckDeath;
 //		}
 
         public void Initialize()
         {
 			GameEventsController.Instance.OnTurnsChanged += ChangeTurns;
+			GameEventsController.Instance.OnPlayerStopped += CheckDeath;
 
             foreach (var unityObject in GameObject.FindGameObjectsWithTag(Tag.TurnCounter))
             {
@@ -54,7 +56,7 @@ namespace Systems
 
             if (!_isGameOver)
             {
-                CheckDeathEvents();
+//                CheckDeathEvents();
             }
             else
             {
@@ -71,24 +73,16 @@ namespace Systems
             }
         }
 
-        private void CheckDeathEvents()
+		private void CheckDeath(float zPosition)
         {
             for (int i = 0; i < _turnCounterFilter.EntitiesCount; i++)
             {
-                var currentCount = _turnCounterFilter.Components1[i].TurnCount;
+                int currentCount = _turnCounterFilter.Components1[i].TurnCount;
+				// last turn and player stop - he's dead
                 if (currentCount == 0)
                 {
-					if (m_Player == null)
-					{
-						m_Player = GameEventsController.Instance.m_Player;
-					}
-
-                    if (Math.Abs(m_Player.m_Rigidbody.velocity.sqrMagnitude) <
-                        MinVelocityTolerace)
-                    {
-                        _world.CreateEntityWith<PlayerDeathEvent>();
-                        _isGameOver = true;
-                    }
+					GameEventsController.Instance.PlayerDie ();
+                    _isGameOver = true;
                 }
             }
         }
@@ -106,7 +100,7 @@ namespace Systems
 				if (newCount < 0)
 				{
 					newCount = 0;
-					_world.CreateEntityWith<PlayerDeathEvent>();
+					GameEventsController.Instance.PlayerDie ();
 					_isGameOver = true;
 				}
 
@@ -132,7 +126,7 @@ namespace Systems
                     if (newCount < 0)
                     {
                         newCount = 0;
-                        _world.CreateEntityWith<PlayerDeathEvent>();
+						GameEventsController.Instance.PlayerDie ();
                         _isGameOver = true;
                     }
 

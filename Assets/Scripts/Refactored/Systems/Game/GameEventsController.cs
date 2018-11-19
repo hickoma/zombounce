@@ -210,6 +210,27 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	public event Action<float> OnPlayerStopped;
+
+	public void PlayerStopped(float zPosition)
+	{
+		if (OnPlayerStopped != null)
+		{
+			OnPlayerStopped (zPosition);
+		}
+	}
+
+	// Game Over Processing
+	public event Action OnPlayerDead;
+
+	public void PlayerDie()
+	{
+		if (OnPlayerDead != null)
+		{
+			OnPlayerDead ();
+		}
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;
