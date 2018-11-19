@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 1643958998145072, guid: a01ea2dd55b6e1d4e98c4600b2595f4c, type: 2}
   - {fileID: 1643958998145072, guid: a47afc7c59def614cae27c89300ef093, type: 2}
   - {fileID: 1643958998145072, guid: 058e56e1f68720f4a867a38188d6ee94, type: 2}
+  - {fileID: 1643958998145072, guid: 15d19f553ec594841b863b0770cf2c1f, type: 2}
   ForwardSpawnCount: 2
   BackwardSpawnCount: 1
   InitialPoolSize: 128
