@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player: {fileID: 114923155420843312}
+  MinVelocityTolerance: 0
   Multiplier: 0
   DeathSprite: {fileID: 0}
   AliveSprite: {fileID: 0}
