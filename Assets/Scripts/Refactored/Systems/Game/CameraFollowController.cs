@@ -30,8 +30,8 @@ namespace Systems.Game
             Vector3 newPosition = new Vector3(currentPosition.x, currentPosition.y, smoothZ);
 
 			// don't move back
-			if (newPosition.z > currentPosition.z)
-			{
+//			if (newPosition.z > currentPosition.z)
+//			{
 				// don't move behind game's beginning
 				if (newPosition.z < CameraMinPositionZ)
 				{
@@ -39,7 +39,7 @@ namespace Systems.Game
 				}
 
 				m_MainCamera.m_Transform.position = newPosition;
-			}
+//			}
         }
     }
 }

@@ -13,13 +13,13 @@ namespace Systems.PlayerProcessings
 
 		public void LateStart()
 		{
-			GameEventsController.Instance.OnGameStateChanged += CheckInteractive;
+//			GameEventsController.Instance.OnGameStateChanged += CheckInteractive;
 		}
 
         public void Update()
         {
-			if (m_IsInteractive)
-            {
+//			if (m_IsInteractive)
+//            {
                 if (CheckInterrupt())
                 {
                     return;
@@ -40,7 +40,7 @@ namespace Systems.PlayerProcessings
                 {
                     CreateDownEvent();
                 }
-            }
+//            }
         }
 
         private bool CheckInterrupt()
