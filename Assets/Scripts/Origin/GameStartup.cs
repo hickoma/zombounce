@@ -73,6 +73,10 @@ public class GameStartup : MonoBehaviour
 
     private void Awake()
     {
+        // set quality settings
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 30;
+
         _world = new EcsWorld();
 		m_EventsController.Awake ();
 #if UNITY_EDITOR
