@@ -1037,6 +1037,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 135708209955178578, guid: cf2eb64f5c3da1f42aeadc25dac7400b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54787716056321762, guid: cf2eb64f5c3da1f42aeadc25dac7400b,
+        type: 2}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367714730320876, guid: cf2eb64f5c3da1f42aeadc25dac7400b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf2eb64f5c3da1f42aeadc25dac7400b, type: 2}
   m_IsPrefabAsset: 0
@@ -1264,6 +1279,26 @@ Prefab:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 1647533715}
+    - target: {fileID: 20452893822292398, guid: be80ea868e9cbcd49b2dfdbe66564a64,
+        type: 2}
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20452893822292398, guid: be80ea868e9cbcd49b2dfdbe66564a64,
+        type: 2}
+      propertyPath: m_Depth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20452893822292398, guid: be80ea868e9cbcd49b2dfdbe66564a64,
+        type: 2}
+      propertyPath: far clip plane
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 20452893822292398, guid: be80ea868e9cbcd49b2dfdbe66564a64,
+        type: 2}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be80ea868e9cbcd49b2dfdbe66564a64, type: 2}
   m_IsPrefabAsset: 0

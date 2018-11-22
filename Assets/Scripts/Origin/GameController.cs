@@ -49,6 +49,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 30;
+        QualitySettings.vSyncCount = 0;
 		m_EventsController.Awake ();
 
         AddProcessings();
