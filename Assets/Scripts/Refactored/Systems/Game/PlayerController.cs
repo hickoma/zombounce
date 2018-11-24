@@ -48,6 +48,7 @@ namespace Systems.PlayerProcessings
         {
 			CheckVelocity();
             CheckDistance();
+            CheckDirection();
         }
 
 		private void CheckInput(bool isDown, Vector3 downPointerPosition, Vector3 upPointerPosition)
@@ -59,6 +60,14 @@ namespace Systems.PlayerProcessings
                     m_Player.m_Rigidbody.velocity = Vector3.zero;
 
 					DrawVector(downPointerPosition, upPointerPosition);
+                    Vector3 direction = upPointerPosition - downPointerPosition;
+
+                    // to avoid strange rotations when force vector is near Vector3.zero
+                    if (direction.sqrMagnitude > MinVelocityTolerance)
+                    {
+                        // fist follows the opposite direction of fingerprins
+                        TurnFist(-direction.x, -direction.y);
+                    }
                 }
 				else
 				{
@@ -120,15 +129,30 @@ namespace Systems.PlayerProcessings
 			GameEventsController.Instance.ChangeDistance (distance);
         }
 
+        private void CheckDirection()
+        {
+            if (m_IsMoving)
+            {
+                TurnFist(m_Player.m_Rigidbody.velocity.x, m_Player.m_Rigidbody.velocity.z);
+            }
+        }
+
+        private void TurnFist(float x, float z)
+        {
+            float currentAngle = m_Player.m_FistTransform.localRotation.eulerAngles.z;
+            float newAngle = Mathf.Atan2(-x, z) * Mathf.Rad2Deg;
+            m_Player.m_FistTransform.Rotate(Vector3.down, newAngle - currentAngle, Space.World);
+        }
+
         private void SetPlayerSprite(bool isAlive)
         {
             if (isAlive)
             {
-                m_Player.m_SpriteRenderer.sprite = AliveSprite;
+                m_Player.m_FistSprite.sprite = AliveSprite;
             }
             else
             {
-				m_Player.m_SpriteRenderer.sprite = DeathSprite;
+				m_Player.m_FistSprite.sprite = DeathSprite;
             }
         }
 
