@@ -27,6 +27,9 @@ public class GameStartup : MonoBehaviour
     [SerializeField]
 	private GameObject _startGamePanel = null;
 
+    [SerializeField]
+    private Windows.FistStoreWindow m_FistStoreWindow = null;
+
 	[Header("Game Systems")]
 
 	[SerializeField]
@@ -114,6 +117,9 @@ public class GameStartup : MonoBehaviour
 		m_AddForceController.LateStart();
 
 		m_DragSimulationController.LateStart();
+
+        // windows
+        m_FistStoreWindow.LateStart();
     }
 
     private void AddProcessings()
@@ -229,6 +235,9 @@ public class GameStartup : MonoBehaviour
 		m_DragSimulationController.Drag = _parameters.Drag;
 
 		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
+
+        // windows
+        m_FistStoreWindow.AllFists = _parameters.Fists;
     }
 
     private void Update()

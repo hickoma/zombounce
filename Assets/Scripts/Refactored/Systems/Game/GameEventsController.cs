@@ -23,15 +23,15 @@ public class GameEventsController : MonoBehaviour
 
 	// events and invokers
 	// Player Controller
-	public event Action<bool> OnSetPlayerSprite;
+    public event Action<Sprite> OnSetFist;
 
-	public void SetPlayerSprite(bool isLive)
-	{
-		if (OnSetPlayerSprite != null)
-		{
-			OnSetPlayerSprite (isLive);
-		}
-	}
+    public void SetFist(Sprite sprite)
+    {
+        if (OnSetFist != null)
+        {
+            OnSetFist (sprite);
+        }
+    }
 
 	public event Action<bool, Vector3, Vector3> OnPointerUpDown;
 
@@ -132,6 +132,16 @@ public class GameEventsController : MonoBehaviour
 		GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PLAY);
 		_world.CreateEntityWith<Components.Events.GameStateEvent>().State = Components.Events.GameState.PLAY;
 	}
+
+    public event Action OnStoreWindowOpen;
+
+    public void OpenStore()
+    {
+        if (OnStoreWindowOpen != null)
+        {
+            OnStoreWindowOpen ();
+        }
+    }
 
 	// Restart Game Window
 	public event Action OnGameRestartClick;

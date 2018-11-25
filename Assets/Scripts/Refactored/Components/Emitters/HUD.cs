@@ -17,6 +17,9 @@ namespace Windows
         [SerializeField]
         private GameObject m_PauseWindow = null;
 
+        [SerializeField]
+        private GameObject m_FistStoreWindow = null;
+
 		public void LateStart()
 		{
             GameEventsController.Instance.OnGameStateChanged += OnGameStateChanged;

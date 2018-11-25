@@ -21,7 +21,15 @@ namespace Systems
                 var text = unityObject.GetComponent<Text>();
                 var coinsCounter = _world.CreateEntityWith<CoinsCounter>();
                 coinsCounter.CoinsCountText = text;
-                SetCountAndText(coinsCounter, 0);
+
+                int coins = 500;
+
+                if (PlayerPrefs.HasKey(Data.PrefKeys.CoinsKey))
+                {
+//                    coins = PlayerPrefs.GetInt(Data.PrefKeys.CoinsKey, 500);
+                }
+
+                SetCountAndText(coinsCounter, coins);
             }
         }
 
@@ -60,6 +68,8 @@ namespace Systems
 
         private void SetCountAndText(CoinsCounter coinsCounter, int count)
         {
+            PlayerPrefs.SetInt(Data.PrefKeys.CoinsKey, count);
+            PlayerPrefs.Save();
             coinsCounter.CoinsCount = count;
             coinsCounter.CoinsCountText.text = count.ToString();
         }

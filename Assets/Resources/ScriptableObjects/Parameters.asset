@@ -38,3 +38,9 @@ MonoBehaviour:
   Coin: {fileID: 1396591365958742, guid: deacb39d16e33e7418d82c91fe340ba9, type: 2}
   EnergySpawnCount: 2
   CoinSpawnCount: 900
+  Fists:
+  - {fileID: 114042852932565630, guid: 29f60671c72cf4c5ea5a4b4068ea6360, type: 2}
+  - {fileID: 114042852932565630, guid: dcdc338de43a64053aa37b0d6784b4e9, type: 2}
+  - {fileID: 114042852932565630, guid: 781dcb8439bd045cda1a17f290b18c39, type: 2}
+  - {fileID: 114042852932565630, guid: 550476616151546b09bbdd4b8aa266fc, type: 2}
+  - {fileID: 114042852932565630, guid: 16a91d8730e4348469f49c3699e2fa9d, type: 2}

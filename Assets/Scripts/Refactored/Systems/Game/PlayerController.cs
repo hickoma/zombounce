@@ -2,6 +2,7 @@
 using Components.Events;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace Systems.PlayerProcessings
 {
@@ -30,6 +31,16 @@ namespace Systems.PlayerProcessings
             set { _maxForceSqrt = value * value; }
         }
 
+        // need refactoring
+        private List<Components.Fist> m_AllFists;
+
+        public Components.Fist[] AllFists
+        {
+            set
+            {
+                m_AllFists = new List<Fist>(value);
+            }
+        }
 
 		private bool m_IsMoving = false;
 
@@ -37,6 +48,26 @@ namespace Systems.PlayerProcessings
 		{
 			_startPosition = m_Player.m_Transform.position.z;
 
+            // ugly, ugly, UGLY!
+            string selectedFistName = "";
+
+            if (PlayerPrefs.HasKey(Data.PrefKeys.SelectedFistKey))
+            {
+                selectedFistName = PlayerPrefs.GetString(Data.PrefKeys.SelectedFistKey);
+            }
+
+            if (!string.IsNullOrEmpty(selectedFistName))
+            {
+                foreach (Components.Fist fist in m_AllFists)
+                {
+                    if (fist.m_Id == selectedFistName)
+                    {
+                        m_Player.m_FistSprite.sprite = fist.m_Sprite.sprite;
+                    }
+                }
+            }
+
+            GameEventsController.Instance.OnSetFist += SetFistSprite;
 			GameEventsController.Instance.OnPointerUpDown += CheckInput;
 			GameEventsController.Instance.OnGameStateChanged += CheckState;
 		}
@@ -141,7 +172,9 @@ namespace Systems.PlayerProcessings
             m_Player.m_FistTransform.Rotate(Vector3.down, newAngle - currentAngle, Space.World);
         }
 
+        private void SetFistSprite(Sprite sprite)
         {
+            m_Player.m_FistSprite.sprite = sprite;
         }
 
         private void CreateForceVector(Vector3 forceVector)

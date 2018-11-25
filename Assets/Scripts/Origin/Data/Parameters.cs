@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Components;
 
 namespace Data
 {
@@ -30,5 +31,7 @@ namespace Data
         public GameObject Coin;
         public int EnergySpawnCount;
         public int CoinSpawnCount;
+
+        [Header("Fist Prefabs")] public Fist[] Fists;
     }
 }
