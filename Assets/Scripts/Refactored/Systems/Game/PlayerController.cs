@@ -30,8 +30,6 @@ namespace Systems.PlayerProcessings
             set { _maxForceSqrt = value * value; }
         }
 
-        public Sprite DeathSprite;
-        public Sprite AliveSprite;
 
 		private bool m_IsMoving = false;
 
@@ -39,7 +37,6 @@ namespace Systems.PlayerProcessings
 		{
 			_startPosition = m_Player.m_Transform.position.z;
 
-			GameEventsController.Instance.OnSetPlayerSprite += SetPlayerSprite;
 			GameEventsController.Instance.OnPointerUpDown += CheckInput;
 			GameEventsController.Instance.OnGameStateChanged += CheckState;
 		}
@@ -144,16 +141,7 @@ namespace Systems.PlayerProcessings
             m_Player.m_FistTransform.Rotate(Vector3.down, newAngle - currentAngle, Space.World);
         }
 
-        private void SetPlayerSprite(bool isAlive)
         {
-            if (isAlive)
-            {
-                m_Player.m_FistSprite.sprite = AliveSprite;
-            }
-            else
-            {
-				m_Player.m_FistSprite.sprite = DeathSprite;
-            }
         }
 
         private void CreateForceVector(Vector3 forceVector)

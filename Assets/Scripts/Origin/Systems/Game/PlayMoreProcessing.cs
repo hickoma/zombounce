@@ -29,7 +29,6 @@ namespace Systems.Game
             {
                 var playEvent = _playMoreEventFilter.Components1[i];
                 SetMenuDisabled();
-                SetPlayerAliveSprite();
                 AddEnergy(playEvent.Energy);
                 Play();
                 _ecsWorld.CreateEntityWith<CountNowEvent>();
@@ -53,12 +52,6 @@ namespace Systems.Game
         private void SetMenuDisabled()
         {
             GameOverPanel.SetActive(false);
-        }
-
-        private void SetPlayerAliveSprite()
-        {
-			GameEventsController.Instance.SetPlayerSprite (true);
-            _ecsWorld.CreateEntityWith<SetSprite>().isLive = true;
         }
     }
 }

@@ -219,8 +219,6 @@ public class GameStartup : MonoBehaviour
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;
 		m_PlayerController.MaxForce = _parameters.MaxForce;
-		m_PlayerController.AliveSprite = _parameters.AliveSprite;
-		m_PlayerController.DeathSprite = _parameters.DeadSprite;
 		m_PlayerController.MinLength = _parameters.MinLength;
 
 		m_DrawVectorPointerController.MaxForce = _parameters.MaxForce;

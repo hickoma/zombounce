@@ -42,7 +42,6 @@ namespace Systems.Game
 		{
 			Pause();
 			SetMenuEnabled();
-			SetPlayerDeathSprite();
 			SaveBestScore();
 			_alreadyDead = true;
 		}
@@ -70,12 +69,6 @@ namespace Systems.Game
                 timer.IsStart = true;
                 timer.Count = TimerCount;
             }
-        }
-
-        private void SetPlayerDeathSprite()
-        {
-			GameEventsController.Instance.SetPlayerSprite (false);
-            _ecsWorld.CreateEntityWith<SetSprite>().isLive = false;
         }
 
         private void SaveBestScore()

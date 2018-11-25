@@ -16,9 +16,6 @@ namespace Data
         public int TimerCount;
         public float RescaleSpeed;
 
-        public Sprite AliveSprite;
-        public Sprite DeadSprite;
-
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;
         public float CameraMinPositionZ;
 
