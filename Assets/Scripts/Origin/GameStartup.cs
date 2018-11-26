@@ -226,6 +226,7 @@ public class GameStartup : MonoBehaviour
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;
 		m_PlayerController.MaxForce = _parameters.MaxForce;
 		m_PlayerController.MinLength = _parameters.MinLength;
+		m_PlayerController.AllFists = _parameters.Fists;
 
 		m_DrawVectorPointerController.MaxForce = _parameters.MaxForce;
 

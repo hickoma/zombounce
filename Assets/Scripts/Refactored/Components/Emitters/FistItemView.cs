@@ -8,7 +8,6 @@ namespace Windows
     public class FistItemView : MonoBehaviour
     {
         // model
-        [System.NonSerialized]
         public Components.Fist m_Model = null;
 
         // view
@@ -19,18 +18,18 @@ namespace Windows
         public Text m_Price = null;
         public Button m_BuyButton = null;
 
-        public void Init(Components.Fist fistModel, System.Action<FistItemView> onBuy, System.Action<FistItemView> onSelect)
+		public void Init(Components.Fist fistModel, bool isPurchased, System.Action<FistItemView> onBuy, System.Action<FistItemView> onSelect)
         {
-            m_Model = fistModel;
+			m_Model.Init(fistModel, isPurchased);
 
             // activities
-            m_SelectButton.enabled = fistModel.m_IsInInventory;
-            m_Sprite.sprite = fistModel.m_Sprite.sprite;
+			m_SelectButton.enabled = m_Model.m_IsInInventory;
+			m_Sprite.sprite = m_Model.m_Sprite.sprite;
 
             m_Highlighting.gameObject.SetActive(false);
             m_CheckMark.gameObject.SetActive(false);
-            m_Price.text = fistModel.m_Price.ToString();
-            m_BuyButton.gameObject.SetActive(!fistModel.m_IsInInventory);
+			m_Price.text = m_Model.m_Price.ToString();
+			m_BuyButton.gameObject.SetActive(!m_Model.m_IsInInventory);
 
             // button actions
             m_SelectButton.onClick.AddListener(() => onSelect(this));

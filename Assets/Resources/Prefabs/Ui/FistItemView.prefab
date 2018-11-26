@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224363838719081262}
+  - component: {fileID: 114676488106155380}
   - component: {fileID: 114723637078362638}
   - component: {fileID: 222659218820925226}
   - component: {fileID: 114921174286977984}
@@ -356,6 +357,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114676488106155380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1566610976543124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ddb84de8d34576bf129171b87b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Id: fist_1
+  m_Price: 100
+  m_Sprite: {fileID: 0}
+  m_IsInInventory: 0
 --- !u!114 &114723637078362638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c5b50a369d94f7e815673eb4199073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 114676488106155380}
   m_SelectButton: {fileID: 114594908559191006}
   m_Sprite: {fileID: 114501273257613664}
   m_Highlighting: {fileID: 114090286608026266}
@@ -492,8 +508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -70}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 0, y: -96}
+  m_SizeDelta: {x: 60, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224232283275754518
 RectTransform:
@@ -530,10 +546,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224485212563372588
 RectTransform:

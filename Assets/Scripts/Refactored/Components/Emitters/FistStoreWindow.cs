@@ -7,6 +7,9 @@ namespace Windows
 {
     public class FistStoreWindow : MonoBehaviour
     {
+		[SerializeField]
+		private Text m_CoinsCount = null;
+
         [SerializeField]
         private Windows.FistItemView m_ItemPrefab = null;
 
@@ -23,6 +26,7 @@ namespace Windows
         private List<string> m_PurchasedFists = new List<string>();
         private List<Components.Fist> m_AllFists = new List<Components.Fist>();
         private string m_SelectedFist = "";
+		private int m_CurrentCoins = 0;
 
         public Components.Fist[] AllFists
         {
@@ -52,6 +56,9 @@ namespace Windows
 
         private void Init()
         {
+			// get coins count from Player Prefs
+			m_CurrentCoins = PlayerPrefs.GetInt(Data.PrefKeys.CoinsKey, 500);
+
             // load purchased fists and use them to set right values in m_AllFists
             if (PlayerPrefs.HasKey(Data.PrefKeys.FistsKey))
             {
@@ -66,30 +73,34 @@ namespace Windows
 
             foreach(Components.Fist fist in m_AllFists)
             {
-                if (m_PurchasedFists.Contains(fist.m_Id))
-                {
-                    fist.m_IsInInventory = true;
-                }
-
                 // create fist item view by model
                 Windows.FistItemView item = CreateFistItem(fist);
                 m_Items.Add(item);
+
+				// select current fist
+				if (m_SelectedFist == fist.m_Id)
+				{
+					item.Select();
+				}
             }
 
             // move More Content text to the end
             m_MoreContent.transform.SetAsLastSibling();
 
-            // select first fist by default
-            if (string.IsNullOrEmpty(m_SelectedFist) && m_Items.Count > 0)
-            {
-                m_Items[0].Select();
-            }
+			UpdateCoinsCounter ();
         }
 
         private Windows.FistItemView CreateFistItem(Components.Fist fistModel)
         {
+			bool isPurchased = false;
+
+			if (m_PurchasedFists.Contains(fistModel.m_Id))
+			{
+				isPurchased = true;
+			}
+
             Windows.FistItemView fistItem = Instantiate<Windows.FistItemView>(m_ItemPrefab, m_Content);
-            fistItem.Init(fistModel, OnBuyItemClick, OnSelectItemClick);
+			fistItem.Init(fistModel, isPurchased, OnBuyItemClick, OnSelectItemClick);
 
             // select if needed
             if (fistModel.m_Id == Data.PrefKeys.SelectedFistKey)
@@ -102,17 +113,19 @@ namespace Windows
 
         private void OnBuyItemClick(Windows.FistItemView fistView)
         {
-            int currentCoins = PlayerPrefs.GetInt(Data.PrefKeys.CoinsKey, 500);
-
-            if (currentCoins > fistView.m_Model.m_Price)
+			if (m_CurrentCoins > fistView.m_Model.m_Price)
             {
                 // spend coins
-                currentCoins -= fistView.m_Model.m_Price;
-                PlayerPrefs.SetInt(Data.PrefKeys.CoinsKey, currentCoins);
+				m_CurrentCoins -= fistView.m_Model.m_Price;
+				PlayerPrefs.SetInt(Data.PrefKeys.CoinsKey, m_CurrentCoins);
+				UpdateCoinsCounter();
 
-                // open new fist
+                // open new fist and save to Player Prefs
                 fistView.m_Model.m_IsInInventory = true;
                 m_PurchasedFists.Add(fistView.m_Model.m_Id);
+				PlayerPrefsExtensions.SetStringArray (Data.PrefKeys.FistsKey, m_PurchasedFists.ToArray ());
+				PlayerPrefs.Save ();
+
                 fistView.Unlock();
             }
         }
@@ -130,8 +143,18 @@ namespace Windows
                 }
             }
 
+			// save selected fist to Player Prefs
+			m_SelectedFist = fistView.m_Model.m_Id;
+			PlayerPrefs.SetString(Data.PrefKeys.SelectedFistKey, m_SelectedFist);
+			PlayerPrefs.Save();
+
             // notify player
             GameEventsController.Instance.SetFist(fistView.m_Model.m_Sprite.sprite);
         }
+
+		private void UpdateCoinsCounter()
+		{
+			m_CoinsCount.text = m_CurrentCoins.ToString ();
+		}
     }
 }
