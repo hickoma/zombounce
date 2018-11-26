@@ -455,6 +455,7 @@ MonoBehaviour:
   m_PauseButton: {fileID: 901059903}
   m_SettingsButton: {fileID: 0}
   m_CoinsIndicator: {fileID: 177326776}
+  m_TurnsIndicator: {fileID: 2108013043}
   m_PauseWindow: {fileID: 626425858}
   m_FistStoreWindow: {fileID: 0}
 --- !u!1 &154620827

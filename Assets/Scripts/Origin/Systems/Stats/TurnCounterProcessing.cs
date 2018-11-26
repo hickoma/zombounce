@@ -12,15 +12,9 @@ namespace Systems
     public class TurnCounterProcessing : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world = null;
-        private EcsFilter<TurnChangedEvent> _turnChangedEventFilter = null;
-        private EcsFilter<TurnCounter> _turnCounterFilter = null;
-		private Player m_Player = null;
         private EcsFilter<CountNowEvent> _countNowEventFilter;
 
         private bool _isGameOver = false;
-
-        public int InitTurnCounter;
-        public float MinVelocityTolerace;
 
 //		public void LateStart()
 //		{
@@ -30,29 +24,18 @@ namespace Systems
 
         public void Initialize()
         {
-			GameEventsController.Instance.OnTurnsChanged += ChangeTurns;
+			Systems.GameState.Instance.OnTurnsChanged += ChangeTurns;
 			GameEventsController.Instance.OnPlayerStopped += CheckDeath;
-
-            foreach (var unityObject in GameObject.FindGameObjectsWithTag(Tag.TurnCounter))
-            {
-                var text = unityObject.GetComponent<Text>();
-                var turnCounter = _world.CreateEntityWith<TurnCounter>();
-                turnCounter.TurnCountText = text;
-                SetCountAndText(turnCounter, InitTurnCounter);
-            }
         }
 
         public void Destroy()
         {
-            for (int i = 0; i < _turnCounterFilter.EntitiesCount; i++)
-            {
-                _turnCounterFilter.Components1[i].TurnCountText = null;
-            }
+			
         }
 
         public void Run()
         {
-            CheckTurnEvents();
+//            CheckTurnEvents();
 
             if (!_isGameOver)
             {
@@ -75,72 +58,23 @@ namespace Systems
 
 		private void CheckDeath(float zPosition)
         {
-            for (int i = 0; i < _turnCounterFilter.EntitiesCount; i++)
+			int currentCount = Systems.GameState.Instance.TurnsCount;
+
+			// last turn and player stop - he's dead
+            if (currentCount == 0)
             {
-                int currentCount = _turnCounterFilter.Components1[i].TurnCount;
-				// last turn and player stop - he's dead
-                if (currentCount == 0)
-                {
-					GameEventsController.Instance.PlayerDie ();
-                    _isGameOver = true;
-                }
+				GameEventsController.Instance.PlayerDie ();
+                _isGameOver = true;
             }
         }
 
-		private void ChangeTurns(int delta)
+		private void ChangeTurns(int newCount)
 		{
-			for (int j = 0; j < _turnCounterFilter.EntitiesCount; j++)
+			if (newCount < 0)
 			{
-				TurnCounter turnCounter = _turnCounterFilter.Components1[j];
-				int newCount = turnCounter.TurnCount + delta;
-
-				if (newCount > InitTurnCounter)
-					continue;
-				
-				if (newCount < 0)
-				{
-					newCount = 0;
-					GameEventsController.Instance.PlayerDie ();
-					_isGameOver = true;
-				}
-
-				SetCountAndText(turnCounter, newCount);
+				GameEventsController.Instance.PlayerDie ();
+				_isGameOver = true;
 			}
 		}
-
-        private void CheckTurnEvents()
-        {
-            for (int i = 0; i < _turnChangedEventFilter.EntitiesCount; i++)
-            {
-                var changed = _turnChangedEventFilter.Components1[i].Changed;
-
-
-                for (int j = 0; j < _turnCounterFilter.EntitiesCount; j++)
-                {
-                    var turnCounter = _turnCounterFilter.Components1[j];
-                    var newCount = turnCounter.TurnCount + changed;
-
-                    if (newCount > InitTurnCounter)
-                        continue;
-
-                    if (newCount < 0)
-                    {
-                        newCount = 0;
-						GameEventsController.Instance.PlayerDie ();
-                        _isGameOver = true;
-                    }
-
-                    SetCountAndText(turnCounter, newCount);
-                }
-
-                _world.RemoveEntity(_turnChangedEventFilter.Entities[i]);
-            }
-        }
-
-        private void SetCountAndText(TurnCounter turnCounter, int count)
-        {
-            turnCounter.TurnCount = count;
-            turnCounter.TurnCountText.text = count + "/" + InitTurnCounter;
-        }
     }
 }

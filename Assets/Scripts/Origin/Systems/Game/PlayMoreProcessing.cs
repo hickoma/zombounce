@@ -38,7 +38,7 @@ namespace Systems.Game
 
         private void AddEnergy(int energy)
         {
-            _ecsWorld.CreateEntityWith<TurnChangedEvent>().Changed = energy;
+			Systems.GameState.Instance.TurnsCount += energy;
         }
 
         private void Play()

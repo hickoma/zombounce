@@ -11,11 +11,7 @@ namespace Emitters
         {
             if (other.gameObject.CompareTag(Tag.Player))
             {
-                var world = EcsWorld.Active;
-                if (world != null)
-                {
-                    EcsWorld.Active.CreateEntityWith<TurnChangedEvent>().Changed = -11;
-                }
+				Systems.GameState.Instance.TurnsCount += -11;
             }
         }
     }

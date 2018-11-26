@@ -12,14 +12,8 @@ namespace Emitters
         {
             if (other.CompareTag(Tag.Player))
             {
-                var world = EcsWorld.Active;
-                if (world != null)
-                {
-                    var entity = world.CreateEntityWith<TurnChangedEvent>();
-                    entity.Changed = 1;
-                    
-					GameEventsController.Instance.GatherEnergy (GetComponent<IPoolObject> ());
-                }
+				Systems.GameState.Instance.TurnsCount += 1;                    
+				GameEventsController.Instance.GatherEnergy (GetComponent<IPoolObject> ());
             }
         }
     }

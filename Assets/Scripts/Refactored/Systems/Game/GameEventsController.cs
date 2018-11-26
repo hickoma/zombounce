@@ -86,17 +86,6 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
-	// Turn Counter Controller
-	public event Action<int> OnTurnsChanged;
-
-	public void ChangeTurns(int delta)
-	{
-		if (OnTurnsChanged != null)
-		{
-			OnTurnsChanged (delta);
-		}
-	}
-
 	// Bonus Controller
 	public event Action<int> OnPointsAdded;
 

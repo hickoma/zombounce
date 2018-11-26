@@ -106,7 +106,7 @@ namespace Systems.PlayerProcessings
             if (forceVector.sqrMagnitude > _sqrtMinLength)
             {
                 CreateForceVector(forceVector);
-                CreateCounterChangeEvent();
+				Systems.GameState.Instance.TurnsCount -= 1;
             }
 
             CreateDrawEntity(originalPosition, Vector3.zero, true);
@@ -157,11 +157,6 @@ namespace Systems.PlayerProcessings
         private void CreateForceVector(Vector3 forceVector)
         {
 			GameEventsController.Instance.AddForce (forceVector);
-        }
-
-        private void CreateCounterChangeEvent()
-        {
-			GameEventsController.Instance.ChangeTurns (-1);
         }
 
         private void CreateDrawEntity(Vector3 downVector, Vector3 forceVector, bool release)

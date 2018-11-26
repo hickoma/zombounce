@@ -16,6 +16,9 @@ namespace Windows
 		[SerializeField]
 		private Text m_CoinsIndicator = null;
 
+		[SerializeField]
+		private Text m_TurnsIndicator = null;
+
         [Space]
         [Header("Windows")]
         [SerializeField]
@@ -36,6 +39,10 @@ namespace Windows
 			// init coins
 			UpdateCoins(Systems.GameState.Instance.CoinsCount);
 			Systems.GameState.Instance.OnCoinsChanged += UpdateCoins;
+
+			// init turns
+			UpdateTurns(Systems.GameState.Instance.TurnsCount);
+			Systems.GameState.Instance.OnTurnsChanged += UpdateTurns;
 		}
 
         void OnGameStateChanged(Components.Events.GameState newState)
@@ -76,7 +83,12 @@ namespace Windows
 
 		private void UpdateCoins(int count)
 		{
-			m_CoinsIndicator.text = count.ToString ();
+			m_CoinsIndicator.text = count.ToString();
+		}
+
+		private void UpdateTurns(int count)
+		{
+			m_TurnsIndicator.text = count.ToString();
 		}
     }
 }

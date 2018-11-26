@@ -135,8 +135,8 @@ public class GameStartup : MonoBehaviour
 //            .Add(new CatchClickEventProcessing())
             .Add(new TurnCounterProcessing
             {
-                InitTurnCounter = _parameters.TurnsCount,
-                MinVelocityTolerace = _parameters.MinVelocityTolerance
+//                InitTurnCounter = _parameters.TurnsCount,
+//                MinVelocityTolerace = _parameters.MinVelocityTolerance
             })
 //            .Add(new CoinsCounterProcessing())
             .Add(new PlayMoreProcessing
@@ -227,6 +227,7 @@ public class GameStartup : MonoBehaviour
             ;
 
 		m_GameState.m_CoinsDefaultCount = _parameters.CoinsCount;
+		m_GameState.m_TurnsDefaultCount = _parameters.TurnsCount;
 		m_GameState.AllFists = _parameters.Fists;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;

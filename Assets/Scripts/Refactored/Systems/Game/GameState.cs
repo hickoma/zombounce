@@ -26,6 +26,7 @@ namespace Systems
 		}
 
 		public event System.Action<int> OnCoinsChanged;
+		public event System.Action<int> OnTurnsChanged;
 
 		// data
 		// coins
@@ -62,6 +63,36 @@ namespace Systems
 		}
 
 		// energy
+		// coins
+		bool m_AreTurnsInitialized = false;
+		// is inited from Parameters
+		public int m_TurnsDefaultCount = 10;
+		int m_TurnsCount = -1;
+
+		public int TurnsCount
+		{
+			get
+			{
+				if (!m_AreTurnsInitialized)
+				{
+					m_TurnsCount = m_TurnsDefaultCount;
+					m_AreTurnsInitialized = true;
+				}
+
+				return m_TurnsCount;
+			}
+
+			set
+			{
+				m_TurnsCount = value;
+
+				// notify
+				if (OnTurnsChanged != null)
+				{
+					OnTurnsChanged (m_TurnsCount);
+				}
+			}
+		}
 
 		// fists
 		// all fists
