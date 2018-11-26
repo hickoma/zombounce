@@ -29,7 +29,7 @@ namespace Systems.Game
         {
             for (int i = 0; i < _gameStateEvent.EntitiesCount; i++)
             {
-                if (_gameStateEvent.Components1[i].State == GameState.PLAY)
+				if (_gameStateEvent.Components1[i].State == Components.Events.GameState.PLAY)
                 {
                     StartGamePanel.SetActive(false);
                 }

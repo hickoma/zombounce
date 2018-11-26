@@ -454,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PauseButton: {fileID: 901059903}
   m_SettingsButton: {fileID: 0}
+  m_CoinsIndicator: {fileID: 177326776}
   m_PauseWindow: {fileID: 626425858}
   m_FistStoreWindow: {fileID: 0}
 --- !u!1 &154620827
@@ -1519,7 +1520,7 @@ Prefab:
     - target: {fileID: 224394356547753872, guid: a534a404997ef4097b4558862680fdf1,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224394356547753872, guid: a534a404997ef4097b4558862680fdf1,
         type: 2}

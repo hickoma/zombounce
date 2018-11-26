@@ -13,7 +13,8 @@ namespace Data
         
         [Range(1000f, 4000f)] public float MaxForce;
 
-        public int TurnCount;
+		public int CoinsCount;
+        public int TurnsCount;
         public int TimerCount;
         public float RescaleSpeed;
 

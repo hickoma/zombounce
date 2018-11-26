@@ -48,9 +48,9 @@ namespace Systems.Game
 
         private void Pause()
         {
-			GameEventsController.Instance.ChangeGameState (GameState.GAME_OVER);
+			GameEventsController.Instance.ChangeGameState (Components.Events.GameState.GAME_OVER);
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
-            stateEvent.State = GameState.GAME_OVER;
+			stateEvent.State = Components.Events.GameState.GAME_OVER;
         }
 
         private void SetMenuEnabled()

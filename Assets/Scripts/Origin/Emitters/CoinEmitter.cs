@@ -1,6 +1,5 @@
 ﻿using Components.Events;
 using Data;
-using LeopotamGroup.Ecs;
 using LeopotamGroup.Pooling;
 using UnityEngine;
 
@@ -12,14 +11,8 @@ namespace Emitters
         {
             if (other.CompareTag(Tag.Player))
             {
-                var world = EcsWorld.Active;
-                if (world != null)
-                {
-                    var entity = world.CreateEntityWith<CoinsChangedEvent>();
-                    entity.Changed = 1;
-                    
-					GameEventsController.Instance.GatherCoin (GetComponent<IPoolObject> ());
-                }
+				Systems.GameState.Instance.CoinsCount += 1;
+				GameEventsController.Instance.GatherCoin (GetComponent<IPoolObject> ());
             }
         }
     }

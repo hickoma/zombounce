@@ -65,6 +65,8 @@ public class GameStartup : MonoBehaviour
 	[SerializeField]
 	private GameEventsController m_EventsController;
 
+	private Systems.GameState m_GameState = null;
+
 #if UNITY_EDITOR
     private GameObject _worldObserver;
 #endif
@@ -79,6 +81,8 @@ public class GameStartup : MonoBehaviour
         // set quality settings
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 30;
+
+		m_GameState = Systems.GameState.Create();
 
         _world = new EcsWorld();
 		m_EventsController.Awake ();
@@ -131,10 +135,10 @@ public class GameStartup : MonoBehaviour
 //            .Add(new CatchClickEventProcessing())
             .Add(new TurnCounterProcessing
             {
-                InitTurnCounter = _parameters.TurnCount,
+                InitTurnCounter = _parameters.TurnsCount,
                 MinVelocityTolerace = _parameters.MinVelocityTolerance
             })
-            .Add(new CoinsCounterProcessing())
+//            .Add(new CoinsCounterProcessing())
             .Add(new PlayMoreProcessing
             {
                 GameOverPanel = _gameOverPanel
@@ -222,11 +226,13 @@ public class GameStartup : MonoBehaviour
 #endif
             ;
 
+		m_GameState.m_CoinsDefaultCount = _parameters.CoinsCount;
+		m_GameState.AllFists = _parameters.Fists;
+
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;
 		m_PlayerController.MaxForce = _parameters.MaxForce;
 		m_PlayerController.MinLength = _parameters.MinLength;
-		m_PlayerController.AllFists = _parameters.Fists;
 
 		m_DrawVectorPointerController.MaxForce = _parameters.MaxForce;
 
@@ -236,9 +242,6 @@ public class GameStartup : MonoBehaviour
 		m_DragSimulationController.Drag = _parameters.Drag;
 
 		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
-
-        // windows
-        m_FistStoreWindow.AllFists = _parameters.Fists;
     }
 
     private void Update()

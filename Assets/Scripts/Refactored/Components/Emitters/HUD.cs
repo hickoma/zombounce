@@ -12,6 +12,10 @@ namespace Windows
 		[SerializeField]
 		private Button m_SettingsButton = null;
 
+		[Header("Indicators")]
+		[SerializeField]
+		private Text m_CoinsIndicator = null;
+
         [Space]
         [Header("Windows")]
         [SerializeField]
@@ -28,6 +32,10 @@ namespace Windows
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
 
 //			m_SettingsButton.onClick.AddListener (GameEventsController.Instance.OpenSettings);
+
+			// init coins
+			UpdateCoins(Systems.GameState.Instance.CoinsCount);
+			Systems.GameState.Instance.OnCoinsChanged += UpdateCoins;
 		}
 
         void OnGameStateChanged(Components.Events.GameState newState)
@@ -65,5 +73,10 @@ namespace Windows
                     break;
             }
         }
+
+		private void UpdateCoins(int count)
+		{
+			m_CoinsIndicator.text = count.ToString ();
+		}
     }
 }

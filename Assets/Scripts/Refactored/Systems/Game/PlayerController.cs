@@ -31,41 +31,18 @@ namespace Systems.PlayerProcessings
             set { _maxForceSqrt = value * value; }
         }
 
-        // need refactoring
-        private List<Components.Fist> m_AllFists;
-
-        public Components.Fist[] AllFists
-        {
-            set
-            {
-                m_AllFists = new List<Fist>(value);
-            }
-        }
-
 		private bool m_IsMoving = false;
 
 		public void LateStart()
 		{
 			_startPosition = m_Player.m_Transform.position.z;
 
-            // ugly, ugly, UGLY!
-            string selectedFistName = "";
+			Fist selectedFist = Systems.GameState.Instance.SelectedFist;
 
-            if (PlayerPrefs.HasKey(Data.PrefKeys.SelectedFistKey))
-            {
-                selectedFistName = PlayerPrefs.GetString(Data.PrefKeys.SelectedFistKey);
-            }
-
-            if (!string.IsNullOrEmpty(selectedFistName))
-            {
-                foreach (Components.Fist fist in m_AllFists)
-                {
-                    if (fist.m_Id == selectedFistName)
-                    {
-                        m_Player.m_FistSprite.sprite = fist.m_Sprite.sprite;
-                    }
-                }
-            }
+			if (selectedFist != null)
+			{
+				m_Player.m_FistSprite.sprite = selectedFist.m_Sprite.sprite;
+			}
 
             GameEventsController.Instance.OnSetFist += SetFistSprite;
 			GameEventsController.Instance.OnPointerUpDown += CheckInput;
@@ -192,16 +169,16 @@ namespace Systems.PlayerProcessings
 			GameEventsController.Instance.DrawVectorPointer (downVector, forceVector, release);
         }
 
-		private void CheckState(GameState newState)
+		private void CheckState(Components.Events.GameState newState)
         {
 			switch (newState)
             {
-                case GameState.PAUSE:
-                case GameState.GAME_OVER:
+				case Components.Events.GameState.PAUSE:
+				case Components.Events.GameState.GAME_OVER:
                     _isInteractive = false;
                     CreateDrawEntity(Vector3.zero, Vector3.zero, true);
                     break;
-                case GameState.PLAY:
+				case Components.Events.GameState.PLAY:
                     _isInteractive = true;
                     break;
             }

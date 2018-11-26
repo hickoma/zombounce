@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Components;
 
 namespace Windows
 {
@@ -24,17 +25,9 @@ namespace Windows
 
         private List<Windows.FistItemView> m_Items = new List<FistItemView>();
         private List<string> m_PurchasedFists = new List<string>();
-        private List<Components.Fist> m_AllFists = new List<Components.Fist>();
-        private string m_SelectedFist = "";
+        private List<Fist> m_AllFists = new List<Fist>();
+        private string m_SelectedFistName = "";
 		private int m_CurrentCoins = 0;
-
-        public Components.Fist[] AllFists
-        {
-            set
-            {
-                m_AllFists = new System.Collections.Generic.List<Components.Fist>(value);
-            }
-        }
 
         public void LateStart()
         {
@@ -56,29 +49,26 @@ namespace Windows
 
         private void Init()
         {
-			// get coins count from Player Prefs
-			m_CurrentCoins = PlayerPrefs.GetInt(Data.PrefKeys.CoinsKey, 500);
+			// load all fists from Game State
+			m_AllFists = new List<Fist>(Systems.GameState.Instance.AllFists);
+
+			// get coins count from Game State
+			m_CurrentCoins = Systems.GameState.Instance.CoinsCount;
 
             // load purchased fists and use them to set right values in m_AllFists
-            if (PlayerPrefs.HasKey(Data.PrefKeys.FistsKey))
-            {
-                m_PurchasedFists = new List<string>(PlayerPrefsExtensions.GetStringArray(Data.PrefKeys.FistsKey));
-            }
+			m_PurchasedFists = new List<string>(Systems.GameState.Instance.PurchasedFists);
 
             // load selected fist
-            if (PlayerPrefs.HasKey(Data.PrefKeys.SelectedFistKey))
-            {
-                m_SelectedFist = PlayerPrefs.GetString(Data.PrefKeys.SelectedFistKey);
-            }
+			m_SelectedFistName = Systems.GameState.Instance.SelectedFistName;
 
-            foreach(Components.Fist fist in m_AllFists)
+            foreach(Fist fist in m_AllFists)
             {
                 // create fist item view by model
                 Windows.FistItemView item = CreateFistItem(fist);
                 m_Items.Add(item);
 
 				// select current fist
-				if (m_SelectedFist == fist.m_Id)
+				if (m_SelectedFistName == fist.m_Id)
 				{
 					item.Select();
 				}
@@ -90,7 +80,7 @@ namespace Windows
 			UpdateCoinsCounter ();
         }
 
-        private Windows.FistItemView CreateFistItem(Components.Fist fistModel)
+		private Windows.FistItemView CreateFistItem(Fist fistModel)
         {
 			bool isPurchased = false;
 
@@ -103,7 +93,7 @@ namespace Windows
 			fistItem.Init(fistModel, isPurchased, OnBuyItemClick, OnSelectItemClick);
 
             // select if needed
-            if (fistModel.m_Id == Data.PrefKeys.SelectedFistKey)
+			if (fistModel.m_Id == m_SelectedFistName)
             {
                 OnSelectItemClick(fistItem);
             }
@@ -117,13 +107,13 @@ namespace Windows
             {
                 // spend coins
 				m_CurrentCoins -= fistView.m_Model.m_Price;
-				PlayerPrefs.SetInt(Data.PrefKeys.CoinsKey, m_CurrentCoins);
+				Systems.GameState.Instance.CoinsCount = m_CurrentCoins;
 				UpdateCoinsCounter();
 
                 // open new fist and save to Player Prefs
                 fistView.m_Model.m_IsInInventory = true;
                 m_PurchasedFists.Add(fistView.m_Model.m_Id);
-				PlayerPrefsExtensions.SetStringArray (Data.PrefKeys.FistsKey, m_PurchasedFists.ToArray ());
+				Systems.GameState.Instance.PurchasedFists = m_PurchasedFists.ToArray ();
 				PlayerPrefs.Save ();
 
                 fistView.Unlock();
@@ -144,9 +134,8 @@ namespace Windows
             }
 
 			// save selected fist to Player Prefs
-			m_SelectedFist = fistView.m_Model.m_Id;
-			PlayerPrefs.SetString(Data.PrefKeys.SelectedFistKey, m_SelectedFist);
-			PlayerPrefs.Save();
+			m_SelectedFistName = fistView.m_Model.m_Id;
+			Systems.GameState.Instance.SelectedFistName = m_SelectedFistName;
 
             // notify player
             GameEventsController.Instance.SetFist(fistView.m_Model.m_Sprite.sprite);

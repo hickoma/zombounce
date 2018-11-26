@@ -16,11 +16,10 @@ MonoBehaviour:
   MinLength: 300
   MinVelocityTolerance: 0.5
   MaxForce: 3000
-  TurnCount: 10
+  CoinsCount: 500
+  TurnsCount: 10
   TimerCount: 5
   RescaleSpeed: 5
-  AliveSprite: {fileID: 21300000, guid: 7d377a2ff56d82c48ae99684a16085ae, type: 3}
-  DeadSprite: {fileID: 21300004, guid: 31d4ca2736fbdb549ac4f2e9fef602dc, type: 3}
   CameraSmooth: 0.2
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15

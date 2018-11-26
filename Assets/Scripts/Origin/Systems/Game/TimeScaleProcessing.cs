@@ -11,7 +11,7 @@ namespace Systems.Game
     [EcsInject]
     public class TimeScaleProcessing : IEcsRunSystem
     {
-        private GameState _currentState = GameState.PAUSE;
+		private Components.Events.GameState _currentState = Components.Events.GameState.PAUSE;
 
         private EcsWorld _ecsWorld;
         private EcsFilter<GameStateEvent> _gameStateEventFilter = null;
@@ -25,16 +25,16 @@ namespace Systems.Game
             }
         }
 
-        private void SetState(GameState currentState)
+		private void SetState(Components.Events.GameState currentState)
         {
             switch (currentState)
             {
-                case GameState.PLAY:
+				case Components.Events.GameState.PLAY:
                     Time.timeScale = 1f;
                     break;
 
-                case GameState.GAME_OVER:
-                case GameState.PAUSE:
+				case Components.Events.GameState.GAME_OVER:
+				case Components.Events.GameState.PAUSE:
                     Time.timeScale = 0f;
                     break;
             }

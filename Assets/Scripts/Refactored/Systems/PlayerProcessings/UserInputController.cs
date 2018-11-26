@@ -49,18 +49,18 @@ namespace Systems.PlayerProcessings
             return currentSelection != null && currentSelection.CompareTag(Tag.PauseButton);
         }
 
-		private void CheckInteractive(GameState newState)
+		private void CheckInteractive(Components.Events.GameState newState)
         {
 			switch (newState)
             {
-                case GameState.GAME_OVER:
+				case Components.Events.GameState.GAME_OVER:
                     m_IsInteractive = false;
                     m_Pressed = false;
                     break;
-                case GameState.PAUSE:
+				case Components.Events.GameState.PAUSE:
                     m_IsInteractive = false;
                     break;
-                case GameState.PLAY:
+				case Components.Events.GameState.PLAY:
                     m_IsInteractive = true;
                     break;
             }

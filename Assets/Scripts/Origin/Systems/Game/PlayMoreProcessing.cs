@@ -43,9 +43,9 @@ namespace Systems.Game
 
         private void Play()
         {
-			GameEventsController.Instance.ChangeGameState (GameState.PLAY);
+			GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PLAY);
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
-            stateEvent.State = GameState.PLAY;
+			stateEvent.State = Components.Events.GameState.PLAY;
             _ecsWorld.CreateEntityWith<UpdateScoreEvent>();
         }
 
