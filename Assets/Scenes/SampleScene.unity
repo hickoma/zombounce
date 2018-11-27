@@ -3484,118 +3484,6 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
---- !u!1001 &727558503
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114699422220589938, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_Player
-      value: 
-      objectReference: {fileID: 981726934}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: _gameOverPanel
-      value: 
-      objectReference: {fileID: 1398694016}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: _pausePanel
-      value: 
-      objectReference: {fileID: 626425858}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: _settingsPanel
-      value: 
-      objectReference: {fileID: 565397512}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: _startGamePanel
-      value: 
-      objectReference: {fileID: 1710992984}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_UserInputController
-      value: 
-      objectReference: {fileID: 801703452}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_PlayerController
-      value: 
-      objectReference: {fileID: 2057679638}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_DrawVectorPointerController
-      value: 
-      objectReference: {fileID: 1509635759}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_AddForceController
-      value: 
-      objectReference: {fileID: 1865275978}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_CameraFollowController
-      value: 
-      objectReference: {fileID: 852456203}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_DragSimulationController
-      value: 
-      objectReference: {fileID: 477174610}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_BackBlockFollowController
-      value: 
-      objectReference: {fileID: 557195091}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_Hud
-      value: 
-      objectReference: {fileID: 131035841}
-    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
-        type: 2}
-      propertyPath: m_FistStoreWindow
-      value: 
-      objectReference: {fileID: 2041369274}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1001 &801703451
 Prefab:
   m_ObjectHideFlags: 0
@@ -3661,6 +3549,118 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 801703451}
   m_Script: {fileID: 11500000, guid: 03af0ba165a94944b0c858b272d352f9, type: 3}
+--- !u!1001 &853390201
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168292326017120, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: _gameOverPanel
+      value: 
+      objectReference: {fileID: 1398694016}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: _pausePanel
+      value: 
+      objectReference: {fileID: 626425858}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: _settingsPanel
+      value: 
+      objectReference: {fileID: 565397512}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: _startGamePanel
+      value: 
+      objectReference: {fileID: 1710992984}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_FistStoreWindow
+      value: 
+      objectReference: {fileID: 2041369274}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_Hud
+      value: 
+      objectReference: {fileID: 131035841}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_UserInputController
+      value: 
+      objectReference: {fileID: 801703452}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_PlayerController
+      value: 
+      objectReference: {fileID: 2057679638}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_DrawVectorPointerController
+      value: 
+      objectReference: {fileID: 1509635759}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_AddForceController
+      value: 
+      objectReference: {fileID: 1865275978}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_CameraFollowController
+      value: 
+      objectReference: {fileID: 852456203}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_DragSimulationController
+      value: 
+      objectReference: {fileID: 477174610}
+    - target: {fileID: 114550885983282144, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_BackBlockFollowController
+      value: 
+      objectReference: {fileID: 557195091}
+    - target: {fileID: 114699422220589938, guid: 2dcc05ef80b7545499e8545e080a68b6,
+        type: 2}
+      propertyPath: m_Player
+      value: 
+      objectReference: {fileID: 981726934}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2dcc05ef80b7545499e8545e080a68b6, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &858638271
 GameObject:
   m_ObjectHideFlags: 0

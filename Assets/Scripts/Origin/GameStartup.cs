@@ -45,7 +45,10 @@ public class GameStartup : MonoBehaviour
 	private DrawVectorPointerController m_DrawVectorPointerController = null;
 
 	[SerializeField]
-	private DistanceBonusController m_DistanceBonuseController = null;
+	private DistanceBonusController m_DistanceBonusController = null;
+
+	[SerializeField]
+	private TurnsController m_TurnsController = null;
 
 	[SerializeField]
 	private AddForceController m_AddForceController = null;
@@ -116,7 +119,9 @@ public class GameStartup : MonoBehaviour
 
 		m_DrawVectorPointerController.LateStart();
 
-		m_DistanceBonuseController.LateStart();
+		m_DistanceBonusController.LateStart();
+
+		m_TurnsController.LateStart();
 
 		m_AddForceController.LateStart();
 
@@ -133,11 +138,11 @@ public class GameStartup : MonoBehaviour
 
         _update
 //            .Add(new CatchClickEventProcessing())
-            .Add(new TurnCounterProcessing
-            {
+//            .Add(new TurnCounterProcessing
+//            {
 //                InitTurnCounter = _parameters.TurnsCount,
 //                MinVelocityTolerace = _parameters.MinVelocityTolerance
-            })
+//            })
 //            .Add(new CoinsCounterProcessing())
             .Add(new PlayMoreProcessing
             {

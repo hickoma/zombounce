@@ -30,8 +30,7 @@ namespace Systems.Game
                 var playEvent = _playMoreEventFilter.Components1[i];
                 SetMenuDisabled();
                 AddEnergy(playEvent.Energy);
-                Play();
-                _ecsWorld.CreateEntityWith<CountNowEvent>();
+                PlayMore();
                 _ecsWorld.RemoveEntity(_playMoreEventFilter.Entities[i]);
             }
         }
@@ -41,7 +40,7 @@ namespace Systems.Game
 			Systems.GameState.Instance.TurnsCount += energy;
         }
 
-        private void Play()
+        private void PlayMore()
         {
 			GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PLAY);
             var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();

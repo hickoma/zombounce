@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4168292326017120}
   - component: {fileID: 114550885983282144}
   - component: {fileID: 114372804972422232}
+  - component: {fileID: 114995329223410176}
   - component: {fileID: 114699422220589938}
   m_Layer: 0
   m_Name: _GAME_LOGIC
@@ -69,10 +70,13 @@ MonoBehaviour:
   _pausePanel: {fileID: 0}
   _settingsPanel: {fileID: 0}
   _startGamePanel: {fileID: 0}
+  m_FistStoreWindow: {fileID: 0}
+  m_Hud: {fileID: 0}
   m_UserInputController: {fileID: 0}
   m_PlayerController: {fileID: 0}
   m_DrawVectorPointerController: {fileID: 0}
-  m_DistanceBonuseController: {fileID: 114372804972422232}
+  m_DistanceBonusController: {fileID: 114372804972422232}
+  m_TurnsController: {fileID: 114995329223410176}
   m_AddForceController: {fileID: 0}
   m_CameraFollowController: {fileID: 0}
   m_DragSimulationController: {fileID: 0}
@@ -90,3 +94,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player: {fileID: 0}
+--- !u!114 &114995329223410176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924550101837566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409ffcff471d8ac40941c8ab46c0fa9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
