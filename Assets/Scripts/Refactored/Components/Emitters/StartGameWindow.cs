@@ -14,7 +14,18 @@ namespace Windows
 		public void Start()
 		{
 			m_StoreButton.onClick.AddListener(GameEventsController.Instance.OpenStore);
-			m_BackgroundButton.onClick.AddListener(GameEventsController.Instance.StartGame);
+			m_BackgroundButton.onClick.AddListener(StartGame);
+		}
+
+		private void StartGame()
+		{
+			GameEventsController.Instance.StartGame();
+			HideWindow();
+		}
+
+		private void HideWindow()
+		{
+			gameObject.SetActive(false);
 		}
     }
 }

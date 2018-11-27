@@ -173,10 +173,10 @@ public class GameStartup : MonoBehaviour
                 GameOverPanel = _gameOverPanel,
                 RescaleSpeed = _parameters.RescaleSpeed
             })
-            .Add(new StartGameProcessing
-            {
-                StartGamePanel = _startGamePanel
-            })
+//            .Add(new StartGameProcessing
+//            {
+//                StartGamePanel = _startGamePanel
+//            })
             .Add(new TimerProcessing
             {
                 GameOverPanel = _gameOverPanel
