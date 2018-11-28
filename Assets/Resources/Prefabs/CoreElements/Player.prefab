@@ -103,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1824897036107524}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -12}
+  m_LocalPosition: {x: 0, y: 0, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4864405346571696}
@@ -232,8 +232,6 @@ MonoBehaviour:
   m_Player: {fileID: 114923155420843312}
   MinVelocityTolerance: 0
   Multiplier: 0
-  DeathSprite: {fileID: 0}
-  AliveSprite: {fileID: 0}
 --- !u!114 &114923155420843312
 MonoBehaviour:
   m_ObjectHideFlags: 1
