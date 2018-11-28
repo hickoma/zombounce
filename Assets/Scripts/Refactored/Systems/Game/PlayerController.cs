@@ -164,16 +164,16 @@ namespace Systems.PlayerProcessings
 			GameEventsController.Instance.DrawVectorPointer (downVector, forceVector, release);
         }
 
-		private void CheckState(Components.Events.GameState newState)
+		private void CheckState(GameState.State newState)
         {
 			switch (newState)
             {
-				case Components.Events.GameState.PAUSE:
-				case Components.Events.GameState.GAME_OVER:
+				case GameState.State.PAUSE:
+				case GameState.State.GAME_OVER:
                     _isInteractive = false;
                     CreateDrawEntity(Vector3.zero, Vector3.zero, true);
                     break;
-				case Components.Events.GameState.PLAY:
+				case GameState.State.PLAY:
                     _isInteractive = true;
                     break;
             }

@@ -42,9 +42,7 @@ namespace Systems.Game
 
         private void PlayMore()
         {
-			GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PLAY);
-            var stateEvent = _ecsWorld.CreateEntityWith<GameStateEvent>();
-			stateEvent.State = Components.Events.GameState.PLAY;
+			GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
             _ecsWorld.CreateEntityWith<UpdateScoreEvent>();
         }
 

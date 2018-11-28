@@ -7,6 +7,13 @@ namespace Systems
 {
 	public class GameState
 	{
+		public enum State
+		{
+			PAUSE,
+			GAME_OVER,
+			PLAY
+		}
+
 		// interface
 		static GameState m_Instance;
 

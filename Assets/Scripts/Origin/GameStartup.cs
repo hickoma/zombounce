@@ -2,7 +2,6 @@
 using Systems.Game;
 using Systems.Physic;
 using Systems.PlayerProcessings;
-using Systems.Service;
 using Systems.Ui;
 using Systems._DEBUG;
 using Components.Events;
@@ -212,8 +211,8 @@ public class GameStartup : MonoBehaviour
 #if DEBUG
             .Add(new DebugProcessingUpdate()) //debug
 #endif
-            .Add(new TimeScaleProcessing())
-            .Add(new ClearEventsProcessing());
+//            .Add(new TimeScaleProcessing())
+//            .Add(new ClearEventsProcessing());
 
 //        _fixedUpdate
 //            .Add(new AddForceController())

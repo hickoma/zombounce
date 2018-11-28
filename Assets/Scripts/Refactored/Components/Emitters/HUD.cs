@@ -21,6 +21,9 @@ namespace Windows
 
         [Space]
         [Header("Windows")]
+		[SerializeField]
+		private GameObject m_StartGameWindow = null;
+
         [SerializeField]
         private GameObject m_PauseWindow = null;
 
@@ -43,38 +46,41 @@ namespace Windows
 			// init turns
 			UpdateTurns(Systems.GameState.Instance.TurnsCount);
 			Systems.GameState.Instance.OnTurnsChanged += UpdateTurns;
+
+			// show Start Game Window
+			m_StartGameWindow.SetActive (true);
 		}
 
-        void OnGameStateChanged(Components.Events.GameState newState)
+		void OnGameStateChanged(Systems.GameState.State newState)
         {
             SetPauseButtonState(newState);
             SetPauseWindowState(newState);
         }
 
-        private void SetPauseButtonState(Components.Events.GameState currentState)
+		private void SetPauseButtonState(Systems.GameState.State currentState)
         {
             switch (currentState)
             {
-                case Components.Events.GameState.PLAY:
+				case Systems.GameState.State.PLAY:
                     m_PauseButton.gameObject.SetActive(true);
                     break;
 
-                case Components.Events.GameState.GAME_OVER:
-                case Components.Events.GameState.PAUSE:
+				case Systems.GameState.State.GAME_OVER:
+				case Systems.GameState.State.PAUSE:
                     m_PauseButton.gameObject.SetActive(false);
                     break;
             }
         }
 
-        private void SetPauseWindowState(Components.Events.GameState currentState)
+		private void SetPauseWindowState(Systems.GameState.State currentState)
         {
             switch (currentState)
             {
-                case Components.Events.GameState.PLAY:
-                case Components.Events.GameState.GAME_OVER:
+				case Systems.GameState.State.PLAY:
+				case Systems.GameState.State.GAME_OVER:
                     m_PauseWindow.SetActive(false);
                     break;
-                case Components.Events.GameState.PAUSE:
+				case Systems.GameState.State.PAUSE:
                     GameEventsController.Instance.SaveScore();
                     m_PauseWindow.SetActive(true);
                     break;

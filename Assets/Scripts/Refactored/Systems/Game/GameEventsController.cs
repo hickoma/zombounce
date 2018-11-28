@@ -43,13 +43,27 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
-	public event Action<Components.Events.GameState> OnGameStateChanged;
+	public event Action<Systems.GameState.State> OnGameStateChanged;
 
-	public void ChangeGameState(Components.Events.GameState newState)
+	public void ChangeGameState(Systems.GameState.State newState)
 	{
 		if (OnGameStateChanged != null)
 		{
 			OnGameStateChanged (newState);
+		}
+
+		// ugly, ugly, UGLY
+		// move to another controller
+		switch (newState)
+		{
+			case Systems.GameState.State.PLAY:
+				Time.timeScale = 1f;
+				break;
+
+			case Systems.GameState.State.GAME_OVER:
+			case Systems.GameState.State.PAUSE:
+				Time.timeScale = 0f;
+				break;
 		}
 	}
 
@@ -117,9 +131,7 @@ public class GameEventsController : MonoBehaviour
 			OnGameStartClick ();
 		}
 
-		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
-		GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PLAY);
-		_world.CreateEntityWith<Components.Events.GameStateEvent>().State = Components.Events.GameState.PLAY;
+		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
 	}
 
     public event Action OnStoreWindowOpen;
@@ -156,9 +168,7 @@ public class GameEventsController : MonoBehaviour
 			OnGamePauseClick ();
 		}
 
-		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
-		GameEventsController.Instance.ChangeGameState (Components.Events.GameState.PAUSE);
-		_world.CreateEntityWith<Components.Events.GameStateEvent>().State = Components.Events.GameState.PAUSE;
+		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PAUSE);
 	}
 
 	public event Action OnSettingsClick;
