@@ -116,7 +116,7 @@ namespace Systems.Game
 
             //init ground size
             //            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
-            _groundSize = 22f;
+            _groundSize = 30f;
 
             // -1 and 0 fields are already on scene so spawn some more fields forward
             for (int i = 0; i < ForwardSpawnCount; i++)

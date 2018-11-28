@@ -24,12 +24,11 @@ MonoBehaviour:
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15
   Fields:
-  - {fileID: 1643958998145072, guid: 41bcb8cc8c10c3f40a5357468190dc51, type: 2}
-  - {fileID: 1643958998145072, guid: 5ff2de56d3aaf4d4c80479973ef34246, type: 2}
-  - {fileID: 1643958998145072, guid: a01ea2dd55b6e1d4e98c4600b2595f4c, type: 2}
-  - {fileID: 1643958998145072, guid: a47afc7c59def614cae27c89300ef093, type: 2}
-  - {fileID: 1643958998145072, guid: 058e56e1f68720f4a867a38188d6ee94, type: 2}
-  - {fileID: 1643958998145072, guid: 15d19f553ec594841b863b0770cf2c1f, type: 2}
+  - {fileID: 1929051274091830, guid: 751de8fd29992f54a81192425e24789e, type: 2}
+  - {fileID: 1929051274091830, guid: f49653eda0c56ec4f91229eaba6326a5, type: 2}
+  - {fileID: 1929051274091830, guid: aef07f44164d0c94cbf528a893b58ab0, type: 2}
+  - {fileID: 1929051274091830, guid: c6707be4790b24d4382ced3827c8731b, type: 2}
+  - {fileID: 1929051274091830, guid: 8dba2d17403e6be419926c62e5e315f8, type: 2}
   ForwardSpawnCount: 2
   BackwardSpawnCount: 1
   InitialPoolSize: 128
