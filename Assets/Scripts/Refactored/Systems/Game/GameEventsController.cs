@@ -155,7 +155,7 @@ public class GameEventsController : MonoBehaviour
 		}
 
 		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
-		_world.CreateEntityWith<Components.Events.RestartEvent>();
+		_world.CreateEntityWith<Components.Events.UpdateScoreEvent>();
 	}
 
 	// HUD

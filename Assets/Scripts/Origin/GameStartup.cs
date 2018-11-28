@@ -180,7 +180,7 @@ public class GameStartup : MonoBehaviour
             {
                 GameOverPanel = _gameOverPanel
             })
-            .Add(new RestartProcessing())
+//            .Add(new RestartProcessing())
 //            .Add(new UserInputProcessing())
 //            .Add(new PlayerController
 //            {
