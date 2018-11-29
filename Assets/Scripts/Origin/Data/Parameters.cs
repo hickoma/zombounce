@@ -34,5 +34,6 @@ namespace Data
         public int CoinSpawnCount;
 
         [Header("Fist Prefabs")] public Fist[] Fists;
+		public Fist DefaultFist;
     }
 }

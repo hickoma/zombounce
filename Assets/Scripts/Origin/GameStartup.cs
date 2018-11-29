@@ -233,6 +233,7 @@ public class GameStartup : MonoBehaviour
 		m_GameState.m_CoinsDefaultCount = _parameters.CoinsCount;
 		m_GameState.m_TurnsDefaultCount = _parameters.TurnsCount;
 		m_GameState.AllFists = _parameters.Fists;
+		m_GameState.DefaultFist = _parameters.DefaultFist;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;

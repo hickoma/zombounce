@@ -118,6 +118,21 @@ namespace Systems
 			}
 		}
 
+		private Fist m_DefaultFist = null;
+
+		public Fist DefaultFist
+		{
+			get
+			{
+				return m_DefaultFist;
+			}
+
+			set
+			{
+				m_DefaultFist = value;
+			}
+		}
+
 		//selected fist
 		string m_SelectedFistName = "";
 
@@ -127,7 +142,8 @@ namespace Systems
 			{
 				if (string.IsNullOrEmpty (m_SelectedFistName))
 				{
-					m_SelectedFistName = PlayerPrefs.GetString (Data.PrefKeys.SelectedFistKey);
+					// load from prefs or choose default fist
+					m_SelectedFistName = PlayerPrefs.GetString (Data.PrefKeys.SelectedFistKey, m_DefaultFist.m_Id);
 				}
 
 				return m_SelectedFistName;
@@ -161,6 +177,13 @@ namespace Systems
 				if (m_PurchasedFists == null)
 				{
 					m_PurchasedFists = PlayerPrefsExtensions.GetStringArray (Data.PrefKeys.FistsKey);
+
+					// add default fist to inventory
+					if (m_PurchasedFists.Length == 0)
+					{
+						m_PurchasedFists = new string[]{ DefaultFist.m_Id };
+						PurchasedFists = m_PurchasedFists;
+					}
 				}
 
 				return m_PurchasedFists;
