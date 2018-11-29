@@ -11,10 +11,15 @@ namespace Windows
 		[SerializeField]
 		private Button m_BackgroundButton = null;
 
+		// Debug buttons
+		[SerializeField]
+		private Button m_DropPurchases = null;
+
 		public void Start()
 		{
 			m_StoreButton.onClick.AddListener(GameEventsController.Instance.OpenStore);
 			m_BackgroundButton.onClick.AddListener(StartGame);
+			m_DropPurchases.onClick.AddListener (GameEventsController.Instance.DropPurchases);
 		}
 
 		private void StartGame()

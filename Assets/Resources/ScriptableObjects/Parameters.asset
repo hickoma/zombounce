@@ -16,7 +16,7 @@ MonoBehaviour:
   MinLength: 300
   MinVelocityTolerance: 0.5
   MaxForce: 3000
-  CoinsCount: 500
+  CoinsCount: 1000
   TurnsCount: 10
   TimerCount: 5
   RescaleSpeed: 5

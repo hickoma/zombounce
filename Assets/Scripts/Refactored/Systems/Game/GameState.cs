@@ -196,5 +196,17 @@ namespace Systems
 				PlayerPrefs.Save();
 			}
 		}
+
+		public void DropPurchases()
+		{
+			// drop selected fist
+			SelectedFistName = m_DefaultFist.m_Id;
+
+			// drop purchased fists
+			PurchasedFists = new string[]{ DefaultFist.m_Id };
+
+			// drop coins
+			CoinsCount = m_CoinsDefaultCount;
+		}
 	}
 }

@@ -240,6 +240,12 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	// Game State (debug)
+	public void DropPurchases()
+	{
+		Systems.GameState.Instance.DropPurchases ();
+	}
+
 	// ugly, ugly, UGLY global names
 	// need to refactor everything than links here
 	public Components.Player m_Player;
