@@ -231,7 +231,7 @@ namespace Systems.Game
             if (_alreadyEnergy.Contains(id)) return;
 
             _alreadyEnergy.Add(id);
-            var spawnPoints = obj.PoolTransform.FindAllRecursiveByTag(Tag.EnergySpawn);
+            List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(obj.PoolTransform, Tag.EnergySpawn);
             spawnPoints.Shuffle();
             for (int i = 0; i < spawnPoints.Count && i < EnergySpawnCount; i++)
             {
@@ -255,7 +255,7 @@ namespace Systems.Game
             if (_alreadyCoins.Contains(id)) return;
 
             _alreadyCoins.Add(id);
-            var spawnPoints = obj.PoolTransform.FindAllRecursiveByTag(Tag.CoinSpawn);
+            List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(obj.PoolTransform, Tag.CoinSpawn);
             spawnPoints.Shuffle();
             
             for (int i = 0; i < spawnPoints.Count && i < CoinSpawnCount; i++)
@@ -285,6 +285,30 @@ namespace Systems.Game
             }
 
             return _path[id];
+        }
+
+        private List<Transform> FindAllChildrenRecursiveWithTag(Transform inspectedObject, string tag)
+        {
+            List<Transform> childrenWithTag = new List<Transform>();
+
+            if (inspectedObject.childCount > 0)
+            {
+                for (int i = 0; i < inspectedObject.childCount; i++)
+                {
+                    Transform inspectedChild = inspectedObject.GetChild(i);
+
+                    // check child
+                    if (inspectedChild.CompareTag(tag))
+                    {
+                        childrenWithTag.Add(inspectedChild);
+                    }
+
+                    // go deeper and look in child's children
+                    childrenWithTag.AddRange(FindAllChildrenRecursiveWithTag(inspectedChild, tag));
+                }
+            }
+
+            return childrenWithTag;
         }
     }
 }
