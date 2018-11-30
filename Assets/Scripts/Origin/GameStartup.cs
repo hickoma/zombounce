@@ -199,11 +199,11 @@ public class GameStartup : MonoBehaviour
 //            .Add(new DistanceBonusController())
             .Add(new FieldsSpawnProcessing
             {
-                Prefabs = _parameters.Fields,
+                FieldPrefabs = _parameters.Fields,
                 ForwardSpawnCount = _parameters.ForwardSpawnCount,
 				BackwardSpawnCount = _parameters.BackwardSpawnCount,
                 InitialPoolSize = _parameters.InitialPoolSize,
-                ZombiePrefab = _parameters.Zombie,
+                ZombiePrefabs = _parameters.Zombies,
                 CoinPrefab = _parameters.Coin,
                 EnergySpawnCount = _parameters.EnergySpawnCount,
                 CoinSpawnCount = _parameters.CoinSpawnCount

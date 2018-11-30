@@ -28,7 +28,7 @@ namespace Data
 		public int BackwardSpawnCount;
         public int InitialPoolSize;
 
-        public GameObject Zombie;
+		[Header("Zombie Prefabs")] public GameObject[] Zombies;
         public GameObject Coin;
         public int EnergySpawnCount;
         public int CoinSpawnCount;

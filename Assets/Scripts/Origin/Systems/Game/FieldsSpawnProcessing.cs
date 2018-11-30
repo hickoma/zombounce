@@ -32,14 +32,14 @@ namespace Systems.Game
         private float _groundSize;
 
         //settable fields from starter
-        public GameObject[] Prefabs;
+        public GameObject[] FieldPrefabs;
         public int ForwardSpawnCount;
 		public int BackwardSpawnCount;
         public int InitialPoolSize;
 
         public int EnergySpawnCount;
         public int CoinSpawnCount;
-        public GameObject ZombiePrefab;
+        public GameObject[] ZombiePrefabs;
         public GameObject CoinPrefab;
 
         public void Initialize()
@@ -69,7 +69,7 @@ namespace Systems.Game
             _alreadyEnergy = null; 
             _alreadyCoins.Clear();
             _alreadyCoins = null;
-            Prefabs = null;
+            FieldPrefabs = null;
         }
 
         public void Run()
@@ -102,16 +102,16 @@ namespace Systems.Game
         {
             var parent = GameObject.FindGameObjectWithTag(Tag.FieldPool).transform;
             //create zombie pool
-            _zombiePool = PoolContainer.CreatePool(ZombiePrefab, parent);
+            _zombiePool = PoolContainer.CreatePool(ZombiePrefabs[0], parent);
 
             //create coin pool
             _coinsPool = PoolContainer.CreatePool(CoinPrefab, parent);
 
             //create fields pool
-            _poolContainers = new PoolContainer[Prefabs.Length];
-            for (int i = 0; i < Prefabs.Length; i++)
+            _poolContainers = new PoolContainer[FieldPrefabs.Length];
+			for (int i = 0; i < FieldPrefabs.Length; i++)
             {
-                _poolContainers[i] = PoolContainer.CreatePool(Prefabs[i], parent);
+				_poolContainers[i] = PoolContainer.CreatePool(FieldPrefabs[i], parent);
             }
 
             //init ground size
@@ -129,7 +129,7 @@ namespace Systems.Game
         {
             for (int i = 0; i < InitialPoolSize; i++)
             {
-                _path.Add(new Field(Random.Range(0, Prefabs.Length)));
+                _path.Add(new Field(Random.Range(0, FieldPrefabs.Length)));
             }
         }
 
@@ -239,6 +239,14 @@ namespace Systems.Game
                 Transform point = spawnPoints[i];
 				IPoolObject poolingObj = _zombiePool.Get();
                 poolingObj.PoolTransform.position = point.transform.position;
+
+				// set random zombie sprite
+				// need to refactor it
+				SpriteRenderer zombieSpriteRenderer = poolingObj.PoolTransform.GetComponent<SpriteRenderer> ();
+				int randomZombieNumber = Random.Range (0, ZombiePrefabs.Length);
+				zombieSpriteRenderer.sprite = ZombiePrefabs [randomZombieNumber].GetComponent<SpriteRenderer> ().sprite;
+
+				// finally activate
                 poolingObj.PoolTransform.gameObject.SetActive(true);
             }
         }

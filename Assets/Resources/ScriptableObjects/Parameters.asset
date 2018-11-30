@@ -36,7 +36,15 @@ MonoBehaviour:
   ForwardSpawnCount: 2
   BackwardSpawnCount: 1
   InitialPoolSize: 128
-  Zombie: {fileID: 1271114649502384, guid: 2c94648861b355541a240874ba371585, type: 2}
+  Zombies:
+  - {fileID: 1271114649502384, guid: 2c94648861b355541a240874ba371585, type: 2}
+  - {fileID: 1271114649502384, guid: f7080cb5ee96b1441871bbda2aa32a49, type: 2}
+  - {fileID: 1271114649502384, guid: 8d696eab11193b541bb88ce266c0298c, type: 2}
+  - {fileID: 1271114649502384, guid: edc156cae658c1c43927aba380962809, type: 2}
+  - {fileID: 1271114649502384, guid: 8113236803298014c9e7ef4ac21f3f76, type: 2}
+  - {fileID: 1271114649502384, guid: 5f66fae4b3c1eed448c85aeb8a11e7ed, type: 2}
+  - {fileID: 1271114649502384, guid: 9efe8f80f500c254ab61642e3f49d0ef, type: 2}
+  - {fileID: 1271114649502384, guid: 252595e592a15ab44b7700866d4078bc, type: 2}
   Coin: {fileID: 1396591365958742, guid: deacb39d16e33e7418d82c91fe340ba9, type: 2}
   EnergySpawnCount: 2
   CoinSpawnCount: 900
