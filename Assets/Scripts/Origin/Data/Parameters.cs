@@ -28,7 +28,7 @@ namespace Data
 		public int BackwardSpawnCount;
         public int InitialPoolSize;
 
-        public GameObject Energy;
+        public GameObject Zombie;
         public GameObject Coin;
         public int EnergySpawnCount;
         public int CoinSpawnCount;

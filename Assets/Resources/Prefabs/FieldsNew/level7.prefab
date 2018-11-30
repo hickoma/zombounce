@@ -149,8 +149,8 @@ GameObject:
   - component: {fileID: 4175042249783188}
   - component: {fileID: 212370988969044488}
   m_Layer: 0
-  m_Name: EnergySpawn (4)
-  m_TagString: EnergySpawn
+  m_Name: ZombieSpawn (4)
+  m_TagString: ZombieSpawn
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -181,8 +181,8 @@ GameObject:
   - component: {fileID: 4227739673302828}
   - component: {fileID: 212888704697803716}
   m_Layer: 0
-  m_Name: EnergySpawn (2)
-  m_TagString: EnergySpawn
+  m_Name: ZombieSpawn (2)
+  m_TagString: ZombieSpawn
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -279,8 +279,8 @@ GameObject:
   - component: {fileID: 4589721031256018}
   - component: {fileID: 212273604428185152}
   m_Layer: 0
-  m_Name: EnergySpawn (1)
-  m_TagString: EnergySpawn
+  m_Name: ZombieSpawn (1)
+  m_TagString: ZombieSpawn
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -472,8 +472,8 @@ GameObject:
   - component: {fileID: 4377863256100754}
   - component: {fileID: 212616064935601448}
   m_Layer: 0
-  m_Name: EnergySpawn (3)
-  m_TagString: EnergySpawn
+  m_Name: ZombieSpawn (3)
+  m_TagString: ZombieSpawn
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

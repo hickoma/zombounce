@@ -22,7 +22,7 @@ namespace Systems.Game
 //        private EcsFilter<DespawnCoinEvent> _despawnCoinEventFilter = null;
 
         private PoolContainer[] _poolContainers;
-        private PoolContainer _energyPool;
+		private PoolContainer _zombiePool;
         private PoolContainer _coinsPool;
         private List<Field> _path;
         private List<int> _alreadyEnergy;
@@ -39,7 +39,7 @@ namespace Systems.Game
 
         public int EnergySpawnCount;
         public int CoinSpawnCount;
-        public GameObject EnergyPrefab;
+        public GameObject ZombiePrefab;
         public GameObject CoinPrefab;
 
         public void Initialize()
@@ -61,7 +61,7 @@ namespace Systems.Game
         public void Destroy()
         {
             _poolContainers = null;
-            _energyPool = null;
+            _zombiePool = null;
             _coinsPool = null;
             _path.Clear();
             _path = null;
@@ -101,8 +101,8 @@ namespace Systems.Game
         private void InitPoolAndSpawnFirst()
         {
             var parent = GameObject.FindGameObjectWithTag(Tag.FieldPool).transform;
-            //create energy pool
-            _energyPool = PoolContainer.CreatePool(EnergyPrefab, parent);
+            //create zombie pool
+            _zombiePool = PoolContainer.CreatePool(ZombiePrefab, parent);
 
             //create coin pool
             _coinsPool = PoolContainer.CreatePool(CoinPrefab, parent);
@@ -189,7 +189,7 @@ namespace Systems.Game
                 field.PoolObject = obj;
                 field.IsOnScene = true;
 
-                SpawnEnergy(id, obj);
+                SpawnZombie(id, obj);
                 SpawnCoin(id, obj);
 
                 return obj;
@@ -218,25 +218,26 @@ namespace Systems.Game
             return true;
         }
 
-        private void DespawnEnergy(IPoolObject obj)
+        private void DespawnZombie(IPoolObject obj)
         {
             if (obj.PoolTransform.gameObject.activeInHierarchy)
             {
-                _energyPool.Recycle(obj);
+                _zombiePool.Recycle(obj);
             }
         }
 
-        private void SpawnEnergy(int id, IPoolObject obj)
+        private void SpawnZombie(int id, IPoolObject obj)
         {
             if (_alreadyEnergy.Contains(id)) return;
 
             _alreadyEnergy.Add(id);
-            List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(obj.PoolTransform, Tag.EnergySpawn);
+            List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(obj.PoolTransform, Tag.ZombieSpawn);
             spawnPoints.Shuffle();
+
             for (int i = 0; i < spawnPoints.Count && i < EnergySpawnCount; i++)
             {
-                var point = spawnPoints[i];
-                var poolingObj = _energyPool.Get();
+                Transform point = spawnPoints[i];
+				IPoolObject poolingObj = _zombiePool.Get();
                 poolingObj.PoolTransform.position = point.transform.position;
                 poolingObj.PoolTransform.gameObject.SetActive(true);
             }
@@ -269,7 +270,7 @@ namespace Systems.Game
         
 		private void CheckEnergyEvents(IPoolObject energy)
         {
-			DespawnEnergy(energy);
+			DespawnZombie(energy);
         }
         
 		private void CheckCoinEvents(IPoolObject coin)

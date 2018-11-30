@@ -8,7 +8,6 @@ TagManager:
   - Ground
   - FieldPool
   - Points
-  - EnergySpawn
   - VectorPointer
   - VectorPointerMask
   - Fingerprint
@@ -22,9 +21,11 @@ TagManager:
   - TakeCoins
   - TakeEnergy
   - Button
-  - Energy
   - Coin
   - CoinSpawn
+  - ZombieSpawn
+  - EnergySpawn
+  - Zombie
   layers:
   - Default
   - TransparentFX

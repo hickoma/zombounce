@@ -203,7 +203,7 @@ public class GameStartup : MonoBehaviour
                 ForwardSpawnCount = _parameters.ForwardSpawnCount,
 				BackwardSpawnCount = _parameters.BackwardSpawnCount,
                 InitialPoolSize = _parameters.InitialPoolSize,
-                EnergyPrefab = _parameters.Energy,
+                ZombiePrefab = _parameters.Zombie,
                 CoinPrefab = _parameters.Coin,
                 EnergySpawnCount = _parameters.EnergySpawnCount,
                 CoinSpawnCount = _parameters.CoinSpawnCount
