@@ -144,6 +144,19 @@ public class GameEventsController : MonoBehaviour
         }
     }
 
+    // Pause Game Window
+    public event Action OnGameResumeClick;
+
+    public void ResumeGame()
+    {
+        if (OnGameResumeClick != null)
+        {
+            OnGameResumeClick ();
+        }
+
+        GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
+    }
+
 	// Restart Game Window
 	public event Action OnGameRestartClick;
 
