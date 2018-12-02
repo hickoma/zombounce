@@ -25,39 +25,39 @@ namespace Systems.Game
         
         public void Initialize()
         {
-            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeCoins);
-            _button = _takeCoins.GetComponent<Button>();
+//            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeCoins);
+//            _button = _takeCoins.GetComponent<Button>();
             _rescaleVector = new Vector3(RescaleSpeed, RescaleSpeed, RescaleSpeed);
         }
 
         public void Destroy()
         {
-            _takeCoins = null;
+//            _takeCoins = null;
         }
 
         public void Run()
         {
             if (_isPlaying)
             {
-                if (_takeCoins.localScale.x >= 1f)
-                {
+//                if (_takeCoins.localScale.x >= 1f)
+//                {
                     _isPlaying = false;
-                    _takeCoins.localScale = Vector3.one;
-                    _button.enabled = true;
-                }
-                else
-                {
-                    _takeCoins.localScale += _rescaleVector * Time.unscaledDeltaTime;
-                }
+//                    _takeCoins.localScale = Vector3.one;
+//                    _button.enabled = true;
+//                }
+//                else
+//                {
+//                    _takeCoins.localScale += _rescaleVector * Time.unscaledDeltaTime;
+//                }
             }
             else
             {
                 for (int i = 0; i < _showTimerEventFilter.EntitiesCount; i++)
                 {
-                    _takeCoins.gameObject.SetActive(true);
+//                    _takeCoins.gameObject.SetActive(true);
                     _isPlaying = true;
                     _ecsWorld.RemoveEntity(_showTimerEventFilter.Entities[i]);
-                    _button.enabled = false;
+//                    _button.enabled = false;
                 }
             }
         }

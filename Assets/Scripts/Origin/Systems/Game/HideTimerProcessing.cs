@@ -26,7 +26,7 @@ namespace Systems.Game
         public void Initialize()
         {
             _takeEnergy = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeEnergy);
-            _button = _takeEnergy.FindRecursiveByTag(Tag.Button).GetComponent<Button>();
+//            _button = _takeEnergy.FindRecursiveByTag(Tag.Button).GetComponent<Button>();
             _rescaleVector = new Vector3(RescaleSpeed, RescaleSpeed, RescaleSpeed);
         }
 
@@ -45,7 +45,7 @@ namespace Systems.Game
                     _ecsWorld.CreateEntityWith<ShowTakeCoinsEvent>();
                     _isPlaying = false;
                     _takeEnergy.localScale = Vector3.one;
-                    _button.enabled = true;
+//                    _button.enabled = true;
                 }
                 else
                 {
@@ -58,7 +58,7 @@ namespace Systems.Game
                 {
                     _isPlaying = true;
                     _ecsWorld.RemoveEntity(_hideTimerEventFilter.Entities[i]);
-                    _button.enabled = false;
+//                    _button.enabled = false;
                 }
             }
         }

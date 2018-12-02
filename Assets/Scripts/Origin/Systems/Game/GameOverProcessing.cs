@@ -30,7 +30,7 @@ namespace Systems.Game
         public void Initialize()
         {
 			GameEventsController.Instance.OnPlayerDead += GameOver;
-            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeEnergy);
+//            _takeCoins = GameOverPanel.transform.FindRecursiveByTag(Tag.TakeEnergy);
         }
 
         public void Destroy()
@@ -56,13 +56,13 @@ namespace Systems.Game
             if (_alreadyDead)
             {
                 GameOverPanel.SetActive(true);
-                _takeCoins.gameObject.SetActive(false);
+//                _takeCoins.gameObject.SetActive(false);
                 _ecsWorld.CreateEntityWith<ShowTakeCoinsEvent>();
             }
             else
             {
                 GameOverPanel.SetActive(true);
-                _takeCoins.gameObject.SetActive(true);
+//                _takeCoins.gameObject.SetActive(true);
                 var timer = _ecsWorld.CreateEntityWith<StartStopTimerEvent>();
                 timer.IsStart = true;
                 timer.Count = TimerCount;

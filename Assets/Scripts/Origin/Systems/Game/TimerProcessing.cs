@@ -24,10 +24,10 @@ namespace Systems.Game
 
         public void Initialize()
         {
-            var timerGo = GameOverPanel.transform.FindRecursiveByTag(Tag.Timer);
-            var text = timerGo.GetComponent<Text>();
+//            var timerGo = GameOverPanel.transform.FindRecursiveByTag(Tag.Timer);
+//            var text = timerGo.GetComponent<Text>();
             _timer = _ecsWorld.CreateEntityWith<Timer>();
-            _timer.TimerText = text;
+//            _timer.TimerText = text;
         }
 
         public void Destroy()
@@ -35,7 +35,7 @@ namespace Systems.Game
             GameOverPanel = null;
             if (_timer != null)
             {
-                _timer.TimerText = null;
+//                _timer.TimerText = null;
             }
         }
 
@@ -43,7 +43,7 @@ namespace Systems.Game
         {
             if (_isTimerRunning)
             {
-                CheckTimer();
+//                CheckTimer();
             }
 
             for (int i = 0; i < _startTimerEventFilter.EntitiesCount; i++)
@@ -51,11 +51,11 @@ namespace Systems.Game
                 var startStopEvent = _startTimerEventFilter.Components1[i];
                 if (startStopEvent.IsStart)
                 {
-                    StartTimer(startStopEvent.Count);
+//                    StartTimer(startStopEvent.Count);
                 }
                 else
                 {
-                    StopTimer();
+//                    StopTimer();
                 }
 
                 _ecsWorld.RemoveEntity(_startTimerEventFilter.Entities[i]);
