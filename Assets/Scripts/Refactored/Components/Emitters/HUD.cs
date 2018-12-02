@@ -9,9 +9,6 @@ namespace Windows
 		[SerializeField]
 		private Button m_PauseButton = null;
 
-		[SerializeField]
-		private Button m_SettingsButton = null;
-
 		[Header("Indicators")]
 		[SerializeField]
 		private Text m_CoinsIndicator = null;
@@ -36,8 +33,6 @@ namespace Windows
 
             m_PauseButton.gameObject.SetActive(false);
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
-
-//			m_SettingsButton.onClick.AddListener (GameEventsController.Instance.OpenSettings);
 
 			// init coins
 			UpdateCoins(Systems.GameState.Instance.CoinsCount);
