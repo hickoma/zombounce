@@ -6,8 +6,8 @@ namespace Windows
 {
     public class GameOverWindow : MonoBehaviour
     {
-		[SerializeField]
-		private Button m_PlayMoreButton = null;
+        [SerializeField]
+        private Button m_RestartButton = null;
 
 		[SerializeField]
 		private Button m_GetEnergyButton = null;
@@ -15,15 +15,11 @@ namespace Windows
 		[SerializeField]
 		private Button m_GetCoinsButton = null;
 
-		[SerializeField]
-		private Button m_RestartButton = null;
-
 		public void Start()
 		{			
-			m_PlayMoreButton.onClick.AddListener(PlayMore);
+            m_RestartButton.onClick.AddListener(RestartGame);
+            m_GetEnergyButton.onClick.AddListener(PlayMore);
 //			m_GetCoinsButton.onClick.AddListener(GameEventsController.Instance.StartGame);
-			m_GetEnergyButton.onClick.AddListener(PlayMore);
-//			m_RestartButton.onClick.AddListener(RestartGame);
 		}
 
 		private void PlayMore()
@@ -42,8 +38,12 @@ namespace Windows
 			GameEventsController.Instance.RestartGame();
 
 			SceneManager.LoadScene(0);
-			// is it really needed?
-			Time.timeScale = 1f;
+            HideWindow();
 		}
+
+        private void HideWindow()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

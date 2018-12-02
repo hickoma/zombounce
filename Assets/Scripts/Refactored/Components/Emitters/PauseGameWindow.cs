@@ -29,8 +29,6 @@ namespace Windows
             GameEventsController.Instance.RestartGame();
 
             SceneManager.LoadScene(0);
-            // is it really needed?
-//            Time.timeScale = 1f;
             HideWindow();
         }
 
