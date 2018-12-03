@@ -3728,15 +3728,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1327276745094732, guid: a534a404997ef4097b4558862680fdf1, type: 2}
-      propertyPath: m_Name
-      value: FistStore
-      objectReference: {fileID: 0}
-    - target: {fileID: 224882075367362970, guid: a534a404997ef4097b4558862680fdf1,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a534a404997ef4097b4558862680fdf1, type: 2}
   m_IsPrefabAsset: 0
