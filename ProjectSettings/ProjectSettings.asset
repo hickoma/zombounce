@@ -481,6 +481,9 @@ PlayerSettings:
   - m_BuildTarget: iPhone
     m_StaticBatching: 1
     m_DynamicBatching: 0
+  - m_BuildTarget: Android
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: iOSSupport
     m_APIs: 1000000008000000
@@ -491,7 +494,7 @@ PlayerSettings:
   openGLRequireES31AEP: 0
   m_TemplateCustomTags: {}
   mobileMTRendering:
-    Android: 1
+    Android: 0
     iPhone: 0
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality: []

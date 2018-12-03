@@ -82,7 +82,7 @@ public class GameStartup : MonoBehaviour
     {
         // set quality settings
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 0;
 
 		m_GameState = Systems.GameState.Create();
 
