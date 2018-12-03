@@ -19,6 +19,7 @@ MonoBehaviour:
   CoinsCount: 1000
   TurnsCount: 10
   TimerCount: 5
+  SecondLifeTurns: 5
   RescaleSpeed: 5
   CameraSmooth: 0.2
   CameraMinPositionZ: -12

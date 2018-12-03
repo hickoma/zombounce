@@ -62,7 +62,7 @@ public class GameEventsController : MonoBehaviour
 
 			case Systems.GameState.State.GAME_OVER:
 			case Systems.GameState.State.PAUSE:
-				Time.timeScale = 0f;
+//				Time.timeScale = 0f;
 				break;
 		}
 	}
@@ -239,17 +239,6 @@ public class GameEventsController : MonoBehaviour
 		if (OnPlayerStopped != null)
 		{
 			OnPlayerStopped (zPosition);
-		}
-	}
-
-	// Game Over Processing
-	public event Action OnPlayerDead;
-
-	public void PlayerDie()
-	{
-		if (OnPlayerDead != null)
-		{
-			OnPlayerDead ();
 		}
 	}
 

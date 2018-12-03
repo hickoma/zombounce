@@ -17,7 +17,7 @@ namespace Systems
 			// last turn and player stop - he's dead
             if (currentCount == 0)
             {
-				GameEventsController.Instance.PlayerDie ();
+				GameEventsController.Instance.ChangeGameState (Systems.GameState.State.GAME_OVER);
             }
         }
 
@@ -25,7 +25,7 @@ namespace Systems
 		{
 			if (newCount < 0)
 			{
-				GameEventsController.Instance.PlayerDie ();
+				GameEventsController.Instance.ChangeGameState (Systems.GameState.State.GAME_OVER);
 			}
 		}
     }

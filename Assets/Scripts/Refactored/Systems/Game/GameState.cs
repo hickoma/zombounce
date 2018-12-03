@@ -208,5 +208,35 @@ namespace Systems
 			// drop coins
 			CoinsCount = m_CoinsDefaultCount;
 		}
+
+		private int m_GameOverTimerCount = 5;
+
+		public int GameOverTimerCount
+		{
+			get
+			{
+				return m_GameOverTimerCount;
+			}
+
+			set
+			{
+				m_GameOverTimerCount = value;
+			}
+		}
+
+		private int m_SecondLifeTurnsCount = 5;
+
+		public int SecondLifeTurnsCount
+		{
+			get
+			{
+				return m_SecondLifeTurnsCount;
+			}
+
+			set
+			{
+				m_SecondLifeTurnsCount = value;
+			}
+		}
 	}
 }

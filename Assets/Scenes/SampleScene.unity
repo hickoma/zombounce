@@ -418,6 +418,7 @@ MonoBehaviour:
   m_StartGameWindow: {fileID: 1710992984}
   m_PauseWindow: {fileID: 626425858}
   m_FistStoreWindow: {fileID: 1963937909}
+  m_GameOverWindow: {fileID: 1398694016}
 --- !u!1001 &136725390
 Prefab:
   m_ObjectHideFlags: 0
@@ -515,9 +516,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1477368455479868, guid: 0a6256aa20b7a5643892a50fbce39c72, type: 2}
-      propertyPath: m_Name
-      value: GameOverWindow
+    - target: {fileID: 1649257305622934, guid: 0a6256aa20b7a5643892a50fbce39c72, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a6256aa20b7a5643892a50fbce39c72, type: 2}

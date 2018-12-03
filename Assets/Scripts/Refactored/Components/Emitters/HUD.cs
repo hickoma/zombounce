@@ -27,6 +27,9 @@ namespace Windows
         [SerializeField]
         private GameObject m_FistStoreWindow = null;
 
+		[SerializeField]
+		private GameObject m_GameOverWindow = null;
+
 		public void LateStart()
 		{
             GameEventsController.Instance.OnGameStateChanged += OnGameStateChanged;
@@ -48,33 +51,40 @@ namespace Windows
 
 		void OnGameStateChanged(Systems.GameState.State newState)
         {
-            SetPauseButtonState(newState);
-            SetPauseWindowState(newState);
+            SetHudElementsState(newState);
+            SetWindowsState(newState);
         }
 
-		private void SetPauseButtonState(Systems.GameState.State currentState)
+		private void SetHudElementsState(Systems.GameState.State currentState)
         {
             switch (currentState)
             {
 				case Systems.GameState.State.PLAY:
-                    m_PauseButton.gameObject.SetActive(true);
+					m_PauseButton.gameObject.SetActive (true);
+					m_TurnsIndicator.transform.parent.gameObject.SetActive (true);
                     break;
 
 				case Systems.GameState.State.GAME_OVER:
 				case Systems.GameState.State.PAUSE:
                     m_PauseButton.gameObject.SetActive(false);
+					m_TurnsIndicator.transform.parent.gameObject.SetActive (false);
                     break;
             }
         }
 
-		private void SetPauseWindowState(Systems.GameState.State currentState)
+		private void SetWindowsState(Systems.GameState.State currentState)
         {
             switch (currentState)
             {
 				case Systems.GameState.State.PLAY:
+
+					break;
+
 				case Systems.GameState.State.GAME_OVER:
-                    m_PauseWindow.SetActive(false);
+					m_GameOverWindow.SetActive(true);
+					GameEventsController.Instance.SaveScore();
                     break;
+
 				case Systems.GameState.State.PAUSE:
                     GameEventsController.Instance.SaveScore();
                     m_PauseWindow.SetActive(true);
