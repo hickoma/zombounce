@@ -143,43 +143,43 @@ public class GameStartup : MonoBehaviour
 //                MinVelocityTolerace = _parameters.MinVelocityTolerance
 //            })
 //            .Add(new CoinsCounterProcessing())
-            .Add(new PlayMoreProcessing
-            {
-                GameOverPanel = _gameOverPanel
-            })
+//            .Add(new PlayMoreProcessing
+//            {
+//                GameOverPanel = _gameOverPanel
+//            })
             .Add(new SettingsProcessing
             {
                 PausePanel = _pausePanel,
                 SettingsPanel = _settingsPanel,
                 Parameters = _parameters // debug
             })
-            .Add(new GameOverProcessing
-            {
-                GameOverPanel = _gameOverPanel,
-                TimerCount = _parameters.TimerCount
-            })
+//            .Add(new GameOverProcessing
+//            {
+//                GameOverPanel = _gameOverPanel,
+//                TimerCount = _parameters.TimerCount
+//            })
 //            .Add(new PauseMenuProcessing
 //            {
 //                PausePanel = _pausePanel
 //            })
-            .Add(new HideTimerProcessing
-            {
-                GameOverPanel = _gameOverPanel,
-                RescaleSpeed = _parameters.RescaleSpeed
-            })
-            .Add(new ShowTakeCoinsProcessing
-            {
-                GameOverPanel = _gameOverPanel,
-                RescaleSpeed = _parameters.RescaleSpeed
-            })
+//            .Add(new HideTimerProcessing
+//            {
+//                GameOverPanel = _gameOverPanel,
+//                RescaleSpeed = _parameters.RescaleSpeed
+//            })
+//            .Add(new ShowTakeCoinsProcessing
+//            {
+//                GameOverPanel = _gameOverPanel,
+//                RescaleSpeed = _parameters.RescaleSpeed
+//            })
 //            .Add(new StartGameProcessing
 //            {
 //                StartGamePanel = _startGamePanel
 //            })
-            .Add(new TimerProcessing
-            {
-                GameOverPanel = _gameOverPanel
-            })
+//            .Add(new TimerProcessing
+//            {
+//                GameOverPanel = _gameOverPanel
+//            })
 //            .Add(new RestartProcessing())
 //            .Add(new UserInputProcessing())
 //            .Add(new PlayerController
