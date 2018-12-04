@@ -86,15 +86,7 @@ namespace Windows
 		private void PlayMore()
 		{
 			StopTimer ();
-			Systems.GameState.Instance.TurnsCount += Systems.GameState.Instance.SecondLifeTurnsCount;
-			GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
-
-			// refactor it
-			LeopotamGroup.Ecs.EcsWorld world = LeopotamGroup.Ecs.EcsWorld.Active;
-			if (world != null)
-			{
-				world.CreateEntityWith <Components.Events.UpdateScoreEvent>();
-			}
+			GameEventsController.Instance.PlayMore();
 
 			HideWindow();
 		}

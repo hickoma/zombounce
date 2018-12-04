@@ -34,6 +34,8 @@ namespace Systems
 
 		public event System.Action<int> OnCoinsChanged;
 		public event System.Action<int> OnTurnsChanged;
+		public event System.Action<int> OnPointsChanged;
+		public event System.Action<int> OnBestScoreChanged;
 
 		// data
 		// coins
@@ -209,6 +211,7 @@ namespace Systems
 			CoinsCount = m_CoinsDefaultCount;
 		}
 
+		// game over seconds before aborting
 		private int m_GameOverTimerCount = 5;
 
 		public int GameOverTimerCount
@@ -224,6 +227,7 @@ namespace Systems
 			}
 		}
 
+		// turns added after first death
 		private int m_SecondLifeTurnsCount = 5;
 
 		public int SecondLifeTurnsCount
@@ -236,6 +240,78 @@ namespace Systems
 			set
 			{
 				m_SecondLifeTurnsCount = value;
+			}
+		}
+
+		// current points
+		private int m_CurrentPointsCount = 0;
+
+		public int CurrentPointsCount
+		{
+			get
+			{
+				return m_CurrentPointsCount;
+			}
+
+			set
+			{
+				m_CurrentPointsCount = value;
+
+				// notify
+				if (OnPointsChanged != null)
+				{
+					OnPointsChanged (m_CurrentPointsCount);
+				}
+			}
+		}
+
+		// best score points
+		private bool m_IsBestScoreInitialized = false;
+		private int m_BestScorePointsCount = 0;
+
+		public int BestScorePointsCount
+		{
+			get
+			{
+				if (!m_IsBestScoreInitialized)
+				{
+					m_BestScorePointsCount = PlayerPrefs.GetInt (Data.PrefKeys.BestScoreKey, 0);
+					m_IsBestScoreInitialized = true;
+				}
+
+				return m_BestScorePointsCount;
+			}
+
+			set
+			{
+				m_BestScorePointsCount = value;
+				PlayerPrefs.SetInt (Data.PrefKeys.BestScoreKey, m_BestScorePointsCount);
+				PlayerPrefs.Save();
+
+				// notify
+				if (OnBestScoreChanged != null)
+				{
+					OnBestScoreChanged (m_BestScorePointsCount);
+				}
+			}
+		}
+
+		public void AddPoints(int points)
+		{
+			int oldPoints = CurrentPointsCount;
+			int newPoints = oldPoints + points;
+
+			if (oldPoints != newPoints)
+			{
+				Systems.GameState.Instance.CurrentPointsCount = newPoints;
+			}
+		}
+
+		public void UpdateBestScore()
+		{
+			if (CurrentPointsCount > BestScorePointsCount)
+			{
+				BestScorePointsCount = CurrentPointsCount;
 			}
 		}
 	}

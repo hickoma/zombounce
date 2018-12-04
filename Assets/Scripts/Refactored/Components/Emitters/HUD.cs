@@ -16,6 +16,12 @@ namespace Windows
 		[SerializeField]
 		private Text m_TurnsIndicator = null;
 
+		[SerializeField]
+		private Text m_PointsIndicator = null;
+
+		[SerializeField]
+		private Text m_BestScoreIndicator = null;
+
         [Space]
         [Header("Windows")]
 		[SerializeField]
@@ -44,6 +50,14 @@ namespace Windows
 			// init turns
 			UpdateTurns(Systems.GameState.Instance.TurnsCount);
 			Systems.GameState.Instance.OnTurnsChanged += UpdateTurns;
+
+			// init points
+			UpdatePoints(Systems.GameState.Instance.CurrentPointsCount);
+			Systems.GameState.Instance.OnPointsChanged += UpdatePoints;
+
+			// init best score
+			UpdateBestScore(Systems.GameState.Instance.BestScorePointsCount);
+			Systems.GameState.Instance.OnBestScoreChanged += UpdateBestScore;
 
 			// show Start Game Window
 			m_StartGameWindow.SetActive (true);
@@ -82,11 +96,11 @@ namespace Windows
 
 				case Systems.GameState.State.GAME_OVER:
 					m_GameOverWindow.SetActive(true);
-					GameEventsController.Instance.SaveScore();
+					Systems.GameState.Instance.UpdateBestScore();
                     break;
 
 				case Systems.GameState.State.PAUSE:
-                    GameEventsController.Instance.SaveScore();
+					Systems.GameState.Instance.UpdateBestScore();
                     m_PauseWindow.SetActive(true);
                     break;
             }
@@ -100,6 +114,16 @@ namespace Windows
 		private void UpdateTurns(int count)
 		{
 			m_TurnsIndicator.text = count.ToString();
+		}
+
+		private void UpdatePoints(int count)
+		{
+			m_PointsIndicator.text = count.ToString();
+		}
+
+		private void UpdateBestScore(int count)
+		{
+			m_BestScoreIndicator.text = count.ToString();
 		}
     }
 }

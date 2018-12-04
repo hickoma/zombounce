@@ -415,6 +415,8 @@ MonoBehaviour:
   m_PauseButton: {fileID: 901059903}
   m_CoinsIndicator: {fileID: 1763154863}
   m_TurnsIndicator: {fileID: 2108013043}
+  m_PointsIndicator: {fileID: 663481296}
+  m_BestScoreIndicator: {fileID: 2133195020}
   m_StartGameWindow: {fileID: 1710992984}
   m_PauseWindow: {fileID: 626425858}
   m_FistStoreWindow: {fileID: 1963937909}

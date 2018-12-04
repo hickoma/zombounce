@@ -23,7 +23,7 @@ namespace Systems
 				int addPoints = Mathf.FloorToInt(distance - _traveledDistance);
 				_traveledDistance = Mathf.FloorToInt(distance);
 
-				GameEventsController.Instance.AddPoints (addPoints);
+				Systems.GameState.Instance.AddPoints (addPoints);
             }
         }
     }

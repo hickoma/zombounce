@@ -100,27 +100,6 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
-	// Bonus Controller
-	public event Action<int> OnPointsAdded;
-
-	public void AddPoints(int points)
-	{
-		if (OnPointsAdded != null)
-		{
-			OnPointsAdded (points);
-		}
-	}
-
-    public event Action OnScoreSaved;
-
-    public void SaveScore()
-    {
-        if (OnScoreSaved != null)
-        {
-            OnScoreSaved();
-        }
-    }
-
 	// Start Game Window
 	public event Action OnGameStartClick;
 
@@ -167,8 +146,22 @@ public class GameEventsController : MonoBehaviour
 			OnGameStartClick ();
 		}
 
-		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
-		_world.CreateEntityWith<Components.Events.UpdateScoreEvent>();
+//		Systems.GameState.Instance.UpdateBestScore();
+	}
+
+	// Game Over Window
+	public event Action OnPlayMoreClick;
+
+	public void PlayMore()
+	{
+		if (OnPlayMoreClick != null)
+		{
+			OnPlayMoreClick ();
+		}
+
+		Systems.GameState.Instance.TurnsCount += Systems.GameState.Instance.SecondLifeTurnsCount;
+		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
+//		Systems.GameState.Instance.UpdateBestScore();
 	}
 
 	// HUD

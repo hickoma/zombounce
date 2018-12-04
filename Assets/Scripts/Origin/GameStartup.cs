@@ -190,7 +190,7 @@ public class GameStartup : MonoBehaviour
 //                DeathSprite = _parameters.DeadSprite,
 //                MinLength = _parameters.MinLength
 //            })
-            .Add(new BonusProcessing())
+//            .Add(new BonusProcessing())
 //            .Add(new PauseButtonStateProcessing())
 //            .Add(new DrawVectorPointerProcessing
 //            {
