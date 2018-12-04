@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 namespace Windows
@@ -26,9 +25,9 @@ namespace Windows
 
 		public void Start()
 		{			
-            m_RestartButton.onClick.AddListener(RestartGame);
+			m_RestartButton.onClick.AddListener(ClaimPrize);
             m_GetEnergyButton.onClick.AddListener(PlayMore);
-//			m_GetCoinsButton.onClick.AddListener(GameEventsController.Instance.StartGame);
+			m_GetCoinsButton.onClick.AddListener(ClaimPrize);
 		}
 
 		void OnEnable()
@@ -91,13 +90,10 @@ namespace Windows
 			HideWindow();
 		}
 
-		private void RestartGame()
+		private void ClaimPrize()
 		{
-			StopTimer ();
-			GameEventsController.Instance.RestartGame();
-
-			SceneManager.LoadScene(0);
-            HideWindow();
+			GameEventsController.Instance.StartRewarding();
+			HideWindow();
 		}
 
         private void HideWindow()

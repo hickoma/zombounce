@@ -17,6 +17,7 @@ namespace Data
         public int TurnsCount;
         public int TimerCount;
 		public int SecondLifeTurns;
+		public int PointsToCoinsCoeff;
         public float RescaleSpeed;
 
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;

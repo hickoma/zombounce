@@ -421,6 +421,7 @@ MonoBehaviour:
   m_PauseWindow: {fileID: 626425858}
   m_FistStoreWindow: {fileID: 1963937909}
   m_GameOverWindow: {fileID: 1398694016}
+  m_ClaimPrizeWindow: {fileID: 2081424884}
 --- !u!1001 &136725390
 Prefab:
   m_ObjectHideFlags: 0
@@ -3957,6 +3958,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1111254}
   m_Script: {fileID: 11500000, guid: 42fd3a9c5666e434faab479bfc8d580d, type: 3}
+--- !u!1 &2081424884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1477368455479868, guid: 666a0f8ac1e2acc40b07c8bb4239732f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1663524853}
 --- !u!1001 &2083987607
 Prefab:
   m_ObjectHideFlags: 0

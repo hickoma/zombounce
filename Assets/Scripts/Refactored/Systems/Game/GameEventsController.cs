@@ -164,6 +164,18 @@ public class GameEventsController : MonoBehaviour
 //		Systems.GameState.Instance.UpdateBestScore();
 	}
 
+	public event Action OnStartRewarding;
+
+	public void StartRewarding()
+	{
+		if (OnStartRewarding != null)
+		{
+			OnStartRewarding ();
+		}
+
+		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.REWARDING);
+	}
+
 	// HUD
 	public event Action OnGamePauseClick;
 

@@ -496,6 +496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b99c50a8b53b84a8f816ef6f668729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TakeCoinsButton: {fileID: 114278977572122262}
+  m_TakeCoinsText: {fileID: 114243841044411686}
+  m_TakeX3CoinsButton: {fileID: 114932612737789092}
+  m_TakeX3CoinsText: {fileID: 114649309315450284}
 --- !u!114 &114932612737789092
 MonoBehaviour:
   m_ObjectHideFlags: 1

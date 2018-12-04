@@ -16,10 +16,11 @@ MonoBehaviour:
   MinLength: 300
   MinVelocityTolerance: 0.5
   MaxForce: 3000
-  CoinsCount: 1000
+  CoinsCount: 0
   TurnsCount: 10
   TimerCount: 5
   SecondLifeTurns: 5
+  PointsToCoinsCoeff: 5
   RescaleSpeed: 5
   CameraSmooth: 0.2
   CameraMinPositionZ: -12

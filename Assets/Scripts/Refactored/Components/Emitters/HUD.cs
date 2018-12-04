@@ -36,6 +36,9 @@ namespace Windows
 		[SerializeField]
 		private GameObject m_GameOverWindow = null;
 
+		[SerializeField]
+		private GameObject m_ClaimPrizeWindow = null;
+
 		public void LateStart()
 		{
             GameEventsController.Instance.OnGameStateChanged += OnGameStateChanged;
@@ -52,6 +55,7 @@ namespace Windows
 			Systems.GameState.Instance.OnTurnsChanged += UpdateTurns;
 
 			// init points
+			m_PointsIndicator.gameObject.SetActive (false);
 			UpdatePoints(Systems.GameState.Instance.CurrentPointsCount);
 			Systems.GameState.Instance.OnPointsChanged += UpdatePoints;
 
@@ -76,12 +80,15 @@ namespace Windows
 				case Systems.GameState.State.PLAY:
 					m_PauseButton.gameObject.SetActive (true);
 					m_TurnsIndicator.transform.parent.gameObject.SetActive (true);
+					m_PointsIndicator.gameObject.SetActive (true);
                     break;
 
 				case Systems.GameState.State.GAME_OVER:
 				case Systems.GameState.State.PAUSE:
+				case Systems.GameState.State.REWARDING:
                     m_PauseButton.gameObject.SetActive(false);
 					m_TurnsIndicator.transform.parent.gameObject.SetActive (false);
+					m_PointsIndicator.gameObject.SetActive (false);
                     break;
             }
         }
@@ -103,6 +110,10 @@ namespace Windows
 					Systems.GameState.Instance.UpdateBestScore();
                     m_PauseWindow.SetActive(true);
                     break;
+
+				case Systems.GameState.State.REWARDING:
+					m_ClaimPrizeWindow.SetActive(true);
+					break;
             }
         }
 

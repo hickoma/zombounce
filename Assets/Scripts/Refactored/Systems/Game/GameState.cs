@@ -11,7 +11,8 @@ namespace Systems
 		{
 			PAUSE,
 			GAME_OVER,
-			PLAY
+			PLAY,
+			REWARDING
 		}
 
 		// interface
@@ -41,7 +42,7 @@ namespace Systems
 		// coins
 		bool m_AreCoinsInitialized = false;
 		// is inited from Parameters
-		public int m_CoinsDefaultCount = 500;
+		public int m_CoinsDefaultCount = 0;
 		int m_CoinsCount = -1;
 
 		public int CoinsCount
@@ -312,6 +313,22 @@ namespace Systems
 			if (CurrentPointsCount > BestScorePointsCount)
 			{
 				BestScorePointsCount = CurrentPointsCount;
+			}
+		}
+
+		// points to coins ratio
+		private int m_PointsToCoinsCoeff = 3;
+
+		public int PointsToCoinsCoeff
+		{
+			get
+			{
+				return m_PointsToCoinsCoeff;
+			}
+
+			set
+			{
+				m_PointsToCoinsCoeff = value;
 			}
 		}
 	}
