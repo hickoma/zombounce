@@ -331,5 +331,21 @@ namespace Systems
 				m_PointsToCoinsCoeff = value;
 			}
 		}
+
+        // coins will be multiplied by this coeff after watching ads
+        private int m_AdvertisingCoinsMultiplierCoeff = 3;
+
+        public int AdvertisingCoinsMultiplierCoeff
+        {
+            get
+            {
+                return m_AdvertisingCoinsMultiplierCoeff;
+            }
+
+            set
+            {
+                m_AdvertisingCoinsMultiplierCoeff = value;
+            }
+        }
 	}
 }

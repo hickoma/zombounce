@@ -20,8 +20,12 @@ namespace Windows
 		[SerializeField]
 		private Text m_TakeX3CoinsText = null;
 
+        [SerializeField]
+        private Text m_TakeX3CoinsBadgeXText = null;
+
 		private int m_PrizeCoins = 0;
 		private int m_PrizeCoinsX3 = 0;
+        private int m_AdvertisingMultiplier = 1;
 
 		public void Start()
 		{			
@@ -35,12 +39,14 @@ namespace Windows
 
 			m_TakeCoinsText.text = m_PrizeCoins.ToString ();
 			m_TakeX3CoinsText.text = m_PrizeCoinsX3.ToString ();
+            m_TakeX3CoinsBadgeXText.text = "x" + m_AdvertisingMultiplier.ToString();
 		}
 
 		private void CountPrizes()
 		{
 			m_PrizeCoins = Mathf.CeilToInt ((float)Systems.GameState.Instance.CurrentPointsCount / Systems.GameState.Instance.PointsToCoinsCoeff);
-			m_PrizeCoinsX3 = m_PrizeCoins * 3;
+            m_AdvertisingMultiplier = Systems.GameState.Instance.AdvertisingCoinsMultiplierCoeff;
+            m_PrizeCoinsX3 = m_PrizeCoins * m_AdvertisingMultiplier;
 		}
 
 		private void TakeCoins()
