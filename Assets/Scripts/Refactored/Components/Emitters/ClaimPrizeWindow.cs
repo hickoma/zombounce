@@ -51,14 +51,16 @@ namespace Windows
 
 		private void TakeX3Coins()
 		{
-			ShowAds ();
-			Systems.GameState.Instance.CoinsCount += m_PrizeCoinsX3;
-			RestartGame ();
+            ShowAds (() =>
+            {
+                Systems.GameState.Instance.CoinsCount += m_PrizeCoinsX3;
+                RestartGame ();
+            });
 		}
 
-		private void ShowAds()
+		private void ShowAds(System.Action onAdvertisingClose)
 		{
-
+            GameEventsController.Instance.ShowAdvertising(onAdvertisingClose);
 		}
 
 		private void RestartGame()

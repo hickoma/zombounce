@@ -39,9 +39,13 @@ namespace Windows
 		[SerializeField]
 		private GameObject m_ClaimPrizeWindow = null;
 
+        [SerializeField]
+        private GameObject m_AdvertisingWindow = null;
+
 		public void LateStart()
 		{
             GameEventsController.Instance.OnGameStateChanged += OnGameStateChanged;
+            GameEventsController.Instance.OnShowAdvertising += OnShowAdvertising;
 
             m_PauseButton.gameObject.SetActive(false);
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
@@ -71,6 +75,12 @@ namespace Windows
         {
             SetHudElementsState(newState);
             SetWindowsState(newState);
+        }
+
+        void OnShowAdvertising (System.Action onAdvertisingClose)
+        {
+            m_AdvertisingWindow.GetComponent<AdvertisingWindow>().Init(onAdvertisingClose);
+            m_AdvertisingWindow.SetActive(true);
         }
 
 		private void SetHudElementsState(Systems.GameState.State currentState)

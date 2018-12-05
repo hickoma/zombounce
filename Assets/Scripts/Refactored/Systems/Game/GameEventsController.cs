@@ -145,11 +145,19 @@ public class GameEventsController : MonoBehaviour
 		{
 			OnGameStartClick ();
 		}
-
-//		Systems.GameState.Instance.UpdateBestScore();
 	}
 
 	// Game Over Window
+    public event Action<Action> OnShowAdvertising;
+
+    public void ShowAdvertising(Action onAdvertisingClose)
+    {
+        if (OnShowAdvertising != null)
+        {
+            OnShowAdvertising(onAdvertisingClose);
+        }
+    }
+
 	public event Action OnPlayMoreClick;
 
 	public void PlayMore()
@@ -161,7 +169,6 @@ public class GameEventsController : MonoBehaviour
 
 		Systems.GameState.Instance.TurnsCount += Systems.GameState.Instance.SecondLifeTurnsCount;
 		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
-//		Systems.GameState.Instance.UpdateBestScore();
 	}
 
 	public event Action OnStartRewarding;
