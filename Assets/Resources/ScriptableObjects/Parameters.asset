@@ -35,7 +35,7 @@ MonoBehaviour:
   - {fileID: 1929051274091830, guid: 757e1dca26ade3a4fa900ac150900368, type: 2}
   - {fileID: 1929051274091830, guid: b3cdcff65e2782d48922d1f0d76c9226, type: 2}
   - {fileID: 1929051274091830, guid: 464dafd46c43f5c4088aa46f78dc85d4, type: 2}
-  ForwardSpawnCount: 2
+  ForwardSpawnCount: 3
   BackwardSpawnCount: 1
   InitialPoolSize: 128
   Zombies:
