@@ -17,14 +17,15 @@ MonoBehaviour:
   MinVelocityTolerance: 0.5
   MaxForce: 3000
   CoinsCount: 0
-  TurnsCount: 10
+  TurnsCount: 5
   TimerCount: 5
   SecondLifeTurns: 5
   PointsToCoinsCoeff: 5
+  AdvertisingCoinsMultiplierCoeff: 3
   RescaleSpeed: 5
   CameraSmooth: 0.2
   CameraMinPositionZ: -12
-  BackBlockerDistanceFromCamera: -14
+  BackBlockerDistanceFromCamera: -15
   Fields:
   - {fileID: 1929051274091830, guid: 751de8fd29992f54a81192425e24789e, type: 2}
   - {fileID: 1929051274091830, guid: f49653eda0c56ec4f91229eaba6326a5, type: 2}

@@ -44,11 +44,8 @@ namespace Windows
 			}
 			else
 			{
-				// show coins button
-				m_GetEnergyButton.gameObject.SetActive (false);
-				m_GetCoinsButton.gameObject.SetActive (true);
-				m_KeepGoingText.gameObject.SetActive (false);
-				m_TimerText.gameObject.SetActive (false);
+                // immediately go to Claim Prize Window
+                ClaimPrize();
 			}
 
 			// count death
@@ -70,11 +67,7 @@ namespace Windows
 				yield return new WaitForSeconds (1);
 			}
 
-			// show coins button
-			m_GetEnergyButton.gameObject.SetActive (false);
-			m_GetCoinsButton.gameObject.SetActive (true);
-			m_KeepGoingText.gameObject.SetActive (false);
-			m_TimerText.gameObject.SetActive (false);
+            ClaimPrize();
 		}
 
 		private void StopTimer()
@@ -84,10 +77,13 @@ namespace Windows
 
 		private void PlayMore()
 		{
-			StopTimer ();
-			GameEventsController.Instance.PlayMore();
+            GameEventsController.Instance.ShowAdvertising(() =>
+            {
+    			StopTimer ();
+    			GameEventsController.Instance.PlayMore();
 
-			HideWindow();
+    			HideWindow();
+            });
 		}
 
 		private void ClaimPrize()
