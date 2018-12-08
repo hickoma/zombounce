@@ -21,6 +21,9 @@ namespace Windows
         private GameObject m_MoreContent = null;
 
         [SerializeField]
+        private Button m_FreeCoinsButton = null;
+
+        [SerializeField]
         private Button m_HomeButton = null;
 
         private List<Windows.FistItemView> m_Items = new List<FistItemView>();
@@ -33,6 +36,7 @@ namespace Windows
         {
             Init();
 
+            m_FreeCoinsButton.onClick.AddListener(TakeFreeCoins);
             m_HomeButton.onClick.AddListener(HideWindow);
             GameEventsController.Instance.OnStoreWindowOpen += ShowWindow;
         }
@@ -145,5 +149,19 @@ namespace Windows
 		{
 			m_CoinsCount.text = m_CurrentCoins.ToString ();
 		}
+
+        private void TakeFreeCoins()
+        {
+            ShowAds (() =>
+            {
+                Systems.GameState.Instance.CoinsCount += Systems.GameState.Instance.FreeCoinsAmount;
+                UpdateCoinsCounter();
+            });
+        }
+
+        private void ShowAds(System.Action onAdvertisingClose)
+        {
+            GameEventsController.Instance.ShowAdvertising(onAdvertisingClose);
+        }
     }
 }

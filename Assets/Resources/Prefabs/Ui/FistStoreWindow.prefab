@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1562061653492916
 GameObject:
   m_ObjectHideFlags: 1
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 114849078329348440}
   - component: {fileID: 114339798570721954}
   m_Layer: 5
-  m_Name: GetCoins
+  m_Name: FreeCoinsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,6 +375,7 @@ MonoBehaviour:
     type: 2}
   m_Content: {fileID: 224356280699121860}
   m_MoreContent: {fileID: 1844397602642228}
+  m_FreeCoinsButton: {fileID: 114339798570721954}
   m_HomeButton: {fileID: 114773960510512576}
 --- !u!114 &114274756653571754
 MonoBehaviour:
@@ -865,7 +866,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Get coins
+  m_Text: Free coins
 --- !u!222 &222066732172887076
 CanvasRenderer:
   m_ObjectHideFlags: 1
