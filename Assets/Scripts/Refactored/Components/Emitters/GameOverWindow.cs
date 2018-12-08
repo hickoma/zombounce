@@ -6,9 +6,6 @@ namespace Windows
 {
     public class GameOverWindow : MonoBehaviour
     {
-        [SerializeField]
-        private Button m_RestartButton = null;
-
 		[SerializeField]
 		private Button m_GetEnergyButton = null;
 
@@ -21,13 +18,16 @@ namespace Windows
 		[SerializeField]
 		private Text m_TimerText = null;
 
+        [SerializeField]
+        private Button m_RestartButton = null;
+
 		private bool m_AlreadyDied = false;
 
 		public void Start()
-		{			
-			m_RestartButton.onClick.AddListener(ClaimPrize);
+		{
             m_GetEnergyButton.onClick.AddListener(PlayMore);
 			m_GetCoinsButton.onClick.AddListener(ClaimPrize);
+            m_RestartButton.onClick.AddListener(ClaimPrize);
 		}
 
 		void OnEnable()
