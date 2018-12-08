@@ -238,6 +238,7 @@ public class GameStartup : MonoBehaviour
 		m_GameState.SecondLifeTurnsCount = _parameters.SecondLifeTurns;
 		m_GameState.PointsToCoinsCoeff = _parameters.PointsToCoinsCoeff;
         m_GameState.AdvertisingCoinsMultiplierCoeff = _parameters.AdvertisingCoinsMultiplierCoeff;
+        m_GameState.FreeCoinsAmount = _parameters.FreeCoinsAmount;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;

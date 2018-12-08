@@ -347,5 +347,21 @@ namespace Systems
                 m_AdvertisingCoinsMultiplierCoeff = value;
             }
         }
+
+        // free coins given for watching ads
+        private int m_FreeCoinsAmount = 100;
+
+        public int FreeCoinsAmount
+        {
+            get
+            {
+                return m_FreeCoinsAmount;
+            }
+
+            set
+            {
+                m_FreeCoinsAmount = value;
+            }
+        }
 	}
 }

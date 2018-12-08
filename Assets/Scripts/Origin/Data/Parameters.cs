@@ -19,6 +19,7 @@ namespace Data
 		public int SecondLifeTurns;
 		public int PointsToCoinsCoeff;
         public int AdvertisingCoinsMultiplierCoeff;
+        public int FreeCoinsAmount;
         public float RescaleSpeed;
 
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;

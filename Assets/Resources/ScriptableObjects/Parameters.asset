@@ -22,6 +22,7 @@ MonoBehaviour:
   SecondLifeTurns: 5
   PointsToCoinsCoeff: 5
   AdvertisingCoinsMultiplierCoeff: 3
+  FreeCoinsAmount: 100
   RescaleSpeed: 5
   CameraSmooth: 0.2
   CameraMinPositionZ: -12

@@ -13,6 +13,9 @@ namespace Windows
 		[SerializeField]
 		private Text m_CoinsIndicator = null;
 
+        [SerializeField]
+        private Button m_AddCoinsButton = null;
+
 		[SerializeField]
 		private Text m_TurnsIndicator = null;
 
@@ -32,6 +35,9 @@ namespace Windows
 
         [SerializeField]
         private GameObject m_FistStoreWindow = null;
+
+        [SerializeField]
+        private GameObject m_CoinsStoreWindow = null;
 
 		[SerializeField]
 		private GameObject m_GameOverWindow = null;
@@ -53,6 +59,7 @@ namespace Windows
 			// init coins
 			UpdateCoins(Systems.GameState.Instance.CoinsCount);
 			Systems.GameState.Instance.OnCoinsChanged += UpdateCoins;
+            m_AddCoinsButton.onClick.AddListener(OpenCoinsStore);
 
 			// init turns
 			UpdateTurns(Systems.GameState.Instance.TurnsCount);
@@ -83,12 +90,18 @@ namespace Windows
             m_AdvertisingWindow.SetActive(true);
         }
 
+        void OpenCoinsStore()
+        {
+            m_CoinsStoreWindow.SetActive(true);
+        }
+
 		private void SetHudElementsState(Systems.GameState.State currentState)
         {
             switch (currentState)
             {
-				case Systems.GameState.State.PLAY:
-					m_PauseButton.gameObject.SetActive (true);
+                case Systems.GameState.State.PLAY:
+                    m_PauseButton.gameObject.SetActive(true);
+                    m_AddCoinsButton.gameObject.SetActive(false);
 					m_TurnsIndicator.transform.parent.gameObject.SetActive (true);
 					m_PointsIndicator.gameObject.SetActive (true);
                     break;
@@ -97,6 +110,7 @@ namespace Windows
 				case Systems.GameState.State.PAUSE:
 				case Systems.GameState.State.REWARDING:
                     m_PauseButton.gameObject.SetActive(false);
+                    m_AddCoinsButton.gameObject.SetActive(true);
 					m_TurnsIndicator.transform.parent.gameObject.SetActive (false);
 					m_PointsIndicator.gameObject.SetActive (false);
                     break;
