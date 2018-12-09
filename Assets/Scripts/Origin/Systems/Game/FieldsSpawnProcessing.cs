@@ -242,9 +242,9 @@ namespace Systems.Game
 
 				// set random zombie sprite
 				// need to refactor it
-				SpriteRenderer zombieSpriteRenderer = poolingObj.PoolTransform.GetComponent<SpriteRenderer> ();
+				SpriteRenderer zombieSpriteRenderer = poolingObj.PoolTransform.GetComponentInChildren<SpriteRenderer> ();
 				int randomZombieNumber = Random.Range (0, ZombiePrefabs.Length);
-				zombieSpriteRenderer.sprite = ZombiePrefabs [randomZombieNumber].GetComponent<SpriteRenderer> ().sprite;
+                zombieSpriteRenderer.sprite = ZombiePrefabs [randomZombieNumber].GetComponentInChildren<SpriteRenderer> ().sprite;
 
 				// finally activate
                 poolingObj.PoolTransform.gameObject.SetActive(true);
