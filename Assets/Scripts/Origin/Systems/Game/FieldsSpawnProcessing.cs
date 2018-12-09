@@ -17,7 +17,7 @@ namespace Systems.Game
     {
         private EcsWorld _world;
 //        private EcsFilter<InFieldEvent> _inFieldEventFilter = null;
-        private EcsFilter<UnityPrefabComponent> _unityPrefabFilter = null;
+//        private EcsFilter<UnityPrefabComponent> _unityPrefabFilter = null;
 //        private EcsFilter<DespawnEnergyEvent> _despawnEnergyEventFilter = null;
 //        private EcsFilter<DespawnCoinEvent> _despawnCoinEventFilter = null;
 
