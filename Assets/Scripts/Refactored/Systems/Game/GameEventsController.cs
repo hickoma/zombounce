@@ -167,7 +167,7 @@ public class GameEventsController : MonoBehaviour
 			OnPlayMoreClick ();
 		}
 
-		Systems.GameState.Instance.TurnsCount += Systems.GameState.Instance.SecondLifeTurnsCount;
+		Systems.GameState.Instance.TurnsCount = Systems.GameState.Instance.SecondLifeTurnsCount;
 		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
 	}
 

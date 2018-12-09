@@ -11,7 +11,7 @@ namespace Emitters
         {
             if (other.gameObject.CompareTag(Tag.Player))
             {
-				Systems.GameState.Instance.TurnsCount += -11;
+				Systems.GameState.Instance.TurnsCount = -1;
             }
         }
     }
