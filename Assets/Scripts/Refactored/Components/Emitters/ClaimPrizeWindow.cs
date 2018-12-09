@@ -26,6 +26,7 @@ namespace Windows
 		private int m_PrizeCoins = 0;
 		private int m_PrizeCoinsX3 = 0;
         private int m_AdvertisingMultiplier = 1;
+        private Tween.Base m_X3CoinsButtonScaleTween = null;
 
 		public void Start()
 		{			
@@ -40,7 +41,21 @@ namespace Windows
 			m_TakeCoinsText.text = m_PrizeCoins.ToString ();
 			m_TakeX3CoinsText.text = m_PrizeCoinsX3.ToString ();
             m_TakeX3CoinsBadgeXText.text = "x" + m_AdvertisingMultiplier.ToString();
+
+            AnimateEnergyButton();
 		}
+
+        private void AnimateEnergyButton()
+        {
+            Transform getEnergyTransform = m_TakeX3CoinsButton.transform;
+            m_X3CoinsButtonScaleTween = Tween.Value(1f).From(1f).To(1.3f).OnUpdate((v) =>
+            {
+                getEnergyTransform.localScale = Vector3.one * v;
+            }).OnFinal(() =>
+            {
+                getEnergyTransform.localScale = Vector3.one;
+            }).PingPong.Start();
+        }
 
 		private void CountPrizes()
 		{
@@ -66,11 +81,13 @@ namespace Windows
 
 		private void ShowAds(System.Action onAdvertisingClose)
 		{
+            m_X3CoinsButtonScaleTween.Stop();
             GameEventsController.Instance.ShowAdvertising(onAdvertisingClose);
 		}
 
 		private void RestartGame()
 		{
+            m_X3CoinsButtonScaleTween.Stop();
 			GameEventsController.Instance.RestartGame();
 
 			SceneManager.LoadScene(0);

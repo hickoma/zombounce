@@ -22,6 +22,8 @@ namespace Windows
         private Button m_RestartButton = null;
 
 		private bool m_AlreadyDied = false;
+        private Coroutine m_TimerCoroutine = null;
+        private Tween.Base m_EnergyButtonScaleTween = null;
 
 		public void Start()
 		{
@@ -41,6 +43,7 @@ namespace Windows
 				m_TimerText.gameObject.SetActive (true);
 
 				StartTimer ();
+                AnimateEnergyButton();
 			}
 			else
 			{
@@ -54,7 +57,7 @@ namespace Windows
 
 		private void StartTimer()
 		{
-			StartCoroutine (RunTimer ());
+            m_TimerCoroutine = StartCoroutine (RunTimer ());
 		}
 
 		private IEnumerator RunTimer()
@@ -72,14 +75,28 @@ namespace Windows
 
 		private void StopTimer()
 		{
-			StopCoroutine ("RunTimer");
+            StopCoroutine (m_TimerCoroutine);
 		}
+
+        private void AnimateEnergyButton()
+        {
+            Transform getEnergyTransform = m_GetEnergyButton.transform;
+            m_EnergyButtonScaleTween = Tween.Value(1f).From(1f).To(1.3f).OnUpdate((v) =>
+            {
+                getEnergyTransform.localScale = Vector3.one * v;
+            }).OnFinal(() =>
+            {
+                getEnergyTransform.localScale = Vector3.one;
+            }).PingPong.Start();
+        }
 
 		private void PlayMore()
 		{
+            StopTimer ();
+            m_EnergyButtonScaleTween.Stop();
+
             GameEventsController.Instance.ShowAdvertising(() =>
             {
-    			StopTimer ();
     			GameEventsController.Instance.PlayMore();
 
     			HideWindow();
@@ -88,6 +105,7 @@ namespace Windows
 
 		private void ClaimPrize()
 		{
+            m_EnergyButtonScaleTween.Stop();
 			GameEventsController.Instance.StartRewarding();
 			HideWindow();
 		}
