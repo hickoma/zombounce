@@ -8,5 +8,6 @@ namespace Components
         public Transform m_Transform;
         public SpriteRenderer m_FistSprite;
         public Transform m_FistTransform;
+        public Animator m_AnimatorController;
     }
 }

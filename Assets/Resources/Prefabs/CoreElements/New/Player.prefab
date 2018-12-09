@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4676634875310728}
   - component: {fileID: 212488336845987740}
   m_Layer: 0
-  m_Name: Fist
+  m_Name: fist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 114367714730320876}
   - component: {fileID: 135708209955178578}
   - component: {fileID: 54787716056321762}
+  - component: {fileID: 95308931886181618}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -180,6 +181,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 20
   m_CollisionDetection: 2
+--- !u!95 &95308931886181618
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824897036107524}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2a2d4e23fe1b479cab55e43b4415510, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114140279226051622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,6 +266,7 @@ MonoBehaviour:
   m_Transform: {fileID: 4442905300584622}
   m_FistSprite: {fileID: 212488336845987740}
   m_FistTransform: {fileID: 4676634875310728}
+  m_AnimatorController: {fileID: 95308931886181618}
 --- !u!135 &135708209955178578
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -73,10 +73,13 @@ namespace Systems.PlayerProcessings
                         // fist follows the opposite direction of fingerprins
                         TurnFist(-direction.x, -direction.y);
                     }
+
+                    m_Player.m_AnimatorController.SetBool("IsAiming", true);
                 }
 				else
 				{
 					CalcAndSetForceVector(downPointerPosition, upPointerPosition);
+                    m_Player.m_AnimatorController.SetBool("IsAiming", false);
 				}
             }
         }
