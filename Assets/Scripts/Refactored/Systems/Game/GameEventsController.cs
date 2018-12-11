@@ -215,6 +215,26 @@ public class GameEventsController : MonoBehaviour
         }
 	}
 
+	public event Action<Vector3, int> OnCreateRewardTurn;
+
+	public void CreateRewardTurn(Vector3 startPosition, int count)
+	{
+		if (OnCreateRewardTurn != null)
+		{
+			OnCreateRewardTurn (startPosition, count);
+		}
+	}
+
+	public event Action<Vector3, int> OnCreateRewardCoin;
+
+	public void CreateRewardCoin(Vector3 startPosition, int count)
+	{
+		if (OnCreateRewardCoin != null)
+		{
+			OnCreateRewardCoin (startPosition, count);
+		}
+	}
+
 	// Field Spawn Processing
 	public event Action<float> OnFieldEntered;
 

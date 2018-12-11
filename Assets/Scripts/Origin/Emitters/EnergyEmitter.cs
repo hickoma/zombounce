@@ -12,7 +12,8 @@ namespace Emitters
         {
             if (other.CompareTag(Tag.Player))
             {
-				Systems.GameState.Instance.TurnsCount += 1;                    
+				Systems.GameState.Instance.TurnsCount += 1;
+				GameEventsController.Instance.CreateRewardTurn (transform.position, 1);
 				GameEventsController.Instance.GatherEnergy (GetComponent<IPoolObject> ());
             }
         }

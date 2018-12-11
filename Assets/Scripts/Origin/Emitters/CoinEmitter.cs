@@ -12,6 +12,7 @@ namespace Emitters
             if (other.CompareTag(Tag.Player))
             {
 				Systems.GameState.Instance.CoinsCount += 1;
+				GameEventsController.Instance.CreateRewardCoin (transform.position, 1);
 				GameEventsController.Instance.GatherCoin (GetComponent<IPoolObject> ());
             }
         }

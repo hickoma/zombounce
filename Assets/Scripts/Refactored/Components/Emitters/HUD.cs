@@ -48,10 +48,20 @@ namespace Windows
         [SerializeField]
         private GameObject m_AdvertisingWindow = null;
 
+		[Space]
+		[Header("Rewards")]
+		[SerializeField]
+		private Components.TurnReward m_TurnRewardPrefab = null;
+
+		[SerializeField]
+		private GameObject m_CoinRewardPrefab = null;
+
 		public void LateStart()
 		{
             GameEventsController.Instance.OnGameStateChanged += OnGameStateChanged;
             GameEventsController.Instance.OnShowAdvertising += OnShowAdvertising;
+			GameEventsController.Instance.OnCreateRewardTurn += OnCreateRewardTurn;
+			GameEventsController.Instance.OnCreateRewardCoin += OnCreateRewardCoin;
 
             m_PauseButton.gameObject.SetActive(false);
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
@@ -76,6 +86,17 @@ namespace Windows
 
 			// show Start Game Window
 			m_StartGameWindow.SetActive (true);
+		}
+
+		void OnCreateRewardTurn (Vector3 startPosition, int count)
+		{
+			Components.TurnReward turnReward = Instantiate (m_TurnRewardPrefab, transform) as Components.TurnReward;
+			turnReward.SetFlight (startPosition, m_CoinsIndicator.transform.position);
+		}
+
+		void OnCreateRewardCoin (Vector3 startPosition, int count)
+		{
+			
 		}
 
 		void OnGameStateChanged(Systems.GameState.State newState)

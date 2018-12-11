@@ -426,6 +426,9 @@ MonoBehaviour:
   m_GameOverWindow: {fileID: 1398694016}
   m_ClaimPrizeWindow: {fileID: 2081424884}
   m_AdvertisingWindow: {fileID: 666242426}
+  m_TurnRewardPrefab: {fileID: 114794949042730980, guid: cfe0aca66dd4a174687cf66845955a9f,
+    type: 2}
+  m_CoinRewardPrefab: {fileID: 0}
 --- !u!1 &163508933
 GameObject:
   m_ObjectHideFlags: 0
