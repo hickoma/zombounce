@@ -14,10 +14,16 @@ namespace Windows
 		private Text m_CoinsIndicator = null;
 
         [SerializeField]
+        private Image m_CoinsIcon = null;
+
+        [SerializeField]
         private Button m_AddCoinsButton = null;
 
 		[SerializeField]
 		private Text m_TurnsIndicator = null;
+
+        [SerializeField]
+        private Image m_TurnsIcon = null;
 
 		[SerializeField]
 		private Text m_PointsIndicator = null;
@@ -91,7 +97,7 @@ namespace Windows
 		void OnCreateRewardTurn (Vector3 startPosition, int count)
 		{
 			Components.TurnReward turnReward = Instantiate (m_TurnRewardPrefab, transform) as Components.TurnReward;
-			turnReward.SetFlight (startPosition, m_CoinsIndicator.transform.position);
+            turnReward.SetFlight (startPosition, m_TurnsIcon.rectTransform.anchoredPosition);
 		}
 
 		void OnCreateRewardCoin (Vector3 startPosition, int count)
