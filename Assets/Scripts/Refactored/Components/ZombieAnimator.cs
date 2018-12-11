@@ -19,7 +19,7 @@ namespace Components
         {
             while (true)
             {
-                float waitTime = Random.Range(2f, 3f);
+				float waitTime = 0;
                 int animationNumber = Random.Range(1, 4);
                 // wait and start animation
                 yield return new WaitForSeconds(waitTime);
