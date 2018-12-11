@@ -124,6 +124,15 @@ public class Tween : MonoBehaviour {
 				}
 	}
 
+	// call it on scene changing otherwise no tweens will work
+	public void Clear()
+	{
+		StopAll ();
+		Destroy (instance.gameObject);
+		instance = null;
+		initialized = false;
+	}
+
 	public static bool IsRunning(object target, string tag) {
 		Transform t = null;
 		if (target is Component) t = ((Component)target).transform;
