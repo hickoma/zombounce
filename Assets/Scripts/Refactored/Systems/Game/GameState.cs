@@ -364,6 +364,22 @@ namespace Systems
             }
         }
 
+		// Hud rewards fly for this amount of time after gathering
+		private float m_RewardFlyTime = 0.5f;
+
+		public float RewardFlyTime
+		{
+			get
+			{
+				return m_RewardFlyTime;
+			}
+
+			set
+			{
+				m_RewardFlyTime = value;
+			}
+		}
+
 		// Player is dead only when m_FlyingRewardsExist is false
 		private bool m_FlyingRewardsExist = false;
 

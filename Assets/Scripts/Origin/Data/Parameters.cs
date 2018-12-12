@@ -21,6 +21,7 @@ namespace Data
         public int AdvertisingCoinsMultiplierCoeff;
         public int FreeCoinsAmount;
         public float RescaleSpeed;
+		public float RewardFlyTime;
 
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;
         public float CameraMinPositionZ;

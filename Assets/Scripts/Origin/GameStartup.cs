@@ -239,6 +239,7 @@ public class GameStartup : MonoBehaviour
 		m_GameState.PointsToCoinsCoeff = _parameters.PointsToCoinsCoeff;
         m_GameState.AdvertisingCoinsMultiplierCoeff = _parameters.AdvertisingCoinsMultiplierCoeff;
         m_GameState.FreeCoinsAmount = _parameters.FreeCoinsAmount;
+		m_GameState.RewardFlyTime = _parameters.RewardFlyTime;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;

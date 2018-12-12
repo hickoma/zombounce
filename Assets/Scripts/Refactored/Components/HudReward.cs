@@ -17,7 +17,7 @@ namespace Components
 		{
 			RectTransform thisTransform = (RectTransform)transform;
 
-			Tween.Value (0.5f).From(0f).To(1f).OnUpdate ((v) =>
+			Tween.Value (Systems.GameState.Instance.RewardFlyTime).From(0f).To(1f).OnUpdate ((v) =>
 			{
 				float modX = Mathf.Lerp(m_StartPosition.x, m_TargetPosition.x, Tween.Ease.easeOutBack(v));
 				float modY = Mathf.Lerp(m_StartPosition.y, m_TargetPosition.y, Tween.Ease.easeInOutCirc(v));
