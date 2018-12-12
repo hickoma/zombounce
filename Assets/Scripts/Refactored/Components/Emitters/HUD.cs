@@ -60,7 +60,7 @@ namespace Windows
 		private Components.TurnReward m_TurnRewardPrefab = null;
 
 		[SerializeField]
-		private GameObject m_CoinRewardPrefab = null;
+		private Components.CoinReward m_CoinRewardPrefab = null;
 
 		public void LateStart()
 		{
@@ -97,12 +97,17 @@ namespace Windows
 		void OnCreateRewardTurn (Vector3 startPosition, int count)
 		{
 			Components.TurnReward turnReward = Instantiate (m_TurnRewardPrefab, transform) as Components.TurnReward;
-            turnReward.SetFlight (startPosition, m_TurnsIcon.rectTransform.anchoredPosition);
+			// icon position relatve to HUD
+			Vector3 targetPosition = transform.InverseTransformPoint(m_TurnsIcon.rectTransform.position);
+			turnReward.SetFlight (startPosition, targetPosition);
 		}
 
 		void OnCreateRewardCoin (Vector3 startPosition, int count)
 		{
-			
+			Components.CoinReward coinReward = Instantiate (m_CoinRewardPrefab, transform) as Components.CoinReward;
+			// icon position relatve to HUD
+			Vector3 targetPosition = transform.InverseTransformPoint(m_CoinsIcon.rectTransform.position);
+			coinReward.SetFlight (startPosition, targetPosition);
 		}
 
 		void OnGameStateChanged(Systems.GameState.State newState)

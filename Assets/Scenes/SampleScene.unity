@@ -430,7 +430,8 @@ MonoBehaviour:
   m_AdvertisingWindow: {fileID: 666242426}
   m_TurnRewardPrefab: {fileID: 114794949042730980, guid: cfe0aca66dd4a174687cf66845955a9f,
     type: 2}
-  m_CoinRewardPrefab: {fileID: 0}
+  m_CoinRewardPrefab: {fileID: 114784218995235528, guid: 98dc981ee8b43f34b9765cad5d26e058,
+    type: 2}
 --- !u!1 &163508933
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +848,7 @@ Prefab:
     - target: {fileID: 224684531014813636, guid: f395c160e0dff8a499d00071eb0f577a,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224684531014813636, guid: f395c160e0dff8a499d00071eb0f577a,
         type: 2}
@@ -1388,7 +1389,7 @@ Prefab:
     - target: {fileID: 224505355302777300, guid: f67975f2162af4d55b6a1a5b501e9b28,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224505355302777300, guid: f67975f2162af4d55b6a1a5b501e9b28,
         type: 2}
@@ -2230,7 +2231,7 @@ Prefab:
     - target: {fileID: 224866582286699076, guid: 0a6256aa20b7a5643892a50fbce39c72,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224866582286699076, guid: 0a6256aa20b7a5643892a50fbce39c72,
         type: 2}
@@ -2330,7 +2331,7 @@ Prefab:
     - target: {fileID: 224562648638340120, guid: 3211648fa6c8d4bb999f915dc8ad6e6a,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224562648638340120, guid: 3211648fa6c8d4bb999f915dc8ad6e6a,
         type: 2}
@@ -3444,7 +3445,7 @@ Prefab:
     - target: {fileID: 224866582286699076, guid: 666a0f8ac1e2acc40b07c8bb4239732f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224866582286699076, guid: 666a0f8ac1e2acc40b07c8bb4239732f,
         type: 2}
@@ -3848,7 +3849,7 @@ Prefab:
     - target: {fileID: 224394356547753872, guid: a534a404997ef4097b4558862680fdf1,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224394356547753872, guid: a534a404997ef4097b4558862680fdf1,
         type: 2}
@@ -3959,7 +3960,7 @@ Prefab:
     - target: {fileID: 224952723189492574, guid: 655f6feb18a5e4341b3cd5b0920fde1f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224952723189492574, guid: 655f6feb18a5e4341b3cd5b0920fde1f,
         type: 2}
