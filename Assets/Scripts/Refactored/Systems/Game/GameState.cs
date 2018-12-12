@@ -363,5 +363,21 @@ namespace Systems
                 m_FreeCoinsAmount = value;
             }
         }
+
+		// Player is dead only when m_FlyingRewardsExist is false
+		private bool m_FlyingRewardsExist = false;
+
+		public bool FlyingRewardsExist
+		{
+			get
+			{
+				return m_FlyingRewardsExist;
+			}
+
+			set
+			{
+				m_FlyingRewardsExist = value;
+			}
+		}
 	}
 }

@@ -15,7 +15,7 @@ namespace Systems
 			int currentCount = Systems.GameState.Instance.TurnsCount;
 
 			// last turn and player stop - he's dead
-            if (currentCount == 0)
+			if (currentCount == 0 && !Systems.GameState.Instance.FlyingRewardsExist)
             {
 				GameEventsController.Instance.ChangeGameState (Systems.GameState.State.GAME_OVER);
             }
@@ -23,6 +23,7 @@ namespace Systems
 
 		private void ChangeTurns(int newCount)
 		{
+			// becomes negative after hitting Red Block Emitter
 			if (newCount < 0)
 			{
 				GameEventsController.Instance.ChangeGameState (Systems.GameState.State.GAME_OVER);

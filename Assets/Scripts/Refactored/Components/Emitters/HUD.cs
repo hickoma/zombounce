@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using Components;
 
 namespace Windows
 {
@@ -57,10 +59,13 @@ namespace Windows
 		[Space]
 		[Header("Rewards")]
 		[SerializeField]
-		private Components.TurnReward m_TurnRewardPrefab = null;
+		private TurnReward m_TurnRewardPrefab = null;
 
 		[SerializeField]
-		private Components.CoinReward m_CoinRewardPrefab = null;
+		private CoinReward m_CoinRewardPrefab = null;
+
+		// special list to control Player death on last energy
+		private List<TurnReward> m_FlyingTurnRewards = new List<TurnReward> ();
 
 		public void LateStart()
 		{
@@ -96,15 +101,31 @@ namespace Windows
 
 		void OnCreateRewardTurn (Vector3 startPosition, int count)
 		{
-			Components.TurnReward turnReward = Instantiate (m_TurnRewardPrefab, transform) as Components.TurnReward;
-			// icon position relatve to HUD
+			TurnReward turnReward = Instantiate (m_TurnRewardPrefab, transform) as TurnReward;
+			// icon position relative to HUD
 			Vector3 targetPosition = transform.InverseTransformPoint(m_TurnsIcon.rectTransform.position);
 			turnReward.SetFlight (startPosition, targetPosition);
+
+			// add to control list
+			AddFlyingTurnReward (turnReward);
+		}
+
+		void AddFlyingTurnReward(TurnReward flyingReward)
+		{
+			m_FlyingTurnRewards.Add (flyingReward);
+			flyingReward.OnFlightEnd += RemoveFlyingTurnReward;
+			Systems.GameState.Instance.FlyingRewardsExist = (m_FlyingTurnRewards.Count > 0);
+		}
+
+		void RemoveFlyingTurnReward(HudReward flyingReward)
+		{
+			m_FlyingTurnRewards.Remove ((TurnReward)flyingReward);
+			Systems.GameState.Instance.FlyingRewardsExist = (m_FlyingTurnRewards.Count > 0);
 		}
 
 		void OnCreateRewardCoin (Vector3 startPosition, int count)
 		{
-			Components.CoinReward coinReward = Instantiate (m_CoinRewardPrefab, transform) as Components.CoinReward;
+			CoinReward coinReward = Instantiate (m_CoinRewardPrefab, transform) as CoinReward;
 			// icon position relatve to HUD
 			Vector3 targetPosition = transform.InverseTransformPoint(m_CoinsIcon.rectTransform.position);
 			coinReward.SetFlight (startPosition, targetPosition);

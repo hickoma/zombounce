@@ -51,20 +51,6 @@ public class GameEventsController : MonoBehaviour
 		{
 			OnGameStateChanged (newState);
 		}
-
-		// ugly, ugly, UGLY
-		// move to another controller
-		switch (newState)
-		{
-			case Systems.GameState.State.PLAY:
-				Time.timeScale = 1f;
-				break;
-
-			case Systems.GameState.State.GAME_OVER:
-			case Systems.GameState.State.PAUSE:
-//				Time.timeScale = 0f;
-				break;
-		}
 	}
 
 	// Draw Vector Pointer Processing

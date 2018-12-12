@@ -8,6 +8,8 @@ namespace Components
 	{
 		public int m_RewardAmount = 1;
 
+		public event System.Action<HudReward> OnFlightEnd;
+
 		private Vector2 m_StartPosition;
 		private Vector3 m_TargetPosition;
 
@@ -29,7 +31,7 @@ namespace Components
 			RectTransform canvasRect = transform.parent.parent.gameObject.GetComponent<RectTransform>();
 			Vector3 viewportPosition = Camera.main.WorldToViewportPoint(startPosition);
 			Vector2 screenPosition = new Vector2 (viewportPosition.x * canvasRect.sizeDelta.x - canvasRect.sizeDelta.x * 0.5f, 
-				viewportPosition.y * canvasRect.sizeDelta.y - canvasRect.sizeDelta.y * 0.5f);
+													viewportPosition.y * canvasRect.sizeDelta.y - canvasRect.sizeDelta.y * 0.5f);
 			m_StartPosition = screenPosition;
 
 			m_TargetPosition = targetPosition;
@@ -37,6 +39,11 @@ namespace Components
 
 		public virtual void GiveReward()
 		{
+			if (OnFlightEnd != null)
+			{
+				OnFlightEnd (this);
+			}
+
 			Destroy(gameObject);
 		}
 	}
