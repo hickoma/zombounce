@@ -20,7 +20,7 @@ namespace Components
 			Tween.Value (Systems.GameState.Instance.RewardFlyTime).From(0f).To(1f).OnUpdate ((v) =>
 			{
 				float modX = Mathf.Lerp(m_StartPosition.x, m_TargetPosition.x, Tween.Ease.easeOutBack(v));
-				float modY = Mathf.Lerp(m_StartPosition.y, m_TargetPosition.y, Tween.Ease.easeInOutCirc(v));
+				float modY = Mathf.Lerp(m_StartPosition.y, m_TargetPosition.y, Tween.Ease.easeInOutQuint(v));
 				thisTransform.anchoredPosition = new Vector3(modX, modY, thisTransform.position.z);
 			}).OnComplete(GiveReward).Start ();
 		}
