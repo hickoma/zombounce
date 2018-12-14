@@ -844,13 +844,13 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 1
+    Collab: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: ed2e2444-d787-48a7-bc81-188be4016f93
-  projectName: Bounce Proto2
-  organizationId: almost8
+  cloudProjectId: 5341da14-d136-41eb-9175-98a773f9d79e
+  projectName: Zombounce
+  organizationId: anton-proskurnin
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
