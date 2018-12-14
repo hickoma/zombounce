@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Purchasing;
 
-public class IAPManager : MonoBehaviour, IStoreListener {
+public class Purchaser : MonoBehaviour, IStoreListener {
     #region Fields
+    #region UI Fields
+    public GameObject bannerAds;
+    #endregion
+
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
     private const string REMOVE_ADS = "com.hickoma.zombounce.remove_ads";
-    public event UnityAction<string> onProductBoughtEvent;
     #endregion
 
     #region Properties
@@ -25,8 +28,10 @@ public class IAPManager : MonoBehaviour, IStoreListener {
     #endregion
 
     #region Public
+    //called in inspector
     public void BuyRemoveAds() {
-        BuyProductID(REMOVE_ADS);
+        if(!IsRemoveAdsBought)
+            BuyProductID(REMOVE_ADS);
     }
 
     // Restore purchases previously made by this customer. Some platforms automatically restore purchases, like Google. 
@@ -90,10 +95,12 @@ public class IAPManager : MonoBehaviour, IStoreListener {
         Debug.Log("[IAPManager] OnInitialized: PASS");
         m_StoreController = controller;
         m_StoreExtensionProvider = extensions;
+
+        RestorePurchases();
     }
 
     public void OnInitializeFailed(InitializationFailureReason error) {
-        Debug.Log("[IAPManager] OnInitializeFailed InitializationFailureReason:" + error);
+        Debug.Log("[IAPManager] OnInitializeFailed InitializationFailureReason: " + error);
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) {
@@ -105,11 +112,10 @@ public class IAPManager : MonoBehaviour, IStoreListener {
         string productID = args.purchasedProduct.definition.id;
         Debug.Log(string.Format("[IAPManager] ProcessPurchase: PASS. Product: '{0}'", productID));
 
-        if (string.Equals(productID, REMOVE_ADS, System.StringComparison.Ordinal))
+        if (string.Equals(productID, REMOVE_ADS, System.StringComparison.Ordinal)) {
             IsRemoveAdsBought = true;
-
-        if (onProductBoughtEvent != null)
-            onProductBoughtEvent(productID);
+            bannerAds.SetActive(false);
+        }
 
         return PurchaseProcessingResult.Complete;
     }
