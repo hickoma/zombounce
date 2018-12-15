@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Purchasing;
+using UnityEngine.Purchasing.Security;
 
 public class Purchaser : MonoBehaviour, IStoreListener {
     #region Fields
@@ -14,6 +15,7 @@ public class Purchaser : MonoBehaviour, IStoreListener {
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
     private const string REMOVE_ADS = "com.hickoma.zombounce.remove_ads";
+    private const string ADS_PPREFS = "removeAds";
     #endregion
 
     #region Properties
@@ -88,6 +90,34 @@ public class Purchaser : MonoBehaviour, IStoreListener {
             Debug.Log("[IAPManager] BuyProductID FAIL. Not initialized.");
         }
     }
+
+    private void OnRemoveAdsBought() {
+        IsRemoveAdsBought = true;
+        bannerAds.SetActive(false);
+        Debug.Log("[IAPManager] Player has RemoveAds product");
+        PlayerPrefs.SetInt(ADS_PPREFS, 1);
+        PlayerPrefs.Save();
+    }
+
+    private bool ValidatePurchase(string receipt) {
+        bool isValidPurchase = true;
+
+#if !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IOS)
+        var validator = new CrossPlatformValidator(GooglePlayTangle.Data(),
+        AppleTangle.Data(), Application.identifier);
+
+        try {
+            var result = validator.Validate(receipt);
+            Debug.Log("[IAPManager] Receipt is valid.");
+        }
+        catch (IAPSecurityException) {
+            Debug.Log("[IAPManager] Invalid receipt, not unlocking content");
+            isValidPurchase = false;
+        }
+#endif
+
+        return isValidPurchase;
+    }
     #endregion
 
     #region IStoreListener
@@ -95,6 +125,17 @@ public class Purchaser : MonoBehaviour, IStoreListener {
         Debug.Log("[IAPManager] OnInitialized: PASS");
         m_StoreController = controller;
         m_StoreExtensionProvider = extensions;
+
+        if(PlayerPrefs.GetInt(ADS_PPREFS, 0) == 1) {
+            Product removeAdsProduct = controller.products.WithID(REMOVE_ADS);
+            if (removeAdsProduct != null && removeAdsProduct.hasReceipt && ValidatePurchase(removeAdsProduct.receipt))
+                OnRemoveAdsBought();
+            else
+                bannerAds.SetActive(true);
+        }
+        else {
+            bannerAds.SetActive(true);
+        }
 
         RestorePurchases();
     }
@@ -110,11 +151,11 @@ public class Purchaser : MonoBehaviour, IStoreListener {
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
         string productID = args.purchasedProduct.definition.id;
-        Debug.Log(string.Format("[IAPManager] ProcessPurchase: PASS. Product: '{0}'", productID));
+        Debug.Log(string.Format("[IAPManager] ProcessPurchase: Product: '{0}'", productID));
 
-        if (string.Equals(productID, REMOVE_ADS, System.StringComparison.Ordinal)) {
-            IsRemoveAdsBought = true;
-            bannerAds.SetActive(false);
+        if(ValidatePurchase(args.purchasedProduct.receipt)) {
+            if (string.Equals(productID, REMOVE_ADS, System.StringComparison.Ordinal))
+                OnRemoveAdsBought();
         }
 
         return PurchaseProcessingResult.Complete;
