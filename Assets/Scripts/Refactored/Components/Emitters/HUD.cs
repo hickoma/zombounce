@@ -70,7 +70,7 @@ namespace Windows
 		public void LateStart()
 		{
             GameEventsController.Instance.OnGameStateChanged += OnGameStateChanged;
-            GameEventsController.Instance.OnShowAdvertising += OnShowAdvertising;
+//            GameEventsController.Instance.OnShowAdvertising += OnShowAdvertising;
 			GameEventsController.Instance.OnCreateRewardTurn += OnCreateRewardTurn;
 			GameEventsController.Instance.OnCreateRewardCoin += OnCreateRewardCoin;
 

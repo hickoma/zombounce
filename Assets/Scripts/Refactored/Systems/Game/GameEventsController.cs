@@ -132,7 +132,10 @@ public class GameEventsController : MonoBehaviour
 			OnGameStartClick ();
 		}
 
-		Tween.instance.Clear ();
+        if (Tween.instance != null)
+        {
+            Tween.instance.Clear();
+        }
 	}
 
 	// Game Over Window

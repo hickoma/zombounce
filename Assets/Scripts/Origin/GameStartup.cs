@@ -61,6 +61,9 @@ public class GameStartup : MonoBehaviour
 	[SerializeField]
 	private BackBlockerFollowController m_BackBlockFollowController = null;
 
+    [SerializeField]
+    private IronSourceController m_IronSourceController = null;
+
 	// ugly, ugly, UGLY! need to be removed
 	// needed just to ensure that it's initialized before everything else
 	[Space]
@@ -128,6 +131,11 @@ public class GameStartup : MonoBehaviour
 
         // windows
         m_FistStoreWindow.LateStart();
+
+        // iron source ads
+        IronSource.Agent.init (_parameters.IronSourceAppKey, IronSourceAdUnits.REWARDED_VIDEO, IronSourceAdUnits.INTERSTITIAL, IronSourceAdUnits.OFFERWALL, IronSourceAdUnits.BANNER);
+
+        m_IronSourceController.LateStart();
     }
 
     private void AddProcessings()
@@ -265,6 +273,11 @@ public class GameStartup : MonoBehaviour
 //    {
 //        _fixedUpdate.Run();
 //    }
+
+    void OnApplicationPause(bool isPaused)
+    {
+        IronSource.Agent.onApplicationPause(isPaused);
+    }
 
     void OnDestroy()
     {

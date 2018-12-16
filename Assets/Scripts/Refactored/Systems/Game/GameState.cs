@@ -395,5 +395,21 @@ namespace Systems
 				m_FlyingRewardsExist = value;
 			}
 		}
+
+        // works with Iron Source Controller, stores current availability of reward video
+        private bool m_IsRewardedVideoAvailable = false;
+
+        public bool IsRewardedVideoAvailable
+        {
+            get
+            {
+                return m_IsRewardedVideoAvailable;
+            }
+
+            set
+            {
+                m_IsRewardedVideoAvailable = value;
+            }
+        }
 	}
 }

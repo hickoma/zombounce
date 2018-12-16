@@ -40,5 +40,7 @@ namespace Data
 
         [Header("Fist Prefabs")] public Fist[] Fists;
 		public Fist DefaultFist;
+
+        [Header("Plugins ids and keys")] public string IronSourceAppKey;
     }
 }
