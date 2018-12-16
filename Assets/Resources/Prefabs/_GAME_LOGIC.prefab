@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 114550885983282144}
   - component: {fileID: 114372804972422232}
   - component: {fileID: 114995329223410176}
+  - component: {fileID: 114951211514279944}
   - component: {fileID: 114699422220589938}
-  - component: {fileID: 114464440907643434}
   m_Layer: 0
   m_Name: _GAME_LOGIC
   m_TagString: Untagged
@@ -55,18 +55,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1920848dbbe090f49a27d8840dc4aea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114464440907643434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1924550101837566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c49dd97a3d52447b8f0aeb064b2f00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bannerAds: {fileID: 0}
 --- !u!114 &114550885983282144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +83,7 @@ MonoBehaviour:
   m_DragSimulationController: {fileID: 0}
   m_BackBlockFollowController: {fileID: 0}
   m_IronSourceController: {fileID: 0}
+  m_PurchaseController: {fileID: 114951211514279944}
   m_EventsController: {fileID: 114699422220589938}
 --- !u!114 &114699422220589938
 MonoBehaviour:
@@ -108,6 +97,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player: {fileID: 0}
+--- !u!114 &114951211514279944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924550101837566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789334c5a97a64b6587bef9ba2accd40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114995329223410176
 MonoBehaviour:
   m_ObjectHideFlags: 1

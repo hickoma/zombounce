@@ -14,8 +14,8 @@ public class GameStartup : MonoBehaviour
     [SerializeField]
 	private Parameters _parameters = null;
 
-    [SerializeField]
-	private GameObject _gameOverPanel = null;
+//    [SerializeField]
+//	private GameObject _gameOverPanel = null;
 
     [SerializeField]
 	private GameObject _pausePanel = null;
@@ -23,8 +23,8 @@ public class GameStartup : MonoBehaviour
     [SerializeField]
 	private GameObject _settingsPanel = null;
 
-    [SerializeField]
-	private GameObject _startGamePanel = null;
+//    [SerializeField]
+//	private GameObject _startGamePanel = null;
 
     [SerializeField]
     private Windows.FistStoreWindow m_FistStoreWindow = null;
@@ -63,6 +63,9 @@ public class GameStartup : MonoBehaviour
 
     [SerializeField]
     private IronSourceController m_IronSourceController = null;
+
+    [SerializeField]
+    private PurchaseController m_PurchaseController = null;
 
 	// ugly, ugly, UGLY! need to be removed
 	// needed just to ensure that it's initialized before everything else
@@ -136,6 +139,9 @@ public class GameStartup : MonoBehaviour
         IronSource.Agent.init (_parameters.IronSourceAppKey, IronSourceAdUnits.REWARDED_VIDEO, IronSourceAdUnits.INTERSTITIAL, IronSourceAdUnits.OFFERWALL, IronSourceAdUnits.BANNER);
 
         m_IronSourceController.LateStart();
+
+        // purchases
+        m_PurchaseController.LateStart();
     }
 
     private void AddProcessings()

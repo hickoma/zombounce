@@ -42,9 +42,6 @@ namespace Windows
         private GameObject m_PauseWindow = null;
 
         [SerializeField]
-        private GameObject m_FistStoreWindow = null;
-
-        [SerializeField]
         private GameObject m_CoinsStoreWindow = null;
 
 		[SerializeField]

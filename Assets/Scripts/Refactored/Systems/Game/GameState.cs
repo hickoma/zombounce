@@ -413,19 +413,27 @@ namespace Systems
             }
         }
 
-        private bool m_AreAdsActive = true;
+        private int m_AreAdsActive = -1;
 
         public bool AreAdsActive
         {
             get
             {
-                return m_AreAdsActive;
+                if (m_AreAdsActive < 0)
+                {
+                    m_AreAdsActive = PlayerPrefs.GetInt(Data.PrefKeys.AdsActiveKey, 1);
+                }
+
+                return (m_AreAdsActive == 1);
             }
 
             set
             {
-                m_AreAdsActive = value;
+                m_AreAdsActive = value ? 1 : 0;
+                PlayerPrefs.SetInt(Data.PrefKeys.AdsActiveKey, m_AreAdsActive);
+                PlayerPrefs.Save();
 
+                // notify
                 if (OnAdsActivityChanged != null)
                 {
                     OnAdsActivityChanged(value);

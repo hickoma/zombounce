@@ -5,17 +5,13 @@ using UnityEngine.Events;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Security;
 
-public class Purchaser : MonoBehaviour, IStoreListener {
+public class PurchaseController : MonoBehaviour, IStoreListener
+{
     #region Fields
-    #region UI Fields
-    public GameObject bannerAds;
-    #endregion
-
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
     private const string REMOVE_ADS = "com.hickoma.zombounce.remove_ads";
-    private const string ADS_PPREFS = "removeAds";
     #endregion
 
     #region Properties
@@ -23,7 +19,8 @@ public class Purchaser : MonoBehaviour, IStoreListener {
     #endregion
 
     #region Unity Events
-    private void Start() {
+    public void LateStart()
+    {
         if (m_StoreController == null)
             InitializePurchasing();
     }
@@ -31,15 +28,18 @@ public class Purchaser : MonoBehaviour, IStoreListener {
 
     #region Public
     //called in inspector
-    public void BuyRemoveAds() {
+    public void BuyRemoveAds()
+    {
         if(!IsRemoveAdsBought)
             BuyProductID(REMOVE_ADS);
     }
 
     // Restore purchases previously made by this customer. Some platforms automatically restore purchases, like Google. 
     // Apple currently requires explicit purchase restoration for IAP, conditionally displaying a password prompt.
-    public void RestorePurchases() {
-        if (!IsInitialized()) {
+    public void RestorePurchases()
+    {
+        if (!IsInitialized())
+        {
             Debug.Log("[IAPManager] RestorePurchases FAIL. Not initialized.");
             return;
         }
@@ -52,7 +52,8 @@ public class Purchaser : MonoBehaviour, IStoreListener {
             IAppleExtensions apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
             // Begin the asynchronous process of restoring purchases. Expect a confirmation response in 
             // the Action<bool> below, and ProcessPurchase if there are previously purchased products to restore.
-            apple.RestoreTransactions((result) => {
+            apple.RestoreTransactions((result) =>
+            {
                 // The first phase of restoration. If no more responses are received on ProcessPurchase then 
                 // no purchases are available to be restored.
                 Debug.Log("[IAPManager] RestorePurchases result = " + result);
@@ -62,44 +63,52 @@ public class Purchaser : MonoBehaviour, IStoreListener {
     #endregion
 
     #region Helpers
-    public void InitializePurchasing() {
-        if (IsInitialized()) return;
+    public void InitializePurchasing()
+    {
+        if (IsInitialized())
+            return;
 
         ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
         builder.AddProduct(REMOVE_ADS, ProductType.NonConsumable);
         UnityPurchasing.Initialize(this, builder);
     }
 
-    private bool IsInitialized() {
+    private bool IsInitialized()
+    {
         return m_StoreController != null && m_StoreExtensionProvider != null;
     }
 
-    void BuyProductID(string productId) {
-        if (IsInitialized()) {
+    void BuyProductID(string productId)
+    {
+        if (IsInitialized())
+        {
             Product product = m_StoreController.products.WithID(productId);
 
-            if (product != null && product.availableToPurchase) {
+            if (product != null && product.availableToPurchase)
+            {
                 Debug.Log(string.Format("[IAPManager] Purchasing product asychronously: '{0}'", product.definition.id));
                 m_StoreController.InitiatePurchase(product);
             }
-            else {
+            else
+            {
                 Debug.Log("[IAPManager] BuyProductID FAIL. Not purchasing product, either is not found or is not available for purchase");
             }
         }
-        else {
+        else
+        {
             Debug.Log("[IAPManager] BuyProductID FAIL. Not initialized.");
         }
     }
 
-    private void OnRemoveAdsBought() {
+    private void OnRemoveAdsBought()
+    {
         IsRemoveAdsBought = true;
-        bannerAds.SetActive(false);
         Debug.Log("[IAPManager] Player has RemoveAds product");
-        PlayerPrefs.SetInt(ADS_PPREFS, 1);
-        PlayerPrefs.Save();
+        Systems.GameState.Instance.AreAdsActive = false;
     }
 
-    private bool ValidatePurchase(string receipt) {
+    private bool ValidatePurchase(string receipt)
+    {
         bool isValidPurchase = true;
 
 #if !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IOS)
@@ -121,39 +130,41 @@ public class Purchaser : MonoBehaviour, IStoreListener {
     #endregion
 
     #region IStoreListener
-    public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
+    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+    {
         Debug.Log("[IAPManager] OnInitialized: PASS");
         m_StoreController = controller;
         m_StoreExtensionProvider = extensions;
 
-        if(PlayerPrefs.GetInt(ADS_PPREFS, 0) == 1) {
+        if (!Systems.GameState.Instance.AreAdsActive)
+        {
             Product removeAdsProduct = controller.products.WithID(REMOVE_ADS);
+
             if (removeAdsProduct != null && removeAdsProduct.hasReceipt && ValidatePurchase(removeAdsProduct.receipt))
                 OnRemoveAdsBought();
-            else
-                bannerAds.SetActive(true);
-        }
-        else {
-            bannerAds.SetActive(true);
         }
 
         RestorePurchases();
     }
 
-    public void OnInitializeFailed(InitializationFailureReason error) {
+    public void OnInitializeFailed(InitializationFailureReason error)
+    {
         Debug.Log("[IAPManager] OnInitializeFailed InitializationFailureReason: " + error);
     }
 
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) {
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    {
         //Consider sharing this reason with the user to guide their troubleshooting actions.
         Debug.Log(string.Format("[IAPManager] OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
 
-    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
+    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
+    {
         string productID = args.purchasedProduct.definition.id;
         Debug.Log(string.Format("[IAPManager] ProcessPurchase: Product: '{0}'", productID));
 
-        if(ValidatePurchase(args.purchasedProduct.receipt)) {
+        if (ValidatePurchase(args.purchasedProduct.receipt))
+        {
             if (string.Equals(productID, REMOVE_ADS, System.StringComparison.Ordinal))
                 OnRemoveAdsBought();
         }

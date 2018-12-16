@@ -5,8 +5,6 @@ namespace Systems
 {
 	public class DistanceBonusController : MonoBehaviour
     {
-		private Player m_Player = null;
-
         private int _traveledDistance;
 
 		public void LateStart()
