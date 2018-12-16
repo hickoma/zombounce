@@ -13,6 +13,7 @@ namespace Systems
             // maybe not needed
             IronSource.Agent.validateIntegration();
 
+            // reward videos
             IronSourceEvents.onRewardedVideoAdOpenedEvent += RewardedVideoAdOpenedEvent;
             IronSourceEvents.onRewardedVideoAdClosedEvent += RewardedVideoAdClosedEvent; 
             IronSourceEvents.onRewardedVideoAvailabilityChangedEvent += RewardedVideoAvailabilityChangedEvent;
@@ -22,6 +23,19 @@ namespace Systems
             IronSourceEvents.onRewardedVideoAdShowFailedEvent += RewardedVideoAdShowFailedEvent;
 
             GameEventsController.Instance.OnShowAdvertising += ShowRewardVideo;
+
+            // banner
+            IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+
+            IronSourceEvents.onBannerAdLoadedEvent += BannerAdLoadedEvent;
+            IronSourceEvents.onBannerAdLoadFailedEvent += BannerAdLoadFailedEvent;        
+            IronSourceEvents.onBannerAdClickedEvent += BannerAdClickedEvent; 
+            IronSourceEvents.onBannerAdScreenPresentedEvent += BannerAdScreenPresentedEvent; 
+            IronSourceEvents.onBannerAdScreenDismissedEvent += BannerAdScreenDismissedEvent;
+            IronSourceEvents.onBannerAdLeftApplicationEvent += BannerAdLeftApplicationEvent;
+
+            Systems.GameState.Instance.OnAdsActivityChanged += ChangeAdsActivity;
+            ChangeAdsActivity(Systems.GameState.Instance.AreAdsActive);
 
             // set state on start
             GameState.Instance.IsRewardedVideoAvailable = IronSource.Agent.isRewardedVideoAvailable();
@@ -96,6 +110,50 @@ namespace Systems
             OnRewardVideoEndedCallback = onRewardVideoEnded;
             // start video
             IronSource.Agent.showRewardedVideo();
+        }
+
+        //Invoked once the banner has loaded
+        void BannerAdLoadedEvent()
+        {
+            
+        }
+        //Invoked when the banner loading process has failed.
+        //@param description - string - contains information about the failure.
+        void BannerAdLoadFailedEvent (IronSourceError error)
+        {
+            
+        }
+        // Invoked when end user clicks on the banner ad
+        void BannerAdClickedEvent ()
+        {
+            
+        }
+        //Notifies the presentation of a full screen content following user click
+        void BannerAdScreenPresentedEvent ()
+        {
+            
+        }
+        //Notifies the presented screen has been dismissed
+        void BannerAdScreenDismissedEvent()
+        {
+            
+        }
+        //Invoked when the user leaves the app
+        void BannerAdLeftApplicationEvent()
+        {
+            
+        }
+
+        void ChangeAdsActivity(bool active)
+        {
+            if (active)
+            {
+                IronSource.Agent.displayBanner();
+            }
+            else
+            {
+                IronSource.Agent.hideBanner();
+            }
         }
     }
 }

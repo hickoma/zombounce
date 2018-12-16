@@ -37,6 +37,7 @@ namespace Systems
 		public event System.Action<int> OnTurnsChanged;
 		public event System.Action<int> OnPointsChanged;
 		public event System.Action<int> OnBestScoreChanged;
+        public event System.Action<bool> OnAdsActivityChanged;
 
 		// data
 		// coins
@@ -409,6 +410,26 @@ namespace Systems
             set
             {
                 m_IsRewardedVideoAvailable = value;
+            }
+        }
+
+        private bool m_AreAdsActive = true;
+
+        public bool AreAdsActive
+        {
+            get
+            {
+                return m_AreAdsActive;
+            }
+
+            set
+            {
+                m_AreAdsActive = value;
+
+                if (OnAdsActivityChanged != null)
+                {
+                    OnAdsActivityChanged(value);
+                }
             }
         }
 	}
