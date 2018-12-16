@@ -38,14 +38,21 @@ namespace Windows
 		{
 			CountPrizes ();
 
+            bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardedVideoAvailable;
+
 			m_TakeCoinsText.text = m_PrizeCoins.ToString ();
 			m_TakeX3CoinsText.text = m_PrizeCoinsX3.ToString ();
             m_TakeX3CoinsBadgeXText.text = "x" + m_AdvertisingMultiplier.ToString();
+            m_TakeX3CoinsButton.gameObject.SetActive(isRewardVideoAvailable);
 
-            AnimateEnergyButton();
+            // show x3 button only if watching reward video is possible
+            if (isRewardVideoAvailable)
+            {
+                AnimateX3CoinsButton();
+            }
 		}
 
-        private void AnimateEnergyButton()
+        private void AnimateX3CoinsButton()
         {
             Transform getEnergyTransform = m_TakeX3CoinsButton.transform;
             m_X3CoinsButtonScaleTween = Tween.Value(1f).From(1f).To(1.3f).OnUpdate((v) =>
@@ -81,13 +88,21 @@ namespace Windows
 
 		private void ShowAds(System.Action onAdvertisingClose)
 		{
-            m_X3CoinsButtonScaleTween.Stop();
+            if (m_X3CoinsButtonScaleTween != null)
+            {
+                m_X3CoinsButtonScaleTween.Stop();
+            }
+
             GameEventsController.Instance.ShowAdvertising(onAdvertisingClose);
 		}
 
 		private void RestartGame()
 		{
-            m_X3CoinsButtonScaleTween.Stop();
+            if (m_X3CoinsButtonScaleTween != null)
+            {
+                m_X3CoinsButtonScaleTween.Stop();
+            }
+
 			GameEventsController.Instance.RestartGame();
 
 			SceneManager.LoadScene(0);

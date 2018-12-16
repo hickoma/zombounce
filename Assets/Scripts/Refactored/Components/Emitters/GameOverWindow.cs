@@ -36,14 +36,20 @@ namespace Windows
 		{
 			if (!m_AlreadyDied)
 			{
+                bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardedVideoAvailable;
+
 				// show timer, captions and energy button
-				m_GetEnergyButton.gameObject.SetActive (true);
+                m_GetEnergyButton.gameObject.SetActive (isRewardVideoAvailable);
 				m_GetCoinsButton.gameObject.SetActive (false);
 				m_KeepGoingText.gameObject.SetActive (true);
-				m_TimerText.gameObject.SetActive (true);
+                m_TimerText.gameObject.SetActive (isRewardVideoAvailable);
 
-				StartTimer ();
-                AnimateEnergyButton();
+                // show timer only if there is an alternative to restart - watching reward video
+                if (isRewardVideoAvailable)
+                {
+                    StartTimer();
+                    AnimateEnergyButton();
+                }
 			}
 			else
 			{
@@ -93,7 +99,11 @@ namespace Windows
 		private void PlayMore()
 		{
             StopTimer ();
-            m_EnergyButtonScaleTween.Stop();
+
+            if (m_EnergyButtonScaleTween != null)
+            {
+                m_EnergyButtonScaleTween.Stop();
+            }
 
             GameEventsController.Instance.ShowAdvertising(() =>
             {
@@ -105,7 +115,11 @@ namespace Windows
 
 		private void ClaimPrize()
 		{
-            m_EnergyButtonScaleTween.Stop();
+            if (m_EnergyButtonScaleTween != null)
+            {
+                m_EnergyButtonScaleTween.Stop();
+            }
+
 			GameEventsController.Instance.StartRewarding();
 			HideWindow();
 		}

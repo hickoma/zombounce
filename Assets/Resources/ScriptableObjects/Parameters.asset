@@ -63,3 +63,4 @@ MonoBehaviour:
   - {fileID: 114454367350510512, guid: 7299f5e4ffccc2a42a666c462601d891, type: 2}
   DefaultFist: {fileID: 114042852932565630, guid: 29f60671c72cf4c5ea5a4b4068ea6360,
     type: 2}
+  IronSourceAppKey: 83bcffa5

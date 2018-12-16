@@ -37,6 +37,7 @@ namespace Systems
 		public event System.Action<int> OnTurnsChanged;
 		public event System.Action<int> OnPointsChanged;
 		public event System.Action<int> OnBestScoreChanged;
+        public event System.Action<bool> OnAdsActivityChanged;
 
 		// data
 		// coins
@@ -395,5 +396,41 @@ namespace Systems
 				m_FlyingRewardsExist = value;
 			}
 		}
+
+        // works with Iron Source Controller, stores current availability of reward video
+        private bool m_IsRewardedVideoAvailable = false;
+
+        public bool IsRewardedVideoAvailable
+        {
+            get
+            {
+                return m_IsRewardedVideoAvailable;
+            }
+
+            set
+            {
+                m_IsRewardedVideoAvailable = value;
+            }
+        }
+
+        private bool m_AreAdsActive = true;
+
+        public bool AreAdsActive
+        {
+            get
+            {
+                return m_AreAdsActive;
+            }
+
+            set
+            {
+                m_AreAdsActive = value;
+
+                if (OnAdsActivityChanged != null)
+                {
+                    OnAdsActivityChanged(value);
+                }
+            }
+        }
 	}
 }
