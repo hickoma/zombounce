@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: fist_02
-  m_Price: 100
+  m_Price: 500
   m_Sprite: {fileID: 212879362535774790}
   m_IsInInventory: 0
 --- !u!212 &212879362535774790
