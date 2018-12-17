@@ -103,7 +103,10 @@ namespace Systems
         //Invoked when the video ad finishes playing.
         void RewardedVideoAdEndedEvent()
         {
-            
+			if (OnRewardVideoEndedCallback != null)
+			{
+				OnRewardVideoEndedCallback();
+			}
         }
 
         //Invoked when the user completed the video and should be rewarded. 
@@ -135,7 +138,10 @@ namespace Systems
         //Invoked once the banner has loaded
         void BannerAdLoadedEvent()
         {
-            
+			if (m_AdsActivity)
+			{
+				IronSource.Agent.displayBanner();
+			}
         }
 
         //Invoked when the banner loading process has failed.
