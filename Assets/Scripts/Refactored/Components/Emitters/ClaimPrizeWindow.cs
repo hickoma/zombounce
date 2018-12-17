@@ -38,7 +38,7 @@ namespace Windows
 		{
 			CountPrizes ();
 
-            bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardedVideoAvailable;
+            bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardVideoAvailable;
 
 			m_TakeCoinsText.text = m_PrizeCoins.ToString ();
 			m_TakeX3CoinsText.text = m_PrizeCoinsX3.ToString ();
@@ -79,21 +79,21 @@ namespace Windows
 
 		private void TakeX3Coins()
 		{
-            ShowAds (() =>
+            ShowRewardVideo (() =>
             {
                 Systems.GameState.Instance.CoinsCount += m_PrizeCoinsX3;
                 RestartGame ();
             });
 		}
 
-		private void ShowAds(System.Action onAdvertisingClose)
+		private void ShowRewardVideo(System.Action onAdvertisingClose)
 		{
             if (m_X3CoinsButtonScaleTween != null)
             {
                 m_X3CoinsButtonScaleTween.Stop();
             }
 
-            GameEventsController.Instance.ShowAdvertising(onAdvertisingClose);
+            GameEventsController.Instance.ShowRewardVideo(onAdvertisingClose);
 		}
 
 		private void RestartGame()
@@ -103,11 +103,19 @@ namespace Windows
                 m_X3CoinsButtonScaleTween.Stop();
             }
 
-			GameEventsController.Instance.RestartGame();
+            ShowInterstitial(() =>
+            {
+                GameEventsController.Instance.RestartGame();
 
-			SceneManager.LoadScene(0);
-			HideWindow();
+                SceneManager.LoadScene(0);
+                HideWindow();
+            });
 		}
+
+        private void ShowInterstitial(System.Action onInterstitialClose)
+        {
+            GameEventsController.Instance.ShowInterstitial(onInterstitialClose);
+        }
 
 		private void HideWindow()
 		{

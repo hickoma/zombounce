@@ -141,11 +141,21 @@ public class GameEventsController : MonoBehaviour
 	// Game Over Window
     public event Action<Action> OnShowAdvertising;
 
-    public void ShowAdvertising(Action onAdvertisingClose)
+    public void ShowRewardVideo(Action onAdvertisingClose)
     {
         if (OnShowAdvertising != null)
         {
             OnShowAdvertising(onAdvertisingClose);
+        }
+    }
+
+    public event Action<Action> OnShowInterstitial;
+
+    public void ShowInterstitial(Action onInterstitialClose)
+    {
+        if (OnShowInterstitial != null)
+        {
+            OnShowInterstitial(onInterstitialClose);
         }
     }
 

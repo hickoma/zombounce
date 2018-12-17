@@ -22,6 +22,7 @@ namespace Data
         public int FreeCoinsAmount;
         public float RescaleSpeed;
 		public float RewardFlyTime;
+        public int LosesToShowInterstitialCount;
 
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;
         public float CameraMinPositionZ;

@@ -36,7 +36,7 @@ namespace Windows
 		{
 			if (!m_AlreadyDied)
 			{
-                bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardedVideoAvailable;
+                bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardVideoAvailable;
 
 				// show timer, captions and energy button
                 m_GetEnergyButton.gameObject.SetActive (isRewardVideoAvailable);
@@ -105,7 +105,7 @@ namespace Windows
                 m_EnergyButtonScaleTween.Stop();
             }
 
-            GameEventsController.Instance.ShowAdvertising(() =>
+            GameEventsController.Instance.ShowRewardVideo(() =>
             {
     			GameEventsController.Instance.PlayMore();
 

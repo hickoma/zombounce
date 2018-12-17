@@ -161,7 +161,7 @@ namespace Windows
 
         private void ShowAds(System.Action onAdvertisingClose)
         {
-            GameEventsController.Instance.ShowAdvertising(onAdvertisingClose);
+            GameEventsController.Instance.ShowRewardVideo(onAdvertisingClose);
         }
     }
 }

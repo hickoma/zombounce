@@ -25,6 +25,7 @@ MonoBehaviour:
   FreeCoinsAmount: 100
   RescaleSpeed: 5
   RewardFlyTime: 1
+  LosesToShowInterstitialCount: 3
   CameraSmooth: 0.2
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15

@@ -40,6 +40,29 @@ namespace Systems
         public event System.Action<bool> OnAdsActivityChanged;
 
 		// data
+        // sessions
+        int m_SessionsCount = -1;
+
+        public int SessionsCount
+        {
+            get
+            {
+                if (m_SessionsCount < 0)
+                {
+                    m_SessionsCount = PlayerPrefs.GetInt(Data.PrefKeys.SessionsCount, 0);
+                }
+
+                return m_SessionsCount;
+            }
+
+            set
+            {
+                m_SessionsCount = value;
+                PlayerPrefs.SetInt(Data.PrefKeys.SessionsCount, m_SessionsCount);
+                PlayerPrefs.Save();
+            }
+        }
+
 		// coins
 		bool m_AreCoinsInitialized = false;
 		// is inited from Parameters
@@ -398,21 +421,38 @@ namespace Systems
 		}
 
         // works with Iron Source Controller, stores current availability of reward video
-        private bool m_IsRewardedVideoAvailable = false;
+        private bool m_IsRewardVideoAvailable = false;
 
-        public bool IsRewardedVideoAvailable
+        public bool IsRewardVideoAvailable
         {
             get
             {
-                return m_IsRewardedVideoAvailable;
+                return m_IsRewardVideoAvailable;
             }
 
             set
             {
-                m_IsRewardedVideoAvailable = value;
+                m_IsRewardVideoAvailable = value;
             }
         }
 
+        // works with Iron Source Controller, stores current availability of interstitial
+        private bool m_IsInterstitialReady = false;
+
+        public bool IsInterstitialReady
+        {
+            get
+            {
+                return m_IsInterstitialReady;
+            }
+
+            set
+            {
+                m_IsInterstitialReady = value;
+            }
+        }
+
+        // Banner and Interstitial are shown if it equals 1
         private int m_AreAdsActive = -1;
 
         public bool AreAdsActive
@@ -438,6 +478,17 @@ namespace Systems
                 {
                     OnAdsActivityChanged(value);
                 }
+            }
+        }
+
+        // is inited from Parameters
+        public int m_LosesToShowInterstitialCount = 3;
+        // defines if it's time to show ads after Player death
+        public bool IsItTimeToShowInterstitial
+        {
+            get
+            {
+                return (SessionsCount % m_LosesToShowInterstitialCount == 0);
             }
         }
 	}

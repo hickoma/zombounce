@@ -244,6 +244,7 @@ public class GameStartup : MonoBehaviour
 #endif
             ;
 
+        m_GameState.SessionsCount++;
 		m_GameState.m_CoinsDefaultCount = _parameters.CoinsCount;
 		m_GameState.m_TurnsDefaultCount = _parameters.TurnsCount;
 		m_GameState.AllFists = _parameters.Fists;
@@ -254,6 +255,7 @@ public class GameStartup : MonoBehaviour
         m_GameState.AdvertisingCoinsMultiplierCoeff = _parameters.AdvertisingCoinsMultiplierCoeff;
         m_GameState.FreeCoinsAmount = _parameters.FreeCoinsAmount;
 		m_GameState.RewardFlyTime = _parameters.RewardFlyTime;
+        m_GameState.m_LosesToShowInterstitialCount = _parameters.LosesToShowInterstitialCount;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;

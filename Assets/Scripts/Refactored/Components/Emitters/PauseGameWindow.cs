@@ -26,10 +26,18 @@ namespace Windows
 
         private void AbortGame()
         {
-            GameEventsController.Instance.RestartGame();
+            ShowInterstitial(() =>
+            {
+                GameEventsController.Instance.RestartGame();
 
-            SceneManager.LoadScene(0);
-            HideWindow();
+                SceneManager.LoadScene(0);
+                HideWindow();
+            });
+        }
+
+        private void ShowInterstitial(System.Action onInterstitialClose)
+        {
+            GameEventsController.Instance.ShowInterstitial(onInterstitialClose);
         }
 
         private void HideWindow()
