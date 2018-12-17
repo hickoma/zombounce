@@ -12,10 +12,16 @@ public class IronSourceEvents : MonoBehaviour
     private const string INSTANCE_ID_KEY = "instanceId";
     private const string PLACEMENT_KEY = "placement";	
 		
+	private static IronSourceEvents m_Instance;
+
 	void Awake ()
 	{
-		gameObject.name = "IronSourceEvents";			//Change the GameObject name to IronSourceEvents.
-		DontDestroyOnLoad (gameObject);					//Makes the object not be destroyed automatically when loading a new scene.
+		if (m_Instance == null)
+		{
+			m_Instance = this;
+			gameObject.name = "IronSourceEvents";			//Change the GameObject name to IronSourceEvents.
+			DontDestroyOnLoad (gameObject);					//Makes the object not be destroyed automatically when loading a new scene.
+		}
 	}
 	
 	// ******************************* Rewarded Video Events *******************************

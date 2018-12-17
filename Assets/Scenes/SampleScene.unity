@@ -342,7 +342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 151388, guid: e0872585be79248ac8c6c78f7baf110a, type: 2}
       propertyPath: m_Name
-      value: IronSource
+      value: IronSourceEvents
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0872585be79248ac8c6c78f7baf110a, type: 2}
