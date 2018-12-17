@@ -517,7 +517,7 @@ RectTransform:
   - {fileID: 663481295}
   - {fileID: 901059900}
   m_Father: {fileID: 2005212529}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -545,7 +545,6 @@ MonoBehaviour:
   m_BestScoreIndicator: {fileID: 2133195020}
   m_StartGameWindow: {fileID: 1710992984}
   m_PauseWindow: {fileID: 626425858}
-  m_FistStoreWindow: {fileID: 1963937909}
   m_CoinsStoreWindow: {fileID: 1937168556}
   m_GameOverWindow: {fileID: 1398694016}
   m_ClaimPrizeWindow: {fileID: 2081424884}
@@ -925,11 +924,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2005212529}
     m_Modifications:
-    - target: {fileID: 114925313531504554, guid: f395c160e0dff8a499d00071eb0f577a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224684531014813636, guid: f395c160e0dff8a499d00071eb0f577a,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -968,7 +962,7 @@ Prefab:
     - target: {fileID: 224684531014813636, guid: f395c160e0dff8a499d00071eb0f577a,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224684531014813636, guid: f395c160e0dff8a499d00071eb0f577a,
         type: 2}
@@ -1019,35 +1013,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1886577111500384, guid: f395c160e0dff8a499d00071eb0f577a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925313531504554, guid: f395c160e0dff8a499d00071eb0f577a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925313531504554, guid: f395c160e0dff8a499d00071eb0f577a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925313531504554, guid: f395c160e0dff8a499d00071eb0f577a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925313531504554, guid: f395c160e0dff8a499d00071eb0f577a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyRemoveAds
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925313531504554, guid: f395c160e0dff8a499d00071eb0f577a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f395c160e0dff8a499d00071eb0f577a, type: 2}
@@ -1462,7 +1427,7 @@ RectTransform:
   - {fileID: 426257923}
   - {fileID: 666363171}
   m_Father: {fileID: 2005212529}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3802,6 +3767,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1136002331895006, guid: 655f6feb18a5e4341b3cd5b0920fde1f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 655f6feb18a5e4341b3cd5b0920fde1f, type: 2}
   m_IsPrefabAsset: 0
@@ -3815,11 +3784,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1136002331895006, guid: 655f6feb18a5e4341b3cd5b0920fde1f,
     type: 2}
   m_PrefabInternal: {fileID: 1937168554}
---- !u!1 &1963937909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1327276745094732, guid: a534a404997ef4097b4558862680fdf1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1790508837}
 --- !u!1 &2005212525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3905,9 +3869,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1710992985}
   - {fileID: 131035840}
   - {fileID: 565397513}
-  - {fileID: 1710992985}
   - {fileID: 1398694017}
   - {fileID: 1663524854}
   - {fileID: 626425859}
