@@ -109,6 +109,16 @@ public class GameEventsController : MonoBehaviour
         }
     }
 
+	public event Action OnSettingsClick;
+
+	public void OpenSettings()
+	{
+		if (OnSettingsClick != null)
+		{
+			OnSettingsClick ();
+		}
+	}
+
     // Pause Game Window
     public event Action OnGameResumeClick;
 
@@ -195,23 +205,6 @@ public class GameEventsController : MonoBehaviour
 		}
 
 		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PAUSE);
-	}
-
-	public event Action OnSettingsClick;
-
-	public void OpenSettings()
-	{
-		if (OnSettingsClick != null)
-		{
-			OnSettingsClick ();
-		}
-
-		LeopotamGroup.Ecs.EcsWorld _world = LeopotamGroup.Ecs.EcsWorld.Active;
-
-		if (_world != null)
-        {
-			_world.CreateEntityWith<Components.Events.SettingsEvent>().OpenSettings = true;
-        }
 	}
 
 	public event Action<Vector3, int> OnCreateRewardTurn;

@@ -1,5 +1,4 @@
-﻿using Components.Events;
-using Data;
+﻿using Data;
 using LeopotamGroup.Pooling;
 using UnityEngine;
 

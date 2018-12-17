@@ -1,5 +1,4 @@
-﻿using Components.Events;
-using Data;
+﻿using Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

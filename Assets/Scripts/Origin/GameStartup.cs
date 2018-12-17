@@ -3,8 +3,7 @@ using Systems.Game;
 using Systems.Physic;
 using Systems.PlayerProcessings;
 using Systems.Ui;
-using Systems._DEBUG;
-using Components.Events;
+//using Systems._DEBUG;
 using Data;
 using LeopotamGroup.Ecs;
 using UnityEngine;
@@ -17,17 +16,20 @@ public class GameStartup : MonoBehaviour
 //    [SerializeField]
 //	private GameObject _gameOverPanel = null;
 
-    [SerializeField]
-	private GameObject _pausePanel = null;
+//    [SerializeField]
+//	private GameObject _pausePanel = null;
 
-    [SerializeField]
-	private GameObject _settingsPanel = null;
+//    [SerializeField]
+//	private GameObject _settingsPanel = null;
 
 //    [SerializeField]
 //	private GameObject _startGamePanel = null;
 
     [SerializeField]
     private Windows.FistStoreWindow m_FistStoreWindow = null;
+
+	[SerializeField]
+	private Windows.SettingsWindow m_SettingsWindow = null;
 
 	[Header("Game Systems")]
 
@@ -135,6 +137,8 @@ public class GameStartup : MonoBehaviour
         // windows
         m_FistStoreWindow.LateStart();
 
+		m_SettingsWindow.LateStart();
+
         // iron source ads
         IronSource.Agent.init (_parameters.IronSourceAppKey, IronSourceAdUnits.REWARDED_VIDEO, IronSourceAdUnits.INTERSTITIAL, IronSourceAdUnits.OFFERWALL, IronSourceAdUnits.BANNER);
 
@@ -161,12 +165,12 @@ public class GameStartup : MonoBehaviour
 //            {
 //                GameOverPanel = _gameOverPanel
 //            })
-            .Add(new SettingsProcessing
-            {
-                PausePanel = _pausePanel,
-                SettingsPanel = _settingsPanel,
-                Parameters = _parameters // debug
-            })
+//            .Add(new SettingsProcessing
+//            {
+//                PausePanel = _pausePanel,
+//                SettingsPanel = _settingsPanel,
+//                Parameters = _parameters // debug
+//            })
 //            .Add(new GameOverProcessing
 //            {
 //                GameOverPanel = _gameOverPanel,
@@ -222,9 +226,9 @@ public class GameStartup : MonoBehaviour
                 EnergySpawnCount = _parameters.EnergySpawnCount,
                 CoinSpawnCount = _parameters.CoinSpawnCount
             })
-#if DEBUG
-            .Add(new DebugProcessingUpdate()) //debug
-#endif
+//#if DEBUG
+//            .Add(new DebugProcessingUpdate()) //debug
+//#endif
 //            .Add(new TimeScaleProcessing())
 //            .Add(new ClearEventsProcessing());
 
@@ -239,9 +243,9 @@ public class GameStartup : MonoBehaviour
 //            {
 //                Drag = _parameters.Drag
 //            })
-#if DEBUG
+//#if DEBUG
 //            .Add(new DebugProcessingFixedUpdate()) //debug
-#endif
+//#endif
             ;
 
         m_GameState.SessionsCount++;

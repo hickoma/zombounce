@@ -1,9 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
-namespace Emitters
+namespace Windows
 {
     public class SettingsWindow : MonoBehaviour
     {
-        public bool OpenSettings;
+		[SerializeField]
+		private Button m_HomeButton = null;
+
+		public void LateStart()
+		{
+			m_HomeButton.onClick.AddListener(HideWindow);
+			GameEventsController.Instance.OnStoreWindowOpen += ShowWindow;
+		}
+
+		private void ShowWindow()
+		{
+			gameObject.SetActive(true);
+		}
+
+		private void HideWindow()
+		{
+			gameObject.SetActive(false);
+		}
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Components.Events;
 using Data;
 using LeopotamGroup.Common;
 using LeopotamGroup.Ecs;

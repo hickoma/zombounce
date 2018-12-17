@@ -24,7 +24,7 @@ namespace Windows
 		public void Start()
 		{
             m_BackgroundButton.onClick.AddListener(StartGame);
-//          m_SettingsButton.onClick.AddListener (GameEventsController.Instance.OpenSettings);
+          	m_SettingsButton.onClick.AddListener (GameEventsController.Instance.OpenSettings);
 			m_StoreButton.onClick.AddListener(GameEventsController.Instance.OpenStore);
 			
 			m_DropPurchases.onClick.AddListener (GameEventsController.Instance.DropPurchases);
