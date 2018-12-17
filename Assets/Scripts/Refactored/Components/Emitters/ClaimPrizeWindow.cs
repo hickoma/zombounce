@@ -81,6 +81,9 @@ namespace Windows
 		{
             ShowRewardVideo (() =>
             {
+				// track reward taking
+				Analytics.SendEventAnalytic (Analytics.PossibleEvents.CoinsX3Reward, Systems.GameState.Instance.SessionsCount.ToString());
+
                 Systems.GameState.Instance.CoinsCount += m_PrizeCoinsX3;
                 RestartGame ();
             });

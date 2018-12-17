@@ -74,7 +74,16 @@ public class GameStartup : MonoBehaviour
 
 		m_EventsController.Awake ();
 
-        AddProcessings();
+        InitWithParameters();
+
+		// track the very first session
+		if (m_GameState.SessionsCount == 1)
+		{
+			Analytics.SendEventAnalytic (Analytics.PossibleEvents.FirstSession, "1");
+		}
+
+		// track session start
+		Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionStart, m_GameState.SessionsCount.ToString());
     }
 
     private void Start()
@@ -114,7 +123,7 @@ public class GameStartup : MonoBehaviour
         m_PurchaseController.LateStart();
     }
 
-    private void AddProcessings()
+    private void InitWithParameters()
     {
         m_GameState.SessionsCount++;
 		m_GameState.m_CoinsDefaultCount = _parameters.CoinsCount;

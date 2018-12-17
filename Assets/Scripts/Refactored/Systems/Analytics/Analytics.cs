@@ -8,6 +8,16 @@ using System.Text;
 /// </summary>
 public static class Analytics
 {
+	public enum PossibleEvents
+	{
+		FirstSession,
+		SessionStart,
+		SessionHalfEnd,
+		SessionHalfStart,
+		SessionEnd,
+		CoinsX3Reward,
+	}
+
 	private static void TagEvent (string categoryName, string subCategoryName, object attributes)
 	{
 		Dictionary<string, object> analyticData = new Dictionary<string, object> { { subCategoryName, attributes }};
@@ -30,8 +40,8 @@ public static class Analytics
 		}
 	}
 
-	public static void SendEventAnalytic(string eventName, object eventData)
+	public static void SendEventAnalytic(PossibleEvents eventName, object eventData)
 	{
-		TagEvent("general_events", eventName, eventData);
+		TagEvent("GeneralEvents", eventName.ToString(), eventData);
 	}
 }

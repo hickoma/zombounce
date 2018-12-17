@@ -36,6 +36,9 @@ namespace Windows
 		{
 			if (!m_AlreadyDied)
 			{
+				// track first death
+				Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionHalfEnd, Systems.GameState.Instance.SessionsCount.ToString());
+
                 bool isRewardVideoAvailable = Systems.GameState.Instance.IsRewardVideoAvailable;
 
 				// show timer, captions and energy button
@@ -53,6 +56,9 @@ namespace Windows
 			}
 			else
 			{
+				// track second death
+				Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionHalfEnd, Systems.GameState.Instance.SessionsCount.ToString());
+
                 // immediately go to Claim Prize Window
                 ClaimPrize();
 			}

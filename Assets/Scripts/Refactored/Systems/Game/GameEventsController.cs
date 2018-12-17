@@ -178,6 +178,9 @@ public class GameEventsController : MonoBehaviour
 			OnPlayMoreClick ();
 		}
 
+		// track session second half start
+		Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionHalfStart, Systems.GameState.Instance.SessionsCount.ToString());
+
 		Systems.GameState.Instance.TurnsCount = Systems.GameState.Instance.SecondLifeTurnsCount;
 		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
 	}
