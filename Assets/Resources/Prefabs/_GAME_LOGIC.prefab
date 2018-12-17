@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4168292326017120}
   - component: {fileID: 114550885983282144}
   - component: {fileID: 114372804972422232}
+  - component: {fileID: 114063150008900674}
   - component: {fileID: 114995329223410176}
   - component: {fileID: 114951211514279944}
   - component: {fileID: 114699422220589938}
@@ -44,6 +45,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114063150008900674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924550101837566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710bcd5fc6127a64a93a5d9f3e9d277a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldPrefabs: []
+  ForwardSpawnCount: 0
+  BackwardSpawnCount: 0
+  InitialPoolSize: 0
+  EnergySpawnCount: 0
+  CoinSpawnCount: 0
+  ZombiePrefabs: []
+  CoinPrefab: {fileID: 0}
 --- !u!114 &114372804972422232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,16 +87,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 860bd953228999f4896adbc9b647c560, type: 2}
-  _gameOverPanel: {fileID: 0}
-  _pausePanel: {fileID: 0}
-  _settingsPanel: {fileID: 0}
-  _startGamePanel: {fileID: 0}
   m_FistStoreWindow: {fileID: 0}
+  m_SettingsWindow: {fileID: 0}
   m_Hud: {fileID: 0}
   m_UserInputController: {fileID: 0}
   m_PlayerController: {fileID: 0}
   m_DrawVectorPointerController: {fileID: 0}
   m_DistanceBonusController: {fileID: 114372804972422232}
+  m_FieldSpawnController: {fileID: 114063150008900674}
   m_TurnsController: {fileID: 114995329223410176}
   m_AddForceController: {fileID: 0}
   m_CameraFollowController: {fileID: 0}

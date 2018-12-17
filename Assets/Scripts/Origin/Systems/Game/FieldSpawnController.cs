@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using Data;
-using LeopotamGroup.Common;
-using LeopotamGroup.Ecs;
-using LeopotamGroup.Ecs.UnityIntegration;
 using LeopotamGroup.Pooling;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,15 +8,8 @@ using Random = UnityEngine.Random;
 
 namespace Systems.Game
 {
-    [EcsInject]
-    public class FieldsSpawnProcessing : IEcsRunSystem, IEcsInitSystem
+	public class FieldSpawnController : MonoBehaviour
     {
-        private EcsWorld _world;
-//        private EcsFilter<InFieldEvent> _inFieldEventFilter = null;
-//        private EcsFilter<UnityPrefabComponent> _unityPrefabFilter = null;
-//        private EcsFilter<DespawnEnergyEvent> _despawnEnergyEventFilter = null;
-//        private EcsFilter<DespawnCoinEvent> _despawnCoinEventFilter = null;
-
         private PoolContainer[] _poolContainers;
 		private PoolContainer _zombiePool;
         private PoolContainer _coinsPool;
@@ -31,17 +21,17 @@ namespace Systems.Game
         private float _groundSize;
 
         //settable fields from starter
-        public GameObject[] FieldPrefabs;
-        public int ForwardSpawnCount;
-		public int BackwardSpawnCount;
-        public int InitialPoolSize;
+		[HideInInspector] public GameObject[] FieldPrefabs;
+		[HideInInspector] public int ForwardSpawnCount;
+		[HideInInspector] public int BackwardSpawnCount;
+		[HideInInspector] public int InitialPoolSize;
 
-        public int EnergySpawnCount;
-        public int CoinSpawnCount;
-        public GameObject[] ZombiePrefabs;
-        public GameObject CoinPrefab;
+		[HideInInspector] public int EnergySpawnCount;
+		[HideInInspector] public int CoinSpawnCount;
+		[HideInInspector] public GameObject[] ZombiePrefabs;
+		[HideInInspector] public GameObject CoinPrefab;
 
-        public void Initialize()
+        public void LateStart()
         {
             _path = new List<Field>(InitialPoolSize);
             _alreadyEnergy = new List<int>();
@@ -69,11 +59,6 @@ namespace Systems.Game
             _alreadyCoins.Clear();
             _alreadyCoins = null;
             FieldPrefabs = null;
-        }
-
-        public void Run()
-        {
-			
         }
 
 		private void CheckSpawn(float zPosition)
