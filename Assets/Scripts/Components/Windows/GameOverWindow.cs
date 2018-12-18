@@ -57,7 +57,7 @@ namespace Windows
 			else
 			{
 				// track second death
-				Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionHalfEnd, Systems.GameState.Instance.SessionsCount.ToString());
+				Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionEnd, Systems.GameState.Instance.SessionsCount.ToString());
 
                 // immediately go to Claim Prize Window
                 ClaimPrize();
