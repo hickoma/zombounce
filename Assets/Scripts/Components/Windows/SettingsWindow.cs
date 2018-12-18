@@ -11,7 +11,7 @@ namespace Windows
 		public void LateStart()
 		{
 			m_HomeButton.onClick.AddListener(HideWindow);
-			GameEventsController.Instance.OnStoreWindowOpen += ShowWindow;
+			GameEventsController.Instance.OnSettingsClick += ShowWindow;
 		}
 
 		private void ShowWindow()
