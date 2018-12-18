@@ -520,8 +520,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 84
-    m_FontStyle: 0
+    m_FontSize: 64
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 84
@@ -531,7 +531,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Swipe To Move
+  m_Text: "\u041F\u043E\u0442\u044F\u043D\u0438\u0442\u0435 \u0432\u043D\u0438\u0437
+    \u0438 \u043E\u0442\u043F\u0443\u0441\u0442\u0438\u0442\u0435\n\n\u0421\u0431\u0438\u0432\u0430\u0439\u0442\u0435
+    \u0437\u043E\u043C\u0431\u0438, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0430\u0442\u044C
+    \u0445\u043E\u0434\u044B"
 --- !u!114 &114685955682710728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -944,8 +947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -115}
-  m_SizeDelta: {x: 800, y: 140}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 980, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224660971783646190
 RectTransform:
