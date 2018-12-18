@@ -81,9 +81,6 @@ public class GameStartup : MonoBehaviour
 		{
 			Analytics.SendEventAnalytic (Analytics.PossibleEvents.FirstSession, "1");
 		}
-
-		// track session start
-		Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionStart, m_GameState.SessionsCount.ToString());
     }
 
     private void Start()

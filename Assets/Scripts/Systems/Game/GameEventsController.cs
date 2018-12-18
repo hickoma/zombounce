@@ -96,6 +96,9 @@ public class GameEventsController : MonoBehaviour
 			OnGameStartClick ();
 		}
 
+		// track session start
+		Analytics.SendEventAnalytic (Analytics.PossibleEvents.SessionStart, Systems.GameState.Instance.SessionsCount.ToString());
+
 		GameEventsController.Instance.ChangeGameState (Systems.GameState.State.PLAY);
 	}
 
