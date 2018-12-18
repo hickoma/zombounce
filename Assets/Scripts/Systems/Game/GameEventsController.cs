@@ -279,8 +279,4 @@ public class GameEventsController : MonoBehaviour
 	{
 		Systems.GameState.Instance.DropPurchases ();
 	}
-
-	// ugly, ugly, UGLY global names
-	// need to refactor everything than links here
-	public Components.Player m_Player;
 }
