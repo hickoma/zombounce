@@ -215,5 +215,26 @@ namespace Windows
 		{
 			m_BestScoreIndicator.text = count.ToString();
 		}
+
+		/*m_reportErrorButton.NotFsmAction = () => { Application.OpenURL(FormErrorReport()); };
+		public string FormErrorReport()
+		{
+			string subject = I2.Loc.LocalizationManager.GetTermTranslation("report_error_title"); //тема отчёта.
+
+			string body = string.Format(
+				I2.Loc.LocalizationManager.GetTermTranslation("report_error_body"), //тело отчёта.
+				Application.version,
+				Game.State.current.gameId,
+				Application.platform.ToString(),
+				Game.Main.Instance.m_SocialPlatform.ToString(),
+				Game.State.current.Level.ToString(),
+				Game.State.DeviceID);
+
+			//отчёт в формате URL:
+			return string.Format("mailto:{0}?subject={1}&body={2}",
+				m_emailForReports, //0
+				ConvertToUrl(subject), //1
+				ConvertToUrl(body)); //2
+		}*/
     }
 }
