@@ -14,26 +14,23 @@ public class PurchaseController : MonoBehaviour, IStoreListener
     private const string REMOVE_ADS = "com.hickoma.zombounce.remove_ads";
     #endregion
 
-    #region Properties
     public bool IsRemoveAdsBought { get; private set; }
-    #endregion
 
-    #region Unity Events
     public void LateStart()
     {
         if (m_StoreController == null)
             InitializePurchasing();
-    }
-    #endregion
 
-    #region Public
-    //called in inspector
-    public void BuyRemoveAds()
+		GameEventsController.Instance.OnPurchaseNoAds += BuyRemoveAds;
+    }
+    
+    void BuyRemoveAds()
     {
-        if(!IsRemoveAdsBought)
+        if (!IsRemoveAdsBought)
             BuyProductID(REMOVE_ADS);
     }
 
+	#region Public
     // Restore purchases previously made by this customer. Some platforms automatically restore purchases, like Google. 
     // Apple currently requires explicit purchase restoration for IAP, conditionally displaying a password prompt.
     public void RestorePurchases()

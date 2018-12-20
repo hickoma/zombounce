@@ -122,6 +122,16 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	public event Action OnPurchaseNoAds;
+
+	public void PurchaseNoAds()
+	{
+		if (OnPurchaseNoAds != null)
+		{
+			OnPurchaseNoAds ();
+		}
+	}
+
     // Pause Game Window
     public event Action OnGameResumeClick;
 
