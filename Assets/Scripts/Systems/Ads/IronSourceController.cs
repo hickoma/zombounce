@@ -14,7 +14,7 @@ namespace Systems
         public void LateStart() 
         {
             // maybe not needed
-            IronSource.Agent.validateIntegration();
+            //IronSource.Agent.validateIntegration();
 
             // reward videos
             IronSourceEvents.onRewardedVideoAdOpenedEvent += RewardedVideoAdOpenedEvent;
@@ -28,7 +28,10 @@ namespace Systems
             GameEventsController.Instance.OnShowAdvertising += ShowRewardVideo;
 
             // banner
-            IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+			if (Systems.GameState.Instance.AreAdsActive)
+			{
+				IronSource.Agent.loadBanner (IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+			}
 
             IronSourceEvents.onBannerAdLoadedEvent += BannerAdLoadedEvent;
             IronSourceEvents.onBannerAdLoadFailedEvent += BannerAdLoadFailedEvent;        
@@ -181,7 +184,7 @@ namespace Systems
 
             if (m_AdsActivity)
             {
-                IronSource.Agent.displayBanner();
+                //IronSource.Agent.displayBanner();
             }
             else
             {

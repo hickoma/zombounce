@@ -33,6 +33,9 @@ namespace Windows
 		[SerializeField]
 		private Text m_BestScoreIndicator = null;
 
+		[SerializeField]
+		private Text m_Banner = null;
+
         [Space]
         [Header("Windows")]
 		[SerializeField]
@@ -70,6 +73,8 @@ namespace Windows
 //            GameEventsController.Instance.OnShowAdvertising += OnShowAdvertising;
 			GameEventsController.Instance.OnCreateRewardTurn += OnCreateRewardTurn;
 			GameEventsController.Instance.OnCreateRewardCoin += OnCreateRewardCoin;
+			Systems.GameState.Instance.OnAdsActivityChanged += (v) => m_Banner.text = "banner visibility: " + v.ToString();
+			m_Banner.text = "banner visibility: " + Systems.GameState.Instance.AreAdsActive.ToString();
 
             m_PauseButton.gameObject.SetActive(false);
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
