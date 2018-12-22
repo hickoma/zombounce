@@ -33,8 +33,8 @@ namespace Windows
 		[SerializeField]
 		private Text m_BestScoreIndicator = null;
 
-		[SerializeField]
-		private Text m_Banner = null;
+//		[SerializeField]
+//		private Text m_Banner = null;
 
         [Space]
         [Header("Windows")]
@@ -74,7 +74,7 @@ namespace Windows
 			GameEventsController.Instance.OnCreateRewardTurn += OnCreateRewardTurn;
 			GameEventsController.Instance.OnCreateRewardCoin += OnCreateRewardCoin;
             // debug stuff
-            GameEventsController.Instance.OnWriteToLog += (s) => m_Banner.text += "\n" + s;
+//            GameEventsController.Instance.OnWriteToLog += (s) => m_Banner.text += "\n" + s;
 
             m_PauseButton.gameObject.SetActive(false);
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
