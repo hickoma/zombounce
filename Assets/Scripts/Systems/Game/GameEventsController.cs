@@ -289,4 +289,14 @@ public class GameEventsController : MonoBehaviour
 	{
 		Systems.GameState.Instance.DropPurchases ();
 	}
+
+    public event Action<string> OnWriteToLog;
+
+    public void WriteToLog(string error)
+    {
+        if (OnWriteToLog != null)
+        {
+            OnWriteToLog(error);
+        }
+    }
 }

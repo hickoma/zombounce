@@ -73,8 +73,8 @@ namespace Windows
 //            GameEventsController.Instance.OnShowAdvertising += OnShowAdvertising;
 			GameEventsController.Instance.OnCreateRewardTurn += OnCreateRewardTurn;
 			GameEventsController.Instance.OnCreateRewardCoin += OnCreateRewardCoin;
-			Systems.GameState.Instance.OnAdsActivityChanged += (v) => m_Banner.text = "banner visibility: " + v.ToString();
-			m_Banner.text = "banner visibility: " + Systems.GameState.Instance.AreAdsActive.ToString();
+            // debug stuff
+            GameEventsController.Instance.OnWriteToLog += (s) => m_Banner.text += "\n" + s;
 
             m_PauseButton.gameObject.SetActive(false);
 			m_PauseButton.onClick.AddListener (GameEventsController.Instance.PauseGame);
@@ -216,25 +216,25 @@ namespace Windows
 			m_BestScoreIndicator.text = count.ToString();
 		}
 
-		/*m_reportErrorButton.NotFsmAction = () => { Application.OpenURL(FormErrorReport()); };
+        /*public void SendReport()
+        {
+            Application.OpenURL(FormErrorReport());
+        }
+
 		public string FormErrorReport()
 		{
-			string subject = I2.Loc.LocalizationManager.GetTermTranslation("report_error_title"); //тема отчёта.
-
-			string body = string.Format(
-				I2.Loc.LocalizationManager.GetTermTranslation("report_error_body"), //тело отчёта.
-				Application.version,
-				Game.State.current.gameId,
-				Application.platform.ToString(),
-				Game.Main.Instance.m_SocialPlatform.ToString(),
-				Game.State.current.Level.ToString(),
-				Game.State.DeviceID);
+            string body = m_Banner.text;
 
 			//отчёт в формате URL:
 			return string.Format("mailto:{0}?subject={1}&body={2}",
-				m_emailForReports, //0
-				ConvertToUrl(subject), //1
+				"vasilisk_91@mail.ru", //0
+				"zombounce_error_log", //1
 				ConvertToUrl(body)); //2
-		}*/
+		}
+
+        private static string ConvertToUrl(string value)
+        {
+            return WWW.EscapeURL(value).Replace("+", "%20");
+        }*/
     }
 }

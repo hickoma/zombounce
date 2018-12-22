@@ -64,6 +64,37 @@ namespace Systems
             GameState.Instance.IsInterstitialReady = IronSource.Agent.isInterstitialReady();
         }
 
+        // is needed to unsubscribe from all IronSourceEvents events
+        // elsewhere these subscribes will be duplicated
+        void OnDestroy()
+        {
+            // reward videos
+            IronSourceEvents.onRewardedVideoAdOpenedEvent -= RewardedVideoAdOpenedEvent;
+            IronSourceEvents.onRewardedVideoAdClosedEvent -= RewardedVideoAdClosedEvent; 
+            IronSourceEvents.onRewardedVideoAvailabilityChangedEvent -= RewardedVideoAvailabilityChangedEvent;
+            IronSourceEvents.onRewardedVideoAdStartedEvent -= RewardedVideoAdStartedEvent;
+            IronSourceEvents.onRewardedVideoAdEndedEvent -= RewardedVideoAdEndedEvent;
+            IronSourceEvents.onRewardedVideoAdRewardedEvent -= RewardedVideoAdRewardedEvent; 
+            IronSourceEvents.onRewardedVideoAdShowFailedEvent -= RewardedVideoAdShowFailedEvent;
+
+            // banner
+            IronSourceEvents.onBannerAdLoadedEvent -= BannerAdLoadedEvent;
+            IronSourceEvents.onBannerAdLoadFailedEvent -= BannerAdLoadFailedEvent;        
+            IronSourceEvents.onBannerAdClickedEvent -= BannerAdClickedEvent; 
+            IronSourceEvents.onBannerAdScreenPresentedEvent -= BannerAdScreenPresentedEvent; 
+            IronSourceEvents.onBannerAdScreenDismissedEvent -= BannerAdScreenDismissedEvent;
+            IronSourceEvents.onBannerAdLeftApplicationEvent -= BannerAdLeftApplicationEvent;
+
+            // interstitial
+            IronSourceEvents.onInterstitialAdReadyEvent -= InterstitialAdReadyEvent;
+            IronSourceEvents.onInterstitialAdLoadFailedEvent -= InterstitialAdLoadFailedEvent;        
+            IronSourceEvents.onInterstitialAdShowSucceededEvent -= InterstitialAdShowSucceededEvent; 
+            IronSourceEvents.onInterstitialAdShowFailedEvent -= InterstitialAdShowFailedEvent; 
+            IronSourceEvents.onInterstitialAdClickedEvent -= InterstitialAdClickedEvent;
+            IronSourceEvents.onInterstitialAdOpenedEvent -= InterstitialAdOpenedEvent;
+            IronSourceEvents.onInterstitialAdClosedEvent -= InterstitialAdClosedEvent;
+        }
+
         //Invoked when the RewardedVideo ad view has opened.
         //Your Activity will lose focus. Please avoid performing heavy 
         //tasks till the video ad will be closed.
@@ -143,6 +174,7 @@ namespace Systems
         {
 			if (m_AdsActivity)
 			{
+                GameEventsController.Instance.WriteToLog("OnBannerLoaded");
 				IronSource.Agent.displayBanner();
 			}
         }
@@ -151,31 +183,32 @@ namespace Systems
         //@param description - string - contains information about the failure.
         void BannerAdLoadFailedEvent (IronSourceError error)
         {
-            
+            GameEventsController.Instance.WriteToLog("OnBannerLoadFailed: " + error.ToString());
+            IronSource.Agent.displayBanner();
         }
 
         // Invoked when end user clicks on the banner ad
         void BannerAdClickedEvent ()
         {
-            
+            GameEventsController.Instance.WriteToLog("OnBannerAdClicked");
         }
 
         //Notifies the presentation of a full screen content following user click
         void BannerAdScreenPresentedEvent ()
         {
-            
+            GameEventsController.Instance.WriteToLog("OnBannerAdScreenPresented");
         }
 
         //Notifies the presented screen has been dismissed
         void BannerAdScreenDismissedEvent()
         {
-            
+            GameEventsController.Instance.WriteToLog("OnBannerAdScreenDismissed");
         }
 
         //Invoked when the user leaves the app
         void BannerAdLeftApplicationEvent()
         {
-            
+            GameEventsController.Instance.WriteToLog("OnBannerAdLeftApplication");
         }
 
         void ChangeAdsActivity(bool active)

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114372804972422232}
   - component: {fileID: 114063150008900674}
   - component: {fileID: 114995329223410176}
+  - component: {fileID: 114211240899509246}
   - component: {fileID: 114951211514279944}
   - component: {fileID: 114699422220589938}
   m_Layer: 0
@@ -64,6 +65,17 @@ MonoBehaviour:
   CoinSpawnCount: 0
   ZombiePrefabs: []
   CoinPrefab: {fileID: 0}
+--- !u!114 &114211240899509246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924550101837566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8666ed1ec8fa04cc587ee4671eae00b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114372804972422232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,7 +112,7 @@ MonoBehaviour:
   m_CameraFollowController: {fileID: 0}
   m_DragSimulationController: {fileID: 0}
   m_BackBlockFollowController: {fileID: 0}
-  m_IronSourceController: {fileID: 0}
+  m_IronSourceController: {fileID: 114211240899509246}
   m_PurchaseController: {fileID: 114951211514279944}
   m_EventsController: {fileID: 114699422220589938}
 --- !u!114 &114699422220589938
@@ -114,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64402fce24690f41a93cab2a37123d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Player: {fileID: 0}
 --- !u!114 &114951211514279944
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -22,6 +22,10 @@ public class IronSourceEvents : MonoBehaviour
 			gameObject.name = "IronSourceEvents";			//Change the GameObject name to IronSourceEvents.
 			DontDestroyOnLoad (gameObject);					//Makes the object not be destroyed automatically when loading a new scene.
 		}
+        else if (m_Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
 	}
 	
 	// ******************************* Rewarded Video Events *******************************
