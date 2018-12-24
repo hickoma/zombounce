@@ -31,6 +31,9 @@ namespace Systems.Game
 		[HideInInspector] public GameObject[] ZombiePrefabs;
 		[HideInInspector] public GameObject CoinPrefab;
 
+		[SerializeField]
+		private Transform m_DefaultLevelTransform = null;
+
         public void LateStart()
         {
             _path = new List<Field>(InitialPoolSize);
@@ -97,6 +100,9 @@ namespace Systems.Game
             {
 				_poolContainers[i] = PoolContainer.CreatePool(FieldPrefabs[i], parent);
             }
+
+			// spawn zombies for default level
+			SpawnZombie (0, m_DefaultLevelTransform);
 
             //init ground size
             //            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
@@ -173,8 +179,8 @@ namespace Systems.Game
                 field.PoolObject = obj;
                 field.IsOnScene = true;
 
-                SpawnZombie(id, obj);
-                SpawnCoin(id, obj);
+                SpawnZombie(id, obj.PoolTransform);
+				SpawnCoin(id, obj);
 
                 return obj;
             }
@@ -210,12 +216,12 @@ namespace Systems.Game
             }
         }
 
-        private void SpawnZombie(int id, IPoolObject obj)
+        private void SpawnZombie(int id, Transform poolTransform)
         {
             if (_alreadyEnergy.Contains(id)) return;
 
             _alreadyEnergy.Add(id);
-            List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(obj.PoolTransform, Tag.ZombieSpawn);
+			List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(poolTransform, Tag.ZombieSpawn);
             spawnPoints.Shuffle();
 
             for (int i = 0; i < spawnPoints.Count && i < EnergySpawnCount; i++)
