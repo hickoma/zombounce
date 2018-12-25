@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 1859449027695126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4221342899727362}
   m_RootOrder: 0
@@ -114,6 +114,10 @@ MonoBehaviour:
   m_Player: {fileID: 0}
   m_Hand: {fileID: 212283731056759834}
   m_RayMask: {fileID: 0}
+  m_TutorialShowTimes: 0
+  m_FirstPartLength: 0
+  m_SecondPartLength: 0
+  m_ThirdPartLength: 0
 --- !u!212 &212283731056759834
 SpriteRenderer:
   m_ObjectHideFlags: 1

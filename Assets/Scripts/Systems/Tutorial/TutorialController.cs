@@ -18,6 +18,7 @@ namespace Systems
 
 		[Space]
 		[Header("Animation Parameters")]
+		public int m_TutorialShowTimes;
 		public float m_FirstPartLength;
 		public float m_SecondPartLength;
 		public float m_ThirdPartLength;
@@ -26,11 +27,11 @@ namespace Systems
 
 		public void LateStart()
 		{
-//			if (Systems.GameState.Instance.SessionsCount <= 3)
-//			{
+			if (Systems.GameState.Instance.SessionsCount <= m_TutorialShowTimes)
+			{
 				StartTutorial ();
 				GameEventsController.Instance.OnGameStartClick += StopTutorial;
-//			}
+			}
 		}
 
 		void StartTutorial()
@@ -46,12 +47,12 @@ namespace Systems
 																	0, 
 																	m_Hand.transform.localPosition.z);
 					// scale hand
-					m_Hand.transform.localScale = Vector3.one * Mathf.Lerp(1f, 
-																			0.7f, 
+					m_Hand.transform.localScale = Vector3.one * Mathf.Lerp(1.5f, 
+																			1.2f, 
 																			v / m_FirstPartLength);
 					// set ray scale
 					m_RayMask.transform.localScale = new Vector3(m_RayMask.transform.localScale.x, 
-																0, 
+																m_MaskMaxSize, 
 																m_RayMask.transform.localScale.z);
 				}
 				else if (v >= m_FirstPartLength && v <= m_FirstPartLength + m_SecondPartLength) // second part: drag
@@ -68,9 +69,14 @@ namespace Systems
 				else if (v > m_FirstPartLength + m_SecondPartLength) // third part: release
 				{
 					// scale hand
-					m_Hand.transform.localScale = Vector3.one * Mathf.Lerp(0.7f, 
-																			1f, 
+					m_Hand.transform.localScale = Vector3.one * Mathf.Lerp(1.2f, 
+																			1.5f, 
 																			(v - m_FirstPartLength - m_SecondPartLength) / m_ThirdPartLength);
+
+					// set ray scale
+					m_RayMask.transform.localScale = new Vector3(m_RayMask.transform.localScale.x, 
+						m_MaskMaxSize, 
+						m_RayMask.transform.localScale.z);
 				}
 			}).Target(this).SetLoop(Tween.LoopType.loop).Start ();
 		}

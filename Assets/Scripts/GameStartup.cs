@@ -163,6 +163,7 @@ public class GameStartup : MonoBehaviour
 
 		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
 
+		m_TutorialController.m_TutorialShowTimes = _parameters.TutorialShowTimes;
 		m_TutorialController.m_FirstPartLength = _parameters.FirstPartLength;
 		m_TutorialController.m_SecondPartLength = _parameters.SecondPartLength;
 		m_TutorialController.m_ThirdPartLength = _parameters.ThirdPartLength;

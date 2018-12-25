@@ -43,6 +43,7 @@ namespace Data
 		public Fist DefaultFist;
 
 		[Header("Tutorial")]
+		public int TutorialShowTimes;
 		public float FirstPartLength;
 		public float SecondPartLength;
 		public float ThirdPartLength;
