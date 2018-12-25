@@ -52,6 +52,9 @@ public class GameStartup : MonoBehaviour
 	[SerializeField]
 	private BackBlockerFollowController m_BackBlockFollowController = null;
 
+	[SerializeField]
+	private TutorialController m_TutorialController = null;
+
     [SerializeField]
     private IronSourceController m_IronSourceController = null;
 
@@ -106,6 +109,8 @@ public class GameStartup : MonoBehaviour
 
 		m_DragSimulationController.LateStart();
 
+		m_TutorialController.LateStart();
+
         // windows
         m_FistStoreWindow.LateStart();
 
@@ -157,6 +162,10 @@ public class GameStartup : MonoBehaviour
 		m_DragSimulationController.Drag = _parameters.Drag;
 
 		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
+
+		m_TutorialController.m_FirstPartLength = _parameters.FirstPartLength;
+		m_TutorialController.m_SecondPartLength = _parameters.SecondPartLength;
+		m_TutorialController.m_ThirdPartLength = _parameters.ThirdPartLength;
     }
 
     void OnApplicationPause(bool isPaused)

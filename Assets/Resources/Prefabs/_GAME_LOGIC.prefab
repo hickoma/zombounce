@@ -92,6 +92,7 @@ MonoBehaviour:
   m_CameraFollowController: {fileID: 0}
   m_DragSimulationController: {fileID: 0}
   m_BackBlockFollowController: {fileID: 0}
+  m_TutorialController: {fileID: 0}
   m_IronSourceController: {fileID: 114211240899509246}
   m_PurchaseController: {fileID: 114951211514279944}
   m_EventsController: {fileID: 114699422220589938}

@@ -42,6 +42,11 @@ namespace Data
         [Header("Fist Prefabs")] public Fist[] Fists;
 		public Fist DefaultFist;
 
+		[Header("Tutorial")]
+		public float FirstPartLength;
+		public float SecondPartLength;
+		public float ThirdPartLength;
+
         [Header("Plugins ids and keys")] public string IronSourceAppKey;
     }
 }
