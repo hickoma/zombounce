@@ -47,6 +47,7 @@ namespace Data
 		public float FirstPartLength;
 		public float SecondPartLength;
 		public float ThirdPartLength;
+		public GameObject[] FirstSessionLevels;
 
         [Header("Plugins ids and keys")] public string IronSourceAppKey;
     }

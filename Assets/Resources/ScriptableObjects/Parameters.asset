@@ -68,4 +68,8 @@ MonoBehaviour:
   FirstPartLength: 0.5
   SecondPartLength: 1
   ThirdPartLength: 0.2
+  FirstSessionLevels:
+  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
+  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
+  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
   IronSourceAppKey: 83bcffa5

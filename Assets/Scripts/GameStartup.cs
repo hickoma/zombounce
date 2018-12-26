@@ -155,6 +155,7 @@ public class GameStartup : MonoBehaviour
 		m_FieldSpawnController.CoinPrefab = _parameters.Coin;
 		m_FieldSpawnController.EnergySpawnCount = _parameters.EnergySpawnCount;
 		m_FieldSpawnController.CoinSpawnCount = _parameters.CoinSpawnCount;
+		m_FieldSpawnController.FirstSessionLevels = _parameters.FirstSessionLevels;
 
 		m_CameraFollowController.CameraSmooth = _parameters.CameraSmooth;
 		m_CameraFollowController.CameraMinPositionZ = _parameters.CameraMinPositionZ;

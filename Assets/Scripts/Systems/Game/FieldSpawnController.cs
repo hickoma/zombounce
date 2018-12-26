@@ -21,7 +21,16 @@ namespace Systems.Game
         private float _groundSize;
 
         //settable fields from starter
-		[HideInInspector] public GameObject[] FieldPrefabs;
+		[HideInInspector] public List<GameObject> m_FieldPrefabs;
+
+		public GameObject[] FieldPrefabs
+		{
+			set
+			{
+				m_FieldPrefabs = new List<GameObject> (value);
+			}
+		}
+
 		[HideInInspector] public int ForwardSpawnCount;
 		[HideInInspector] public int BackwardSpawnCount;
 		[HideInInspector] public int InitialPoolSize;
@@ -30,6 +39,7 @@ namespace Systems.Game
 		[HideInInspector] public int CoinSpawnCount;
 		[HideInInspector] public GameObject[] ZombiePrefabs;
 		[HideInInspector] public GameObject CoinPrefab;
+		[HideInInspector] public GameObject[] FirstSessionLevels;
 
 		[SerializeField]
 		private Transform m_DefaultLevelTransform = null;
@@ -61,7 +71,7 @@ namespace Systems.Game
             _alreadyEnergy = null; 
             _alreadyCoins.Clear();
             _alreadyCoins = null;
-            FieldPrefabs = null;
+			m_FieldPrefabs = null;
         }
 
 		private void CheckSpawn(float zPosition)
@@ -95,10 +105,10 @@ namespace Systems.Game
             _coinsPool = PoolContainer.CreatePool(CoinPrefab, parent);
 
             //create fields pool
-            _poolContainers = new PoolContainer[FieldPrefabs.Length];
-			for (int i = 0; i < FieldPrefabs.Length; i++)
+			_poolContainers = new PoolContainer[m_FieldPrefabs.Count];
+			for (int i = 0; i < m_FieldPrefabs.Count; i++)
             {
-				_poolContainers[i] = PoolContainer.CreatePool(FieldPrefabs[i], parent);
+				_poolContainers[i] = PoolContainer.CreatePool(m_FieldPrefabs[i], parent);
             }
 
 			// spawn zombies for default level
@@ -119,7 +129,14 @@ namespace Systems.Game
         {
             for (int i = 0; i < InitialPoolSize; i++)
             {
-                _path.Add(new Field(Random.Range(0, FieldPrefabs.Length)));
+				if (Systems.GameState.Instance.SessionsCount == 1 && i < FirstSessionLevels.Length)
+				{
+					_path.Add (new Field (m_FieldPrefabs.IndexOf(FirstSessionLevels[i])));
+				}
+				else
+				{
+					_path.Add (new Field (Random.Range (0, m_FieldPrefabs.Count)));
+				}
             }
         }
 
