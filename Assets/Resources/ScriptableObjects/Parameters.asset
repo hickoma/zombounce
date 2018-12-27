@@ -27,6 +27,11 @@ MonoBehaviour:
   CameraSmooth: 0.2
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15
+  NormalModePoints: 200
+  HardModePoints: 500
+  EnergySpawnEasyModeCount: 4
+  EnergySpawnNormalModeCount: 3
+  EnergySpawnHardModeCount: 2
   Fields:
   - {fileID: 1563116495452332, guid: fa2c3d69f12a842f2981fbcbd7bb99eb, type: 2}
   - {fileID: 1723202449178096, guid: f49653eda0c56ec4f91229eaba6326a5, type: 2}
@@ -54,7 +59,6 @@ MonoBehaviour:
   - {fileID: 1271114649502384, guid: 9efe8f80f500c254ab61642e3f49d0ef, type: 2}
   - {fileID: 1271114649502384, guid: 252595e592a15ab44b7700866d4078bc, type: 2}
   Coin: {fileID: 1396591365958742, guid: deacb39d16e33e7418d82c91fe340ba9, type: 2}
-  EnergySpawnCount: 4
   CoinSpawnCount: 900
   Fists:
   - {fileID: 114042852932565630, guid: 29f60671c72cf4c5ea5a4b4068ea6360, type: 2}

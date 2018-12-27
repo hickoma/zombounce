@@ -27,15 +27,21 @@ namespace Data
 
 		public float BackBlockerDistanceFromCamera;
 
+		[Header("Difficulty Parameters")]
+		public int NormalModePoints;
+		public int HardModePoints;
+		public int EnergySpawnEasyModeCount;
+		public int EnergySpawnNormalModeCount;
+		public int EnergySpawnHardModeCount;
+
         [Header("Field Prefabs")] public GameObject[] Fields;
         public int ForwardSpawnCount;
 		public int BackwardSpawnCount;
         public int InitialPoolSize;
 
 		[Header("Zombie Prefabs")] public GameObject[] Zombies;
-        public GameObject Coin;
-        public int EnergySpawnCount;
-        public int CoinSpawnCount;
+		public GameObject Coin;        
+		public int CoinSpawnCount;
 
         [Header("Fist Prefabs")] public Fist[] Fists;
 		public Fist DefaultFist;

@@ -35,7 +35,11 @@ namespace Systems.Game
 		[HideInInspector] public int BackwardSpawnCount;
 		[HideInInspector] public int InitialPoolSize;
 
-		[HideInInspector] public int EnergySpawnCount;
+		[HideInInspector] public int NormalModePoints;
+		[HideInInspector] public int HardModePoints;
+		[HideInInspector] public int EnergySpawnEasyModeCount;
+		[HideInInspector] public int EnergySpawnNormalModeCount;
+		[HideInInspector] public int EnergySpawnHardModeCount;
 		[HideInInspector] public int CoinSpawnCount;
 		[HideInInspector] public GameObject[] ZombiePrefabs;
 		[HideInInspector] public GameObject CoinPrefab;
@@ -43,6 +47,30 @@ namespace Systems.Game
 
 		[SerializeField]
 		private Transform m_DefaultLevelTransform = null;
+
+		private int ZombieSpawnCount
+		{
+			get
+			{
+				int currentPoints = GameState.Instance.CurrentPointsCount;
+				int currentZombieSpawn = 1;
+
+				if (currentPoints >= 0 && currentPoints < NormalModePoints)
+				{
+					currentZombieSpawn = EnergySpawnEasyModeCount;
+				}
+				else if (currentPoints >= NormalModePoints && currentPoints < HardModePoints)
+				{
+					currentZombieSpawn = EnergySpawnNormalModeCount;
+				}
+				else if (currentPoints > HardModePoints)
+				{
+					currentZombieSpawn = EnergySpawnHardModeCount;
+				}
+
+				return currentZombieSpawn;
+			}
+		}
 
         public void LateStart()
         {
@@ -241,7 +269,7 @@ namespace Systems.Game
 			List<Transform> spawnPoints = FindAllChildrenRecursiveWithTag(poolTransform, Tag.ZombieSpawn);
             spawnPoints.Shuffle();
 
-            for (int i = 0; i < spawnPoints.Count && i < EnergySpawnCount; i++)
+			for (int i = 0; i < spawnPoints.Count && i < ZombieSpawnCount; i++)
             {
                 Transform point = spawnPoints[i];
 				IPoolObject poolingObj = _zombiePool.Get();
