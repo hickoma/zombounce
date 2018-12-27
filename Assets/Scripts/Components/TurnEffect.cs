@@ -16,8 +16,11 @@ namespace Components
 		[SerializeField]
 		private Text m_MinusText = null;
 
-		private float m_AnimationLength = 1f;
-		private float m_AnimationDeltaY = -100f;
+		// parameters
+		[System.NonSerialized]
+		public float m_AnimationLength = 1f;
+		[System.NonSerialized]
+		public float m_AnimationDeltaY = -100f;
 
 		void Start ()
 		{
@@ -30,6 +33,7 @@ namespace Components
 				m_Transform.anchoredPosition = new Vector2(startXPosition, Mathf.Lerp(startYPosition, startYPosition + m_AnimationDeltaY, v));
 				// set opacity
 				m_Icon.color = new Color(m_Icon.color.r, m_Icon.color.g, m_Icon.color.b, Mathf.Lerp(1f, 0f, v));
+				m_MinusText.color = new Color(m_MinusText.color.r, m_MinusText.color.g, m_MinusText.color.b, Mathf.Lerp(1f, 0f, v));
 			}).OnComplete(() =>
 			{
 				Destroy(gameObject);
