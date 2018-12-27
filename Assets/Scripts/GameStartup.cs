@@ -69,6 +69,7 @@ public class GameStartup : MonoBehaviour
 
     private void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         // set quality settings
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 0;
