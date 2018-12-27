@@ -32,6 +32,10 @@ namespace Systems
 				StartTutorial ();
 				GameEventsController.Instance.OnGameStartClick += StopTutorial;
 			}
+			else
+			{
+				m_Hand.gameObject.SetActive (false);
+			}
 		}
 
 		void StartTutorial()
