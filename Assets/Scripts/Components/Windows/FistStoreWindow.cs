@@ -154,7 +154,8 @@ namespace Windows
         {
             ShowAds (() =>
             {
-                Systems.GameState.Instance.CoinsCount += Systems.GameState.Instance.FreeCoinsAmount;
+				m_CurrentCoins += Systems.GameState.Instance.FreeCoinsAmount;
+				Systems.GameState.Instance.CoinsCount = m_CurrentCoins;
                 UpdateCoinsCounter();
             });
         }
