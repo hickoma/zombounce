@@ -30,15 +30,15 @@ MonoBehaviour:
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15
   Fields:
-  - {fileID: 1929051274091830, guid: 751de8fd29992f54a81192425e24789e, type: 2}
-  - {fileID: 1929051274091830, guid: f49653eda0c56ec4f91229eaba6326a5, type: 2}
-  - {fileID: 1929051274091830, guid: aef07f44164d0c94cbf528a893b58ab0, type: 2}
-  - {fileID: 1929051274091830, guid: c6707be4790b24d4382ced3827c8731b, type: 2}
-  - {fileID: 1929051274091830, guid: 8dba2d17403e6be419926c62e5e315f8, type: 2}
-  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
-  - {fileID: 1929051274091830, guid: 757e1dca26ade3a4fa900ac150900368, type: 2}
-  - {fileID: 1929051274091830, guid: b3cdcff65e2782d48922d1f0d76c9226, type: 2}
-  - {fileID: 1929051274091830, guid: 464dafd46c43f5c4088aa46f78dc85d4, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ForwardSpawnCount: 3
   BackwardSpawnCount: 1
   InitialPoolSize: 128
@@ -69,7 +69,9 @@ MonoBehaviour:
   SecondPartLength: 1
   ThirdPartLength: 0.2
   FirstSessionLevels:
-  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
-  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
-  - {fileID: 1929051274091830, guid: 4cc95f16e19a6f346ab5a8b022c0d700, type: 2}
+  - {fileID: 1981712247188298, guid: 43e976e21d9af4401b0173140505610c, type: 2}
+  - {fileID: 1013403290555508, guid: b94a24edb2962419f885a45a7ea8ea00, type: 2}
+  - {fileID: 1712185782337674, guid: 469071bc636a645d581bd24802a39f06, type: 2}
+  - {fileID: 1325074556123222, guid: b9e9d3868487b4685993bb82c425ce7d, type: 2}
+  - {fileID: 1981712247188298, guid: 43e976e21d9af4401b0173140505610c, type: 2}
   IronSourceAppKey: 83bcffa5

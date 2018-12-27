@@ -2067,7 +2067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710bcd5fc6127a64a93a5d9f3e9d277a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FieldPrefabs: []
+  m_FieldPrefabs: []
   ForwardSpawnCount: 0
   BackwardSpawnCount: 0
   InitialPoolSize: 0
@@ -2075,6 +2075,7 @@ MonoBehaviour:
   CoinSpawnCount: 0
   ZombiePrefabs: []
   CoinPrefab: {fileID: 0}
+  FirstSessionLevels: []
   m_DefaultLevelTransform: {fileID: 2007559103}
 --- !u!1001 &1659532227
 Prefab:
@@ -2771,7 +2772,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4901403259855882, guid: f21be950ac81d3043bdc49ff039535cc, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1929051274091830, guid: f21be950ac81d3043bdc49ff039535cc, type: 2}
       propertyPath: m_IsActive
