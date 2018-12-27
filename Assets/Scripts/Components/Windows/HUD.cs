@@ -69,6 +69,11 @@ namespace Windows
 		[SerializeField]
 		private TurnEffect m_TurnEffect = null;
 
+		[System.NonSerialized]
+		public float m_TurnEffectLength;
+		[System.NonSerialized]
+		public float m_TurnEffectDeltaY;
+
 		// special list to control Player death on last energy
 		private List<TurnReward> m_FlyingTurnRewards = new List<TurnReward> ();
 
@@ -213,7 +218,9 @@ namespace Windows
 			// create effect
 			if (currentTurnsCount > count)
 			{
-				Instantiate (m_TurnEffect, m_TurnsIndicator.transform.parent);
+				TurnEffect turnEffect = Instantiate<TurnEffect> (m_TurnEffect, m_TurnsIndicator.transform.parent);
+				turnEffect.m_AnimationLength = m_TurnEffectLength;
+				turnEffect.m_AnimationDeltaY = m_TurnEffectDeltaY;
 			}
 
 			m_TurnsIndicator.text = count.ToString();

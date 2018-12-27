@@ -19,9 +19,7 @@ namespace Data
 		public int SecondLifeTurns;
 		public int PointsToCoinsCoeff;
         public int AdvertisingCoinsMultiplierCoeff;
-        public int FreeCoinsAmount;
-        public float RescaleSpeed;
-		public float RewardFlyTime;
+        public int FreeCoinsAmount;        
         public int LosesToShowInterstitialCount;
 
         [Header("Camera"), Range(0f, 1f)] public float CameraSmooth;
@@ -48,6 +46,12 @@ namespace Data
 		public float SecondPartLength;
 		public float ThirdPartLength;
 		public GameObject[] FirstSessionLevels;
+
+		[Header("Effects")]
+		public float RescaleSpeed;
+		public float RewardFlyLength;
+		public float TurnEffectLength;
+		public float TurnEffectDeltaY;
 
         [Header("Plugins ids and keys")] public string IronSourceAppKey;
     }

@@ -138,13 +138,16 @@ public class GameStartup : MonoBehaviour
 		m_GameState.PointsToCoinsCoeff = _parameters.PointsToCoinsCoeff;
         m_GameState.AdvertisingCoinsMultiplierCoeff = _parameters.AdvertisingCoinsMultiplierCoeff;
         m_GameState.FreeCoinsAmount = _parameters.FreeCoinsAmount;
-		m_GameState.RewardFlyTime = _parameters.RewardFlyTime;
+		m_GameState.RewardFlyTime = _parameters.RewardFlyLength;
         m_GameState.m_LosesToShowInterstitialCount = _parameters.LosesToShowInterstitialCount;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;
 		m_PlayerController.MaxForce = _parameters.MaxForce;
 		m_PlayerController.MinLength = _parameters.MinLength;
+
+		m_Hud.m_TurnEffectLength = _parameters.TurnEffectLength;
+		m_Hud.m_TurnEffectDeltaY = _parameters.TurnEffectDeltaY;
 
 		m_DrawVectorPointerController.MaxForce = _parameters.MaxForce;
 
