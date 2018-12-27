@@ -27,8 +27,8 @@ MonoBehaviour:
   CameraSmooth: 0.2
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15
-  NormalModePoints: 200
-  HardModePoints: 500
+  NormalModePoints: 100
+  HardModePoints: 200
   EnergySpawnEasyModeCount: 4
   EnergySpawnNormalModeCount: 3
   EnergySpawnHardModeCount: 2
