@@ -34,10 +34,12 @@ namespace Data
 		public int EnergySpawnNormalModeCount;
 		public int EnergySpawnHardModeCount;
 
-        [Header("Field Prefabs")] public GameObject[] Fields;
+        [Header("Levels")]
         public int ForwardSpawnCount;
 		public int BackwardSpawnCount;
-        public int InitialPoolSize;
+        public GameObject[] EasyLevels;
+        public GameObject[] NormalLevels;
+        public GameObject[] HardLevels;
 
 		[Header("Zombie Prefabs")] public GameObject[] Zombies;
 		public GameObject Coin;        

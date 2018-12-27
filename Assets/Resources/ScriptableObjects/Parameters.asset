@@ -32,7 +32,14 @@ MonoBehaviour:
   EnergySpawnEasyModeCount: 4
   EnergySpawnNormalModeCount: 3
   EnergySpawnHardModeCount: 2
-  Fields:
+  ForwardSpawnCount: 3
+  BackwardSpawnCount: 1
+  EasyLevels:
+  - {fileID: 1981712247188298, guid: 43e976e21d9af4401b0173140505610c, type: 2}
+  - {fileID: 1013403290555508, guid: b94a24edb2962419f885a45a7ea8ea00, type: 2}
+  - {fileID: 1712185782337674, guid: 469071bc636a645d581bd24802a39f06, type: 2}
+  - {fileID: 1325074556123222, guid: b9e9d3868487b4685993bb82c425ce7d, type: 2}
+  NormalLevels:
   - {fileID: 1563116495452332, guid: fa2c3d69f12a842f2981fbcbd7bb99eb, type: 2}
   - {fileID: 1723202449178096, guid: f49653eda0c56ec4f91229eaba6326a5, type: 2}
   - {fileID: 1429404222228154, guid: aef07f44164d0c94cbf528a893b58ab0, type: 2}
@@ -42,13 +49,10 @@ MonoBehaviour:
   - {fileID: 1171093576632614, guid: 757e1dca26ade3a4fa900ac150900368, type: 2}
   - {fileID: 1367411828188228, guid: b3cdcff65e2782d48922d1f0d76c9226, type: 2}
   - {fileID: 1324813178502094, guid: 464dafd46c43f5c4088aa46f78dc85d4, type: 2}
-  - {fileID: 1981712247188298, guid: 43e976e21d9af4401b0173140505610c, type: 2}
-  - {fileID: 1013403290555508, guid: b94a24edb2962419f885a45a7ea8ea00, type: 2}
-  - {fileID: 1712185782337674, guid: 469071bc636a645d581bd24802a39f06, type: 2}
-  - {fileID: 1325074556123222, guid: b9e9d3868487b4685993bb82c425ce7d, type: 2}
-  ForwardSpawnCount: 3
-  BackwardSpawnCount: 1
-  InitialPoolSize: 128
+  HardLevels:
+  - {fileID: 1991732948160604, guid: 17c6b6b90641d4b4b9748c2832ff47f7, type: 2}
+  - {fileID: 1731843646480194, guid: 88e8c56c685934b3c80bdea31b765073, type: 2}
+  - {fileID: 1075204231299106, guid: 822e7d0fa64c748dca5587b6f62f61f5, type: 2}
   Zombies:
   - {fileID: 1271114649502384, guid: 2c94648861b355541a240874ba371585, type: 2}
   - {fileID: 1271114649502384, guid: f7080cb5ee96b1441871bbda2aa32a49, type: 2}

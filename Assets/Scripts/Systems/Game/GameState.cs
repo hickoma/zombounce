@@ -15,6 +15,13 @@ namespace Systems
 			REWARDING
 		}
 
+        public enum DifficultyMode
+        {
+            EASY,
+            NORMAL,
+            HARD
+        }
+
 		// interface
 		static GameState m_Instance;
 
@@ -339,6 +346,33 @@ namespace Systems
 				BestScorePointsCount = CurrentPointsCount;
 			}
 		}
+
+        // difficulty
+        public int NormalModePoints;
+        public int HardModePoints;
+
+        public DifficultyMode Difficulty
+        {
+            get
+            {
+                DifficultyMode currentDifficulty = DifficultyMode.EASY;
+
+                if (CurrentPointsCount >= 0 && CurrentPointsCount < NormalModePoints)
+                {
+                    currentDifficulty = DifficultyMode.EASY;
+                }
+                else if (CurrentPointsCount >= NormalModePoints && CurrentPointsCount < HardModePoints)
+                {
+                    currentDifficulty = DifficultyMode.NORMAL;
+                }
+                else if (CurrentPointsCount >= HardModePoints)
+                {
+                    currentDifficulty = DifficultyMode.HARD;
+                }
+
+                return currentDifficulty;
+            }
+        }
 
 		// points to coins ratio
 		private int m_PointsToCoinsCoeff = 3;

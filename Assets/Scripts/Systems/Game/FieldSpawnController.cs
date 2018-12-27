@@ -20,23 +20,40 @@ namespace Systems.Game
         //z size of field
         private float _groundSize;
 
+        // all fields
+        private List<GameObject> m_AllLevels;
         //settable fields from starter
-		[HideInInspector] public List<GameObject> m_FieldPrefabs;
+		private List<GameObject> m_EasyLevelsPrefabs;
+        private List<GameObject> m_NormalLevelsPrefabs;
+        private List<GameObject> m_HardLevelsPrefabs;
 
-		public GameObject[] FieldPrefabs
+		public GameObject[] EasyLevelsPrefabs
 		{
 			set
 			{
-				m_FieldPrefabs = new List<GameObject> (value);
+                m_EasyLevelsPrefabs = new List<GameObject> (value);
 			}
 		}
 
+        public GameObject[] NormalLevelsPrefabs
+        {
+            set
+            {
+                m_NormalLevelsPrefabs = new List<GameObject> (value);
+            }
+        }
+
+        public GameObject[] HardLevelsPrefabs
+        {
+            set
+            {
+                m_HardLevelsPrefabs = new List<GameObject> (value);
+            }
+        }
+
 		[HideInInspector] public int ForwardSpawnCount;
 		[HideInInspector] public int BackwardSpawnCount;
-		[HideInInspector] public int InitialPoolSize;
-
-		[HideInInspector] public int NormalModePoints;
-		[HideInInspector] public int HardModePoints;
+		
 		[HideInInspector] public int EnergySpawnEasyModeCount;
 		[HideInInspector] public int EnergySpawnNormalModeCount;
 		[HideInInspector] public int EnergySpawnHardModeCount;
@@ -52,21 +69,23 @@ namespace Systems.Game
 		{
 			get
 			{
-				int currentPoints = GameState.Instance.CurrentPointsCount;
-				int currentZombieSpawn = 1;
+                int currentZombieSpawn = 0;
+                GameState.DifficultyMode difficultyMode = GameState.Instance.Difficulty;
 
-				if (currentPoints >= 0 && currentPoints < NormalModePoints)
-				{
-					currentZombieSpawn = EnergySpawnEasyModeCount;
-				}
-				else if (currentPoints >= NormalModePoints && currentPoints < HardModePoints)
-				{
-					currentZombieSpawn = EnergySpawnNormalModeCount;
-				}
-				else if (currentPoints > HardModePoints)
-				{
-					currentZombieSpawn = EnergySpawnHardModeCount;
-				}
+                switch ((int)difficultyMode)
+                {
+                    case (int)(GameState.DifficultyMode.EASY):
+                        currentZombieSpawn = EnergySpawnEasyModeCount;
+                        break;
+
+                    case (int)(GameState.DifficultyMode.NORMAL):
+                        currentZombieSpawn = EnergySpawnNormalModeCount;
+                        break;
+
+                    case (int)(GameState.DifficultyMode.HARD):
+                        currentZombieSpawn = EnergySpawnHardModeCount;
+                        break;
+                }
 
 				return currentZombieSpawn;
 			}
@@ -74,10 +93,10 @@ namespace Systems.Game
 
         public void LateStart()
         {
-            _path = new List<Field>(InitialPoolSize);
+            _path = new List<Field>(ForwardSpawnCount);
             _alreadyEnergy = new List<int>();
             _alreadyCoins = new List<int>();
-            AddRandomPath();
+
             InitPoolAndSpawnFirst();
 
 			// do not spawn fields on next field enter
@@ -99,7 +118,10 @@ namespace Systems.Game
             _alreadyEnergy = null; 
             _alreadyCoins.Clear();
             _alreadyCoins = null;
-			m_FieldPrefabs = null;
+            m_AllLevels = null;
+			m_EasyLevelsPrefabs = null;
+            m_NormalLevelsPrefabs = null;
+            m_HardLevelsPrefabs = null;
         }
 
 		private void CheckSpawn(float zPosition)
@@ -133,10 +155,16 @@ namespace Systems.Game
             _coinsPool = PoolContainer.CreatePool(CoinPrefab, parent);
 
             //create fields pool
-			_poolContainers = new PoolContainer[m_FieldPrefabs.Count];
-			for (int i = 0; i < m_FieldPrefabs.Count; i++)
+            _poolContainers = new PoolContainer[m_EasyLevelsPrefabs.Count 
+                                                + m_NormalLevelsPrefabs.Count 
+                                                + m_HardLevelsPrefabs.Count];
+            m_AllLevels = new List<GameObject>();
+            m_AllLevels.AddRange(m_EasyLevelsPrefabs);
+            m_AllLevels.AddRange(m_NormalLevelsPrefabs);
+            m_AllLevels.AddRange(m_HardLevelsPrefabs);
+            for (int i = 0; i < _poolContainers.Length; i++)
             {
-				_poolContainers[i] = PoolContainer.CreatePool(m_FieldPrefabs[i], parent);
+                _poolContainers[i] = PoolContainer.CreatePool(new List<GameObject>(m_AllLevels)[i], parent);
             }
 
 			// spawn zombies for default level
@@ -146,6 +174,9 @@ namespace Systems.Game
             //            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
             _groundSize = 30f;
 
+            // generate numbers of first levels
+            AddRandomPath(ForwardSpawnCount);
+
             // -1 and 0 fields are already on scene so spawn some more fields forward
             for (int i = 0; i < ForwardSpawnCount; i++)
             {
@@ -153,18 +184,54 @@ namespace Systems.Game
             }
         }
 
-        private void AddRandomPath()
+        private void AddRandomPath(int pathLength)
         {
-            for (int i = 0; i < InitialPoolSize; i++)
+            for (int i = 0; i < pathLength; i++)
             {
-				if (Systems.GameState.Instance.SessionsCount == 1 && i < FirstSessionLevels.Length)
+                if (Systems.GameState.Instance.SessionsCount == 1 && _path.Count < FirstSessionLevels.Length)
 				{
-					_path.Add (new Field (m_FieldPrefabs.IndexOf(FirstSessionLevels[i])));
+                    GameObject orderedTutorialLevel = FirstSessionLevels[i];
+                    _path.Add (new Field (m_AllLevels.IndexOf(orderedTutorialLevel)));
 				}
-				else
+                else if (GameState.Instance.Difficulty == GameState.DifficultyMode.EASY)
 				{
-					_path.Add (new Field (Random.Range (0, m_FieldPrefabs.Count)));
+                    int randomEasyOrNormalLevelNumber = Random.Range(0, m_EasyLevelsPrefabs.Count
+                                                                        + m_NormalLevelsPrefabs.Count);
+                    GameObject randomEasyOrNormalLevel;
+
+                    if (randomEasyOrNormalLevelNumber < m_EasyLevelsPrefabs.Count)
+                    {
+                        randomEasyOrNormalLevel = m_EasyLevelsPrefabs[randomEasyOrNormalLevelNumber];
+                    }
+                    else
+                    {
+                        randomEasyOrNormalLevel = m_NormalLevelsPrefabs[randomEasyOrNormalLevelNumber - m_EasyLevelsPrefabs.Count];
+                    }
+
+                    _path.Add (new Field (m_AllLevels.IndexOf(randomEasyOrNormalLevel)));
 				}
+                else if (GameState.Instance.Difficulty == GameState.DifficultyMode.NORMAL)
+                {
+                    GameObject randomNormalLevel = m_NormalLevelsPrefabs[Random.Range (0, m_NormalLevelsPrefabs.Count)];
+                    _path.Add (new Field (m_AllLevels.IndexOf(randomNormalLevel)));
+                }
+                else if (GameState.Instance.Difficulty == GameState.DifficultyMode.HARD)
+                {
+                    int randomNormalOrHardLevelNumber = Random.Range(0, m_NormalLevelsPrefabs.Count
+                                                                        + m_HardLevelsPrefabs.Count);
+                    GameObject randomNormalOrHardLevel;
+
+                    if (randomNormalOrHardLevelNumber < m_NormalLevelsPrefabs.Count)
+                    {
+                        randomNormalOrHardLevel = m_NormalLevelsPrefabs[randomNormalOrHardLevelNumber];
+                    }
+                    else
+                    {
+                        randomNormalOrHardLevel = m_HardLevelsPrefabs[randomNormalOrHardLevelNumber - m_NormalLevelsPrefabs.Count];
+                    }
+
+                    _path.Add (new Field (m_AllLevels.IndexOf(randomNormalOrHardLevel)));
+                }
             }
         }
 
@@ -208,9 +275,9 @@ namespace Systems.Game
 
         private IPoolObject PopOrSpawnById(int id)
         {
-            if (_path.Count <= id)
+            if (id >= _path.Count)
             {
-                AddRandomPath();
+                AddRandomPath(id - _path.Count + 1);
                 PopOrSpawnById(id);
             }
 
@@ -323,9 +390,9 @@ namespace Systems.Game
         
         private Field GetField(int id)
         {
-            if (id > _path.Count - 1)
+            if (id >= _path.Count)
             {
-                AddRandomPath();
+                AddRandomPath(id - _path.Count + 1);
             }
 
             return _path[id];

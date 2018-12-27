@@ -135,6 +135,8 @@ public class GameStartup : MonoBehaviour
 		m_GameState.DefaultFist = _parameters.DefaultFist;
 		m_GameState.GameOverTimerCount = _parameters.TimerCount;
 		m_GameState.SecondLifeTurnsCount = _parameters.SecondLifeTurns;
+        m_GameState.NormalModePoints = _parameters.NormalModePoints;
+        m_GameState.HardModePoints = _parameters.HardModePoints;
 		m_GameState.PointsToCoinsCoeff = _parameters.PointsToCoinsCoeff;
         m_GameState.AdvertisingCoinsMultiplierCoeff = _parameters.AdvertisingCoinsMultiplierCoeff;
         m_GameState.FreeCoinsAmount = _parameters.FreeCoinsAmount;
@@ -150,16 +152,15 @@ public class GameStartup : MonoBehaviour
 		m_Hud.m_TurnEffectDeltaY = _parameters.TurnEffectDeltaY;
 
 		m_DrawVectorPointerController.MaxForce = _parameters.MaxForce;
-
-		m_FieldSpawnController.NormalModePoints = _parameters.NormalModePoints;
-		m_FieldSpawnController.HardModePoints = _parameters.HardModePoints;
+		
 		m_FieldSpawnController.EnergySpawnEasyModeCount = _parameters.EnergySpawnEasyModeCount;
 		m_FieldSpawnController.EnergySpawnNormalModeCount = _parameters.EnergySpawnNormalModeCount;
 		m_FieldSpawnController.EnergySpawnHardModeCount = _parameters.EnergySpawnHardModeCount;
-		m_FieldSpawnController.FieldPrefabs = _parameters.Fields;
+        m_FieldSpawnController.EasyLevelsPrefabs = _parameters.EasyLevels;
+        m_FieldSpawnController.NormalLevelsPrefabs = _parameters.NormalLevels;
+        m_FieldSpawnController.HardLevelsPrefabs = _parameters.HardLevels;
 		m_FieldSpawnController.ForwardSpawnCount = _parameters.ForwardSpawnCount;
 		m_FieldSpawnController.BackwardSpawnCount = _parameters.BackwardSpawnCount;
-		m_FieldSpawnController.InitialPoolSize = _parameters.InitialPoolSize;
 		m_FieldSpawnController.ZombiePrefabs = _parameters.Zombies;
 		m_FieldSpawnController.CoinPrefab = _parameters.Coin;
 		m_FieldSpawnController.CoinSpawnCount = _parameters.CoinSpawnCount;
