@@ -64,6 +64,11 @@ namespace Windows
 		[SerializeField]
 		private CoinReward m_CoinRewardPrefab = null;
 
+		[Space]
+		[Header("Effects")]
+		[SerializeField]
+		private TurnEffect m_TurnEffect = null;
+
 		// special list to control Player death on last energy
 		private List<TurnReward> m_FlyingTurnRewards = new List<TurnReward> ();
 
@@ -203,6 +208,14 @@ namespace Windows
 
 		private void UpdateTurns(int count)
 		{
+			int currentTurnsCount = int.Parse (m_TurnsIndicator.text);
+
+			// create effect
+			if (currentTurnsCount > count)
+			{
+				Instantiate (m_TurnEffect, m_TurnsIndicator.transform.parent);
+			}
+
 			m_TurnsIndicator.text = count.ToString();
 		}
 

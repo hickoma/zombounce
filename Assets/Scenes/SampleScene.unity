@@ -305,6 +305,8 @@ MonoBehaviour:
     type: 2}
   m_CoinRewardPrefab: {fileID: 114784218995235528, guid: 98dc981ee8b43f34b9765cad5d26e058,
     type: 2}
+  m_TurnEffect: {fileID: 114125541030656484, guid: 331cec381477244458764579f79d0082,
+    type: 2}
 --- !u!1001 &159721618
 Prefab:
   m_ObjectHideFlags: 0
@@ -505,6 +507,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886577111500384, guid: f395c160e0dff8a499d00071eb0f577a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f395c160e0dff8a499d00071eb0f577a, type: 2}
@@ -2772,7 +2778,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4901403259855882, guid: f21be950ac81d3043bdc49ff039535cc, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1929051274091830, guid: f21be950ac81d3043bdc49ff039535cc, type: 2}
       propertyPath: m_IsActive
@@ -2848,7 +2854,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5/5
+  m_Text: 5
 --- !u!222 &2108013044
 CanvasRenderer:
   m_ObjectHideFlags: 0
