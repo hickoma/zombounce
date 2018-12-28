@@ -188,6 +188,7 @@ namespace Systems.Game
         {
             for (int i = 0; i < pathLength; i++)
             {
+				// level0 is already created, so _path.Count == FirstSessionLevels + 1 in the end of tutorial
                 if (Systems.GameState.Instance.SessionsCount == 1 && _path.Count <= FirstSessionLevels.Length)
 				{
 					GameObject orderedTutorialLevel = FirstSessionLevels[_path.Count - 1];
