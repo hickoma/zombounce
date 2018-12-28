@@ -174,8 +174,8 @@ namespace Systems.Game
             //            _groundSize = firstObject.PoolTransform.FindRecursiveByTag(Tag.Ground).localScale.y;
             _groundSize = 30f;
 
-            // generate numbers of first levels
-            AddRandomPath(ForwardSpawnCount);
+			// add any level, it won't be generated, because level0 is already presented
+			_path.Add (new Field (0));
 
             // -1 and 0 fields are already on scene so spawn some more fields forward
             for (int i = 0; i < ForwardSpawnCount; i++)
@@ -188,10 +188,11 @@ namespace Systems.Game
         {
             for (int i = 0; i < pathLength; i++)
             {
-                if (Systems.GameState.Instance.SessionsCount == 1 && _path.Count < FirstSessionLevels.Length)
+                if (Systems.GameState.Instance.SessionsCount == 1 && _path.Count <= FirstSessionLevels.Length)
 				{
-                    GameObject orderedTutorialLevel = FirstSessionLevels[i];
-                    _path.Add (new Field (m_AllLevels.IndexOf(orderedTutorialLevel)));
+					GameObject orderedTutorialLevel = FirstSessionLevels[_path.Count - 1];
+					int index = m_AllLevels.IndexOf (orderedTutorialLevel);
+					_path.Add (new Field (index));
 				}
                 else if (GameState.Instance.Difficulty == GameState.DifficultyMode.EASY)
 				{
@@ -208,7 +209,8 @@ namespace Systems.Game
                         randomEasyOrNormalLevel = m_NormalLevelsPrefabs[randomEasyOrNormalLevelNumber - m_EasyLevelsPrefabs.Count];
                     }
 
-                    _path.Add (new Field (m_AllLevels.IndexOf(randomEasyOrNormalLevel)));
+					int index = m_AllLevels.IndexOf (randomEasyOrNormalLevel);
+					_path.Add (new Field (index));
 				}
                 else if (GameState.Instance.Difficulty == GameState.DifficultyMode.NORMAL)
                 {
@@ -230,7 +232,8 @@ namespace Systems.Game
                         randomNormalOrHardLevel = m_HardLevelsPrefabs[randomNormalOrHardLevelNumber - m_NormalLevelsPrefabs.Count];
                     }
 
-                    _path.Add (new Field (m_AllLevels.IndexOf(randomNormalOrHardLevel)));
+					int index = m_AllLevels.IndexOf (randomNormalOrHardLevel);
+					_path.Add (new Field (index));
                 }
             }
         }
