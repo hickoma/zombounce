@@ -264,6 +264,8 @@ MonoBehaviour:
   m_Player: {fileID: 114923155420843312}
   MinVelocityTolerance: 0
   Multiplier: 0
+  m_HitEffect: {fileID: 114566460702531286, guid: e580bcf3547bdaa43873bd514693048b,
+    type: 2}
 --- !u!114 &114923155420843312
 MonoBehaviour:
   m_ObjectHideFlags: 1

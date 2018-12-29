@@ -60,6 +60,8 @@ namespace Data
 		public float RewardFlyLength;
 		public float TurnEffectLength;
 		public float TurnEffectDeltaY;
+		public float HitAnimationLength;
+		public float HitAnimationDistanceDelta;
 
         [Header("Plugins ids and keys")] public string IronSourceAppKey;
     }

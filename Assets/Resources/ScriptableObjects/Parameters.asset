@@ -88,4 +88,6 @@ MonoBehaviour:
   RewardFlyLength: 1
   TurnEffectLength: 1
   TurnEffectDeltaY: -200
+  HitAnimationLength: 1
+  HitAnimationDistanceDelta: 5
   IronSourceAppKey: 83bcffa5

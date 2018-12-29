@@ -25,10 +25,19 @@ namespace Systems.PlayerProcessings
 		public float MinVelocityTolerance;
         public float Multiplier;
 
+		[SerializeField]
+		private HitEffect m_HitEffect = null;
+
         public float MaxForce
         {
             set { _maxForceSqrt = value * value; }
         }
+
+		// parameters
+		[System.NonSerialized]
+		public float HitAnimationLength;
+		[System.NonSerialized]
+		public float HitAnimationDistanceDelta;
 
 		private bool m_IsMoving = false;
 
@@ -46,6 +55,7 @@ namespace Systems.PlayerProcessings
             GameEventsController.Instance.OnSetFist += SetFistSprite;
 			GameEventsController.Instance.OnPointerUpDown += CheckInput;
 			GameEventsController.Instance.OnGameStateChanged += CheckState;
+			GameEventsController.Instance.OnShowHitAnimation += ShowHitAnimation;
 		}
 
 		public void Update()
@@ -180,5 +190,30 @@ namespace Systems.PlayerProcessings
                     break;
             }
         }
+
+		private void ShowHitAnimation(int deltaTurns)
+		{
+			Vector3 startDirection = Vector3.zero;
+			startDirection.x = 90f;
+			startDirection.z = m_Player.m_FistTransform.localRotation.eulerAngles.z;
+			// make opposite
+			startDirection.z += 180;
+			// count step of changing angle, use half plain
+			float angleStep = 180 / deltaTurns;
+			startDirection.z = startDirection.z - 90 + angleStep / 2;
+
+			for (int i = 0; i < deltaTurns; i++)
+			{
+				// create effect and setup its geometry
+				HitEffect effect = Instantiate<HitEffect> (m_HitEffect, m_Player.m_Transform.parent);
+				effect.transform.position = m_Player.m_FistTransform.position;
+				effect.transform.localRotation = Quaternion.Euler(startDirection);
+				// set effect parameters
+				effect.m_AnimationLength = HitAnimationLength;
+				effect.m_AnimationDistanceDelta = HitAnimationDistanceDelta;
+				// shift to next angle
+				startDirection.z = startDirection.z + angleStep;
+			}
+		}
     }
 }

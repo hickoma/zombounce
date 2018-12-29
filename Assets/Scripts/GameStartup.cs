@@ -147,6 +147,8 @@ public class GameStartup : MonoBehaviour
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;
 		m_PlayerController.MaxForce = _parameters.MaxForce;
 		m_PlayerController.MinLength = _parameters.MinLength;
+		m_PlayerController.HitAnimationLength = _parameters.HitAnimationLength;
+		m_PlayerController.HitAnimationDistanceDelta = _parameters.HitAnimationDistanceDelta;
 
 		m_Hud.m_TurnEffectLength = _parameters.TurnEffectLength;
 		m_Hud.m_TurnEffectDeltaY = _parameters.TurnEffectDeltaY;

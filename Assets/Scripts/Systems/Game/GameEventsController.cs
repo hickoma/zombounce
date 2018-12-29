@@ -53,6 +53,16 @@ public class GameEventsController : MonoBehaviour
 		}
 	}
 
+	public event Action<int> OnShowHitAnimation;
+
+	public void ShowHitAnimation(int deltaTurns)
+	{
+		if (OnShowHitAnimation != null)
+		{
+			OnShowHitAnimation (deltaTurns);
+		}
+	}
+
 	// Draw Vector Pointer Processing
 	public event Action<Vector3, Vector3, bool> OnDrawVectorPointer;
 
