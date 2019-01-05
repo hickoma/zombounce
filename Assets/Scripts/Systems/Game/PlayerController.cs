@@ -215,5 +215,11 @@ namespace Systems.PlayerProcessings
 				startDirection.z = startDirection.z + angleStep;
 			}
 		}
+
+        private void OnCollisionEnter(Collision other)
+        {
+            // vibrate on collisions with walls
+            Handheld.Vibrate();
+        }
     }
 }

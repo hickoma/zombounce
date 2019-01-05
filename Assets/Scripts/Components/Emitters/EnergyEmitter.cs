@@ -13,6 +13,9 @@ namespace Emitters
             {
 				GameEventsController.Instance.CreateRewardTurn (transform.position, 1);
 				GameEventsController.Instance.GatherEnergy (GetComponent<IPoolObject> ());
+
+                // vibrate on collision with player
+                Handheld.Vibrate();
             }
         }
     }
