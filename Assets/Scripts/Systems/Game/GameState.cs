@@ -522,7 +522,18 @@ namespace Systems
         {
             get
             {
-                return (SessionsCount % m_LosesToShowInterstitialCount == 0);
+                return (SessionsCount % m_LosesToShowInterstitialCount == 0 && !IsItTimeToShowTutorial);
+            }
+        }
+
+        // is inited from Parameters
+        public int m_TutorialShowTimes = 3;
+        // defines if it's time to show tutorial before playing
+        public bool IsItTimeToShowTutorial
+        {
+            get
+            {
+                return (SessionsCount <= m_TutorialShowTimes);
             }
         }
 	}

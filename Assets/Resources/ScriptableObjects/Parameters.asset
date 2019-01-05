@@ -23,7 +23,7 @@ MonoBehaviour:
   PointsToCoinsCoeff: 5
   AdvertisingCoinsMultiplierCoeff: 3
   FreeCoinsAmount: 100
-  LosesToShowInterstitialCount: 3
+  LosesToShowInterstitialCount: 1
   CameraSmooth: 0.2
   CameraMinPositionZ: -12
   BackBlockerDistanceFromCamera: -15

@@ -142,6 +142,7 @@ public class GameStartup : MonoBehaviour
         m_GameState.FreeCoinsAmount = _parameters.FreeCoinsAmount;
 		m_GameState.RewardFlyTime = _parameters.RewardFlyLength;
         m_GameState.m_LosesToShowInterstitialCount = _parameters.LosesToShowInterstitialCount;
+        m_GameState.m_TutorialShowTimes = _parameters.TutorialShowTimes;
 
 		m_PlayerController.Multiplier = _parameters.ForceMultiplier;
 		m_PlayerController.MinVelocityTolerance = _parameters.MinVelocityTolerance;
@@ -175,7 +176,6 @@ public class GameStartup : MonoBehaviour
 
 		m_BackBlockFollowController.DistanceFromCamera = _parameters.BackBlockerDistanceFromCamera;
 
-		m_TutorialController.m_TutorialShowTimes = _parameters.TutorialShowTimes;
 		m_TutorialController.m_FirstPartLength = _parameters.FirstPartLength;
 		m_TutorialController.m_SecondPartLength = _parameters.SecondPartLength;
 		m_TutorialController.m_ThirdPartLength = _parameters.ThirdPartLength;

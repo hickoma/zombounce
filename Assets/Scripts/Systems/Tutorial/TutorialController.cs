@@ -18,7 +18,6 @@ namespace Systems
 
 		[Space]
 		[Header("Animation Parameters")]
-		public int m_TutorialShowTimes;
 		public float m_FirstPartLength;
 		public float m_SecondPartLength;
 		public float m_ThirdPartLength;
@@ -27,7 +26,7 @@ namespace Systems
 
 		public void LateStart()
 		{
-			if (Systems.GameState.Instance.SessionsCount <= m_TutorialShowTimes)
+            if (Systems.GameState.Instance.IsItTimeToShowTutorial)
 			{
 				StartTutorial ();
 				GameEventsController.Instance.OnGameStartClick += StopTutorial;
