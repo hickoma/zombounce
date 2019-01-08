@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 
 namespace Systems
 {
@@ -30,7 +31,11 @@ namespace Systems
             // banner
 			if (Systems.GameState.Instance.AreAdsActive)
 			{
+                // iron source
 				IronSource.Agent.loadBanner (IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+                // unity ads
+                Advertisement.Initialize("2965383", false);
+                StartCoroutine(ShowBannerWhenReady());
 			}
 
             IronSourceEvents.onBannerAdLoadedEvent += BannerAdLoadedEvent;
@@ -303,6 +308,17 @@ namespace Systems
                     OnInterstitialEndedCallback();
                 }
             }
+        }
+
+        // unity ads
+        public IEnumerator ShowBannerWhenReady()
+        {
+            while (!Advertisement.IsReady("zomb_banner"))
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            Advertisement.Banner.Show("zomb_banner");
         }
     }
 }
