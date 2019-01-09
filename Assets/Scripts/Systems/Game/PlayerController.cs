@@ -219,7 +219,7 @@ namespace Systems.PlayerProcessings
         private void OnCollisionEnter(Collision other)
         {
             // vibrate on collisions with walls
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         }
     }
 }

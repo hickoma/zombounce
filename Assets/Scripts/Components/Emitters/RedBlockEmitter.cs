@@ -34,6 +34,9 @@ namespace Emitters
 				{
 					GameEventsController.Instance.ShowHitAnimation (lostTurns);
 				}
+
+				// vibrate on collision
+				Handheld.Vibrate();
             }
         }
     }
