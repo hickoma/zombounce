@@ -23,6 +23,9 @@ namespace Windows
         [SerializeField]
         private Button m_FreeCoinsButton = null;
 
+		[SerializeField]
+		private GameObject m_NoInternetBadge = null;
+
         [SerializeField]
         private Button m_HomeButton = null;
 
@@ -40,6 +43,11 @@ namespace Windows
             m_HomeButton.onClick.AddListener(HideWindow);
             GameEventsController.Instance.OnStoreWindowOpen += ShowWindow;
         }
+
+		void OnEnable()
+		{
+			m_NoInternetBadge.SetActive (false);
+		}
 
         private void ShowWindow()
         {
@@ -152,12 +160,21 @@ namespace Windows
 
         private void TakeFreeCoins()
         {
-            ShowAds (() =>
-            {
-				m_CurrentCoins += Systems.GameState.Instance.FreeCoinsAmount;
-				Systems.GameState.Instance.CoinsCount = m_CurrentCoins;
-                UpdateCoinsCounter();
-            });
+			if (Application.internetReachability != NetworkReachability.NotReachable)
+			{
+				m_NoInternetBadge.SetActive (false);
+
+				ShowAds (() =>
+				{
+					m_CurrentCoins += Systems.GameState.Instance.FreeCoinsAmount;
+					Systems.GameState.Instance.CoinsCount = m_CurrentCoins;
+					UpdateCoinsCounter ();
+				});
+			}
+			else
+			{
+				m_NoInternetBadge.SetActive (true);
+			}
         }
 
         private void ShowAds(System.Action onAdvertisingClose)

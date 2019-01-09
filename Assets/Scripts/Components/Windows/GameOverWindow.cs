@@ -10,6 +10,9 @@ namespace Windows
 		private Button m_GetEnergyButton = null;
 
 		[SerializeField]
+		private GameObject m_NoInternetBadge = null;
+
+		[SerializeField]
 		private Button m_GetCoinsButton = null;
 
 		[SerializeField]
@@ -34,6 +37,8 @@ namespace Windows
 
 		void OnEnable()
 		{
+			m_NoInternetBadge.SetActive (false);
+
 			if (!m_AlreadyDied)
 			{
 				// track first death
@@ -111,12 +116,21 @@ namespace Windows
                 m_EnergyButtonScaleTween.Stop();
             }
 
-            GameEventsController.Instance.ShowRewardVideo(() =>
-            {
-    			GameEventsController.Instance.PlayMore();
+			if (Application.internetReachability != NetworkReachability.NotReachable)
+			{
+				m_NoInternetBadge.SetActive (false);
 
-    			HideWindow();
-            });
+				GameEventsController.Instance.ShowRewardVideo (() =>
+				{
+					GameEventsController.Instance.PlayMore ();
+
+					HideWindow ();
+				});
+			}
+			else
+			{
+				m_NoInternetBadge.SetActive (true);
+			}
 		}
 
 		private void ClaimPrize()

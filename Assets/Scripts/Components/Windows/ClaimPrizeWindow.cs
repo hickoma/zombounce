@@ -23,6 +23,9 @@ namespace Windows
         [SerializeField]
         private Text m_TakeX3CoinsBadgeXText = null;
 
+		[SerializeField]
+		private GameObject m_NoInternetBadge = null;
+
 		private int m_PrizeCoins = 0;
 		private int m_PrizeCoinsX3 = 0;
         private int m_AdvertisingMultiplier = 1;
@@ -44,6 +47,7 @@ namespace Windows
 			m_TakeX3CoinsText.text = m_PrizeCoinsX3.ToString ();
             m_TakeX3CoinsBadgeXText.text = "x" + m_AdvertisingMultiplier.ToString();
             m_TakeX3CoinsButton.gameObject.SetActive(isRewardVideoAvailable);
+			m_NoInternetBadge.SetActive (false);
 
             // show x3 button only if watching reward video is possible
             if (isRewardVideoAvailable)
@@ -79,14 +83,23 @@ namespace Windows
 
 		private void TakeX3Coins()
 		{
-            ShowRewardVideo (() =>
-            {
-				// track reward taking
-				Analytics.SendEventAnalytic (Analytics.PossibleEvents.CoinsX3Reward, Systems.GameState.Instance.SessionsCount.ToString());
+			if (Application.internetReachability != NetworkReachability.NotReachable)
+			{
+				m_NoInternetBadge.SetActive (false);
 
-                Systems.GameState.Instance.CoinsCount += m_PrizeCoinsX3;
-                RestartGame ();
-            });
+				ShowRewardVideo (() =>
+				{
+					// track reward taking
+					Analytics.SendEventAnalytic (Analytics.PossibleEvents.CoinsX3Reward, Systems.GameState.Instance.SessionsCount.ToString ());
+
+					Systems.GameState.Instance.CoinsCount += m_PrizeCoinsX3;
+					RestartGame ();
+				});
+			}
+			else
+			{
+				m_NoInternetBadge.SetActive (true);
+			}
 		}
 
 		private void ShowRewardVideo(System.Action onAdvertisingClose)
