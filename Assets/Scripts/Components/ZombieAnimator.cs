@@ -9,10 +9,16 @@ namespace Components
         [SerializeField]
         private Animator m_AnimatorController = null;
 
-    	// Use this for initialization
-    	void Start ()
+		private Coroutine m_AnimateCoroutine = null;
+
+    	void OnEnable ()
         {
-            StartCoroutine(Animate());
+			if (m_AnimateCoroutine != null)
+			{
+				StopCoroutine (m_AnimateCoroutine);
+			}
+
+			m_AnimateCoroutine = StartCoroutine(Animate());
     	}
     	
         IEnumerator Animate()
